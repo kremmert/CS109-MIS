@@ -7,8 +7,10 @@ public:
     Parse(const Parse& orig);
     virtual ~Parse();
 	std::vector<std::vector<std::string>> parsingf();
+
 	
-	std::vector<std::vector<std::string>> lines;
+	
 private:
+	std::vector<std::vector<std::string>> lines;
 
 };
