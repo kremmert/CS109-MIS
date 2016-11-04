@@ -1,10 +1,10 @@
 
 
-class math {
+class Math {
 public:
-    math();
-    sub(const sub& orig);
-    virtual ~math();
+    Math();
+    Math(const Math& orig);
+    virtual ~Math();
 private:
 
 

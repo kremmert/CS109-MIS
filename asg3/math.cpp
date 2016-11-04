@@ -1,10 +1,10 @@
-#include "math.h"
+#include "Math.h"
 
-sub::sub() {
+Math::Math() {
 }
 
-sub::sub(const sub& orig) {
+Math::Math(const Math& orig) {
 }
 
-sub::~sub() {
+Math::~Math() {
 }

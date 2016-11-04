@@ -1,10 +1,10 @@
 
 
-class var {
+class Var {
 public:
-    var();
-    var(const var& orig);
-    virtual ~var();
+    Var();
+    Var(const Var& orig);
+    virtual ~Var();
 private:
 
 
