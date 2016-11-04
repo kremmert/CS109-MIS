@@ -8,3 +8,4 @@ Math::Math(const Math& orig) {
 
 Math::~Math() {
 }
+
