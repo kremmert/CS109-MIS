@@ -3,9 +3,11 @@
 #include<fstream>
 #include<string>
 #include <stdio.h>
+#include <vector>
 
 using namespace std;
 Parse::Parse() {
+	
 }
 
 Parse::Parse(const Parse& orig) {
@@ -14,7 +16,28 @@ Parse::Parse(const Parse& orig) {
 Parse::~Parse() {
 }
 
-void Parse::parsingf(){
+vector<vector<string>> Parse::parsingf(){
+	std::vector<std::vector<std::string>> lines(50,std::vector<string>(50));
+	std::ifstream file("InputTest.txt");
+	std::string str;
+	//vector<vector<string>> lines(50);
+	int x = 0;
+	while (std::getline(file, str))
+	{
+		lines[x][0] = str;
+		x++;
+		//std::cout<<"cout aray :    "<<this->lines[x-1][0]<<"\n";
+		//printf("\n line %s \n", this->lines[x-1][0]);//doesnt work
+		//std::cout<<"cout :"<<str<<"\n" ;//works
+	} 
+	for(int i=0; i<lines.size(); ++i){
+		std::cout << lines[i][0] << "\n";
+		
+	}
+	
+
+	return lines;
+	
 	
 }
 
@@ -30,14 +53,7 @@ int main(int argc, char** argv)
 	}
 	inFile.close(); // Close file
 	*/
-	std::ifstream file("InputTest.txt");
-	std::string str;
-	std::string liny;
-	std::string file_contents;
-	while (std::getline(file, str))
-	{
-		liny = str;
-	printf(" line %s \n", liny);//doesnt work
-	std::cout<<"cout :"<<str<<"\n" ;//works
-	}  
+	
+	Parse *pthing = new Parse();
+	pthing->parsingf();
 }
