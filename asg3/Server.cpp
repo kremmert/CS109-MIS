@@ -1,5 +1,5 @@
 #include "Server.h"
-#include "parse.cpp"
+#include "Parse.cpp"
 using namespace std;
 
 Server::Server()
@@ -21,8 +21,14 @@ void Server::readLines()
 
 void Server::fetch()
 {
-    string str = lines[counter][0];
-    cout << "this is a test!!!!!!!!!!!" << str << endl;
+    string str;
+    cout << endl;
+    for(int i = 0; i < lines[counter].size(); ++i)
+    {
+        str = lines[counter][i];
+        cout << str << endl;
+        if(lines[counter][i].compare("")==0) break;
+    }
     counter++;
 }
 
