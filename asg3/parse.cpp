@@ -1,10 +1,10 @@
-#include "parse.h"
+#include "Parse.h"
 
-parse::parse() {
+Parse::Parse() {
 }
 
-parse::parse(const parse& orig) {
+Parse::Parse(const Parse& orig) {
 }
 
-parse::~parse() {
+Parse::~Parse() {
 }

@@ -1,10 +1,10 @@
-#include "var.h"
+#include "Var.h"
 
-var::var() {
+Var::Var() {
 }
 
-var::var(const var& orig) {
+Var::Var(const Var& orig) {
 }
 
-var::~var() {
+Var::~Var() {
 }

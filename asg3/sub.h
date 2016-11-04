@@ -2,11 +2,11 @@
 #ifndef SUB_H
 #define SUB_H
 
-class sub {
+class Sub {
 public:
-    sub();
-    sub(const sub& orig);
-    virtual ~sub();
+    Sub();
+    Sub(const Sub& orig);
+    virtual ~Sub();
 private:
 	subtract(int, int, int);
 
