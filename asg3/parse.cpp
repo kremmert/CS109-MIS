@@ -54,10 +54,10 @@ vector<vector<string>> Parse::parsingf(){
 		x++;
 
 	} 
-	for(int i=0; i<20; ++i){
+	for(int i=0; i<lines.size(); ++i){
 		if(lines[i][0].compare("")==0) break;
 		std::cout<<"\n";
-		for(int v = 0; v < 20; ++v)
+		for(int v = 0; v < lines[i].size(); ++v)
 		{	if(lines[i][v].compare("")==0) break;
 			std::cout <<"arg" <<v<<":"<< lines[i][v] << "\t";
 		}
