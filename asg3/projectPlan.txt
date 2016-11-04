@@ -4,12 +4,11 @@ in map, label value is index/line number
 
 fetch - we get the instruction (increment array)
 
-decode<template> 
+execute<template> 
 	- figure out what needs to be done
 	- store variables in map
 	- store instuctions in map
-
-execute - do the thing
+	- do the thing
 
 map1: variables and objects
 	do the clone thing -> store into map2 depending on var/function
