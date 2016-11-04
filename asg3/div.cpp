@@ -1,4 +1,4 @@
-#include "div.h"
+#include "Div.h"
 
 div::div() {
 }
