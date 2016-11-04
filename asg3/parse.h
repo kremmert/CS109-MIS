@@ -6,6 +6,6 @@ public:
     Parse(const Parse& orig);
     virtual ~Parse();
 private:
-	parsingf();
+	void parsingf();
 
 };
