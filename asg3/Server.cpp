@@ -8,12 +8,12 @@ Server::Server()
 
 Server::~Server()
 {
-
+    
 }
 
 void fetch()
 {
-    
+
 }
 
 template<typename T, typename... insns>
