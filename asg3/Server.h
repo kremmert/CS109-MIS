@@ -12,7 +12,8 @@ class Server
     public:
         Server(); //map1 has everything instantiated, arrays allocated
         void fetch(); //count indexes until next insn
-        template<typename T, typename... insns>execute(T res, insns... args);
+        template<typename T, typename... insns>
+        T execute(T res, insns... args);
         //forms and puts object into map, clone 
         //then performs the insns, and stores into another map, then calls fetch again
         //increments counter
