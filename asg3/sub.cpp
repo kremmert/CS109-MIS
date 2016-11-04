@@ -1,15 +1,15 @@
-#include "sub.h"
+#include "Sub.h"
 
-sub::sub() {
+Sub::Sub() {
 }
 
-sub::sub(const sub& orig) {
+Sub::Sub(const Sub& orig) {
 }
 
-sub::~sub() {
+Sub::~Sub() {
 }
 //Subtract the third parameter from the second parameter and store the result in the first parameter
-sub::subtract(int result, int par1, int par2){
+Sub::subtract(int result, int par1, int par2){
     result.value = par1 - par2;
     return result;
 }

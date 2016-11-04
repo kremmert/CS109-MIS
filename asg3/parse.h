@@ -1,11 +1,11 @@
 
 
-class parse {
+class Parse {
 public:
-    parse();
-    parse(const parse& orig);
-    virtual ~parse();
+    Parse();
+    Parse(const Parse& orig);
+    virtual ~Parse();
 private:
-	parsetract(int, int, int);
+	parsingf();
 
 };
