@@ -1,5 +1,4 @@
 #include "var.h"
-
 Var::Var() {
 }
 
@@ -16,15 +15,15 @@ void Var::decode(std::vector<std::string> lines)
     type = lines[2];
     if(lines.size() == 5)
     {
-        num = lines[3];
-        val = lines[4]
+        num = std::stoi(lines[3]);
+        val = lines[4];
     }
     else
-        num = lines[3];
+        num = std::stoi(lines[3]);
     
     if(name.compare("NUMERIC"))
     {
-        
+
     }
     
     if(name.compare("REAL"))

@@ -1,6 +1,5 @@
-
-
-class Numeric::Var {
+#include "var.h"
+class Numeric:Var {
 public:
     Numeric(std::string n, std::string t, std::string v);
     virtual ~Numeric();
