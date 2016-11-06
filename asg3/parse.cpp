@@ -1,4 +1,4 @@
-#include "Parse.h"
+#include "parse.h"
 #include<iostream>
 #include<fstream>
 #include<string>
