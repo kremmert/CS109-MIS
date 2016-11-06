@@ -1,5 +1,5 @@
 #include "Numeric.h"
-Numeric::Numeric(std::string n, std::string t, std::string v):name(n), type(t), val(v) {}
+Numeric::Numeric(std::string n, std::string t, int v):name(n), type(t), num(v) {}
 
 Numeric::~Numeric() {}
 

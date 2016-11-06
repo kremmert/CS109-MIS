@@ -1,8 +1,8 @@
 #include "var.h"
-class Numeric:Var {
+class Real:Var {
 public:
-    Numeric(std::string n, std::string t, int v);
-    virtual ~Numeric();
+    Real(std::string n, std::string t, int v);
+    virtual ~Real();
     std::string getName();
 private:
     std::string name;
