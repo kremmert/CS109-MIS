@@ -1,9 +1,5 @@
 #ifndef VAR_H
 #define VAR_H
-#include "Numeric.h"
-#include "Real.h"
-#include "Char.h"
-#include "String.h"
 #include "common.h"
 #include <stdlib.h>
 class Var {
