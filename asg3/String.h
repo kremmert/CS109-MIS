@@ -9,6 +9,7 @@ public:
     String(std::string n, std::string t, std::string v);
     virtual ~String();
     std::string getName();
+	int * getVal();
 	Var * clone(std::vector<std::string>);
 private:
     std::string name;

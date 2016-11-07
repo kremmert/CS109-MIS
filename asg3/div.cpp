@@ -1,4 +1,5 @@
-#include "div.h"
+#include "Div.h"
+#include "common.h"
 
 div::div() {
 }
@@ -15,9 +16,9 @@ div::~div() {
 
 void div:: divide(int c, int a, int b){
     if(b == 0){
-        printf("divide by zero error");
+        std::cout<<"divide by zero error";
         return;
     }
-    result.value = a/b;
-    return result;
+
+
 }

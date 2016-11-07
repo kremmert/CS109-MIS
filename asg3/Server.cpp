@@ -5,6 +5,10 @@
 #include "Real.h"
 #include "Char.h"
 #include "String.h"
+#include "Sub.h"
+#include "Mul.h"
+#include "Add.h"
+#include "Div.h"
 using namespace std;
 
 Server::Server()
@@ -26,29 +30,40 @@ void Server::readLines()
 
 void Server::morethanfetch()
 {
-	cout<<"here1";
+
 	map <string,Var *> vobj;//var obj
 	map <string,Var *> storevobj;//store var obj
-	cout<<"Here2\n";
+
 	vobj["REAL"] = new Real();
 	vobj["NUMERIC"] = new Numeric();
 	vobj["STRING"] = new String();
 	vobj["CHAR"] = new Char();
-	cout<<"3\n";
+	vobj["ADD"] = new Add();
+	vobj["SUB"] = new Sub();
+	vobj["MUL"] = new Mul();
+	vobj["DIV"] = new Div();
+
 	cout<<lines.size();
 	cout<<"\n"<<lines[0].size();
 	while(counter<lines.size()){
 		counter++;
 		if(lines[counter-1][0].compare("")==0) continue;
+		
+		
 		cout<<"\ncounter:: "<<counter-1<<"\n";
+		
+		
 		Var * kk = vobj[lines[counter-1][2]];
-		cout<<lines[counter-1][2];
+		
+
+		
 		kk = kk->clone(lines[counter-1]);
 		storevobj[lines[counter-1][1]] = kk;
 
 		
 		//if(counter == lines.size()-1) break;
 	}
+	//fuck printing map
 	for (std::map<string,Var*>::iterator it=storevobj.begin(); it!=storevobj.end(); ++it)
 		std::cout <<"\n"<< it->first << " => " << it->second << '\n';
 

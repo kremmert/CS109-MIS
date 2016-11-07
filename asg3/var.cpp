@@ -15,7 +15,7 @@ Var::~Var() {
 }
 
 Var * Var::decode(std::vector<std::string> lines)
-{
+{/*
     Var * v  = nullptr;
     varType = lines[0];
     name = lines[1];
@@ -54,6 +54,7 @@ Var * Var::decode(std::vector<std::string> lines)
     }    
 
     return v;
+	*/
 }
 
 std::string Var::getName()

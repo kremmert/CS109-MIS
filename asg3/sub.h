@@ -1,6 +1,7 @@
 
 #ifndef SUB_H
 #define SUB_H
+#include "var.h"
 
 class Sub {
 public:
@@ -8,7 +9,7 @@ public:
     Sub(const Sub& orig);
     virtual ~Sub();
 private:
-	subtract(int, int, int);
+	void subtract(Var * a, int par1, int par2);
 
 };
 

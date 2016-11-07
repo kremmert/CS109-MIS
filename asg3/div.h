@@ -8,7 +8,7 @@ public:
     div(const div& orig);
     virtual ~div();
 private:
-	divide(int, int, int );
+	void divide(int, int, int );
 
 };
 

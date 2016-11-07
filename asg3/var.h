@@ -8,6 +8,7 @@ public:
     Var(const Var& orig);
     virtual ~Var();
     virtual std::string getName();
+	virtual int * getVal();
     Var * decode(std::vector<std::string> lines);
 	virtual Var * clone(std::vector<std::string>) = 0;
 private:
@@ -15,8 +16,6 @@ private:
     std::string name;
     std::string type;
     std::string val;
-    int num;
-
 };
 
 #endif

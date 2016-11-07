@@ -2,3 +2,6 @@ VAR	$myint,NUMERIC,100
 VAR	$myfloat,REAL,12.14
 VAR	$mychar,CHAR,'c'
 VAR	$mystr,STRING,100, "Hello	world	MIS!!"
+VAR	$myint2,NUMERIC,100
+VAR	$myint3,NUMERIC,10
+ADD	$myint,100,100
