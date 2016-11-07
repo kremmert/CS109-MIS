@@ -1,6 +1,11 @@
+#ifndef NUMERIC_H
+#define NUMERIC_H
 #include "var.h"
-class Numeric:Var {
+#include "common.h"
+#include <string.h>
+class Numeric: public Var {
 public:
+    Numeric();
     Numeric(std::string n, std::string t, int v);
     virtual ~Numeric();
     std::string getName();
@@ -11,3 +16,4 @@ private:
     int num;
 
 };
+#endif

@@ -1,7 +1,12 @@
+#ifndef STRING_H
+#define STRING_H
 #include "var.h"
-class String:Var {
+#include "common.h"
+#include <string.h>
+class String: public Var {
 public:
-    String(std::string n, std::string t, val v);
+    String();
+    String(std::string n, std::string t, std::string v);
     virtual ~String();
     std::string getName();
 private:
@@ -11,3 +16,4 @@ private:
     int num;
 
 };
+#endif

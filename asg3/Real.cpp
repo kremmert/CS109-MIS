@@ -1,4 +1,6 @@
 #include "Real.h"
+Real::Real(){}
+
 Real::Real(std::string n, std::string t, int v):name(n), type(t), num(v) {}
 
 Real::~Real() {}

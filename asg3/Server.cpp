@@ -1,5 +1,6 @@
 #include "Server.h"
-#include "parse.cpp"
+#include "var.h"
+#include "parse.h"
 using namespace std;
 
 Server::Server()
@@ -22,7 +23,7 @@ void Server::readLines()
 void Server::fetch()
 {
     Var v;
-    Var w = v->decode(lines[counter]);
+    Var * w = v.decode(lines[counter]);
     string str;
     cout << endl;
     for(int i = 0; i < lines[counter].size(); ++i)
@@ -40,7 +41,7 @@ T Server::execute(T res, insns... args)
 
 }
 
-int main(int argc, char** argv){
+int main(){
     Server * s = new Server();
     cout << "\nmade it" << endl;
 }

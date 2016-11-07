@@ -1,4 +1,7 @@
 #include "var.h"
+#include "common.h"
+#include <string.h>
+#pragma once
 Var::Var() {
 }
 
@@ -8,8 +11,9 @@ Var::Var(const Var& orig) {
 Var::~Var() {
 }
 
-Var Var::decode(std::vector<std::string> lines)
+Var * Var::decode(std::vector<std::string> lines)
 {
+    Var * v  = nullptr;
     varType = lines[0];
     name = lines[1];
     type = lines[2];
@@ -28,23 +32,28 @@ Var Var::decode(std::vector<std::string> lines)
     }
     if(name.compare("NUMERIC"))
     {
-        Var v = new Numeric(name,type,num);
+        v = new Numeric(name,type,num);
     }
     
     if(name.compare("REAL"))
     {
-        Var v = new Real(name,type,num);
+        v = new Real(name,type,num);
     }
 
     if(name.compare("CHAR"))
     {
-        Var v = new Char(name,type,val);
+        v = new Char(name,type,val);
     }
 
     if(name.compare("STRING"))
     {
-        Var v = new String(name,type,val);
+        v = new String(name,type,val);
     }    
 
     return v;
+}
+
+std::string Var::getName()
+{
+    return name;
 }

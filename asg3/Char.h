@@ -1,7 +1,12 @@
+#ifndef CHAR_H
+#define CHAR_H
 #include "var.h"
-class Char:Var {
+#include "common.h"
+#include <string.h>
+class Char: public Var {
 public:
-    Char(std::string n, std::string t, val v);
+    Char();
+    Char(std::string n, std::string t, std::string v);
     virtual ~Char();
     std::string getName();
 private:
@@ -11,3 +16,5 @@ private:
     int num;
 
 };
+
+#endif

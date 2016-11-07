@@ -1,6 +1,11 @@
+#ifndef REAL_H
+#define REAL_H
 #include "var.h"
-class Real:Var {
+#include "common.h"
+#include <string.h>
+class Real: public Var {
 public:
+    Real();
     Real(std::string n, std::string t, int v);
     virtual ~Real();
     std::string getName();
@@ -11,3 +16,4 @@ private:
     int num;
 
 };
+#endif
