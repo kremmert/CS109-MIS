@@ -18,9 +18,14 @@ Var Var::decode(std::vector<std::string> lines)
         num = std::stoi(lines[3]);
         val = lines[4];
     }
-    else
+    if(name.compare("CHAR"))
+    {
+        val = lines[3];
+    }
+    if(name.compare("NUMERIC") || name.compare("REAL"))
+    {    
         num = std::stoi(lines[3]);
-    
+    }
     if(name.compare("NUMERIC"))
     {
         Var v = new Numeric(name,type,num);
