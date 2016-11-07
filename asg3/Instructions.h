@@ -1,3 +1,5 @@
+#ifndef INSTRUCTIONS_H
+#define INSTRUCTIONS_H
 class Instructions {
 public:
     Instructions();
@@ -7,4 +9,6 @@ private:
     
 
 
+
 };
+#endif

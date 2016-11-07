@@ -1,4 +1,5 @@
 #include "Server.h"
+#include "Instructions.h"
 #include "Var.h"
 #include "Parse.h"
 #include "Numeric.h"
