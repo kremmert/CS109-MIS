@@ -1,19 +1,13 @@
 CC = g++
 CFLAGS = -o
 RM = rm -f
-
+CLASSES = Server.cpp var.cpp parse.cpp Numeric.cpp String.cpp Real.cpp Char.cpp
 default: all
 
-all : attendance inventory maxheap
+all : server
 
-attendance: problem1.cpp
-	$(CC) -std=c++11 problem1.cpp $(CFLAGS) attendance
-
-inventory: problem2.cpp
-	$(CC) -std=c++11 problem2.cpp $(CFLAGS) invy
-
-maxheap: problem3.cpp
-	$(CC) -std=c++11 problem3.cpp $(CFLAGS)  max_heap
+server: $(CLASSES)
+	$(CC) -std=c++11 $(CLASSES) $(CFLAGS) server
 
 clean:
-	$(RM) attendance invy max_heap
+	$(RM) server
