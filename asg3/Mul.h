@@ -1,4 +1,6 @@
-class Mul {
+
+#include "Math.h"
+class Mul: public Math {
 public:
     Mul();
     Mul(const Mul& orig);

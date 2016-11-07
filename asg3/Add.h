@@ -1,6 +1,6 @@
 
-
-class Add {
+#include "Math.h"
+class Add: public Math {
 public:
     Add();
     Add(const Add& orig);

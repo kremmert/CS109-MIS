@@ -1,8 +1,8 @@
 
 #ifndef DIV_H
 #define DIV_H
-
-class Div {
+#include "Math.h"
+class Div: public Math {
 public:
     Div();
     Div(const Div& orig);

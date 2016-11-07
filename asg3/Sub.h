@@ -2,8 +2,8 @@
 #ifndef SUB_H
 #define SUB_H
 #include "Var.h"
-
-class Sub {
+#include "Math.h"
+class Sub: public Math {
 public:
     Sub();
     Sub(const Sub& orig);

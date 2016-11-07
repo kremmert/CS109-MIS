@@ -2,7 +2,8 @@
 #define VAR_H
 #include "common.h"
 #include <stdlib.h>
-class Var public Instructions{
+#include "Instructions.h"
+class Var: public Instructions{
 public:
     Var();
     Var(const Var& orig);
