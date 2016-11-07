@@ -49,6 +49,21 @@ void Server::morethanfetch()
 		
 		//if(counter == lines.size()-1) break;
 	}
+	for (std::map<string,Var*>::iterator it=storevobj.begin(); it!=storevobj.end(); ++it)
+		std::cout <<"\n"<< it->first << " => " << it->second << '\n';
+
+	cout<< "\n printing stored variables";
+/* 	typedef map<string, Var * >::const_iterator MapIterator;
+	for (MapIterator iter = storevobj.begin(); iter != storevobj.end(); iter++)
+	{
+		cout << "\n Key: " << iter->first << endl << "Values:";
+		//fuck printing values
+		typedef Var*::const_iterator ListIterator;
+		for (ListIterator list_iter = iter->second.begin(); list_iter != iter->second.end(); list_iter++)
+			cout << " " << *list_iter << endl;
+	} */
+
+	
 	
 	cout<<"\n end?";
 	/*
