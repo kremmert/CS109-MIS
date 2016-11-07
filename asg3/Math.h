@@ -1,4 +1,5 @@
-
+#ifndef MATH_H
+#define MATH_H
 #include "Instructions.h"
 class Math: public Instructions{
 public:
@@ -10,3 +11,4 @@ private:
 
 
 };
+#endif
