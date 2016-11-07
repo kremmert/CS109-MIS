@@ -16,3 +16,8 @@ Instructions * String::clone(std::vector<std::string> lines){
 	return b;
 	
 }
+
+int * getVal()
+{
+	return 0;
+}

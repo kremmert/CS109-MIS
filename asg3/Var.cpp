@@ -61,3 +61,8 @@ std::string Var::getName()
 {
     return name;
 }
+
+int * Var::getVal()
+{
+    return 0;
+}

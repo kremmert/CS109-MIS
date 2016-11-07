@@ -1,6 +1,11 @@
 #include "common.h"
 #include "Add.h"
 using namespace std;
+Add::Add()
+{
+
+}
+
 template<typename T>
 T add(T a)
 {

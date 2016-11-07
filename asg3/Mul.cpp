@@ -1,6 +1,11 @@
 #include "common.h"
 #include "Mul.h"
 using namespace std;
+Mul::Mul()
+{
+
+}
+
 template<typename T>
 T mul(T a)
 {
