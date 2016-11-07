@@ -39,10 +39,10 @@ void Server::morethanfetch()
 	vobj["NUMERIC"] = new Numeric();
 	vobj["STRING"] = new String();
 	vobj["CHAR"] = new Char();
-	vobj["ADD"] = new Add();
-	vobj["SUB"] = new Sub();
-	vobj["MUL"] = new Mul();
-	vobj["DIV"] = new Div();
+	vobj["ADD"] = &Add::add;
+	vobj["SUB"] = &Sub::subtract;
+	vobj["MUL"] = &Mul::mul;
+	vobj["DIV"] = &Div::divide;
 
 	cout<<lines.size();
 	cout<<"\n"<<lines[0].size();
@@ -65,7 +65,7 @@ void Server::morethanfetch()
 		cout<<"\nhere 7";
 		}
 		else{
-			
+			storevobj[lines[counter-1][0]](lines);
 		}
 		
 		//if(counter == lines.size()-1) break;

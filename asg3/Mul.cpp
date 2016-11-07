@@ -3,7 +3,7 @@
 using namespace std;
 Mul::Mul()
 {
-
+	
 }
 
 Mul::Mul(const Mul& orig)
