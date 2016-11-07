@@ -6,7 +6,7 @@ public:
     Var(const Var& orig);
     virtual ~Var();
     virtual std::string getName() = 0;
-    void decode(std::vector<std::string> lines);
+    Var decode(std::vector<std::string> lines);
 private:
     std::string varType;
     std::string name;

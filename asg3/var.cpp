@@ -8,7 +8,7 @@ Var::Var(const Var& orig) {
 Var::~Var() {
 }
 
-void Var::decode(std::vector<std::string> lines)
+Var Var::decode(std::vector<std::string> lines)
 {
     varType = lines[0];
     name = lines[1];
@@ -40,4 +40,6 @@ void Var::decode(std::vector<std::string> lines)
     {
         Var v = new String(name,type,val);
     }    
+
+    return v;
 }
