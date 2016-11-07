@@ -7,6 +7,7 @@ public:
     Math(const Math& orig);
     virtual ~Math();
 private:
+	Instructions * clone(std::vector<std::string>);
     
 
 

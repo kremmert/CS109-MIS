@@ -15,8 +15,8 @@ int * Numeric::getVal()
 	int * pointer = &this->val;
     return pointer;
 }
-Var * Numeric::clone(std::vector<std::string> lines){
-	Var * b = new Numeric(lines[1],lines[2],stoi(lines[3]));
+Instructions * Numeric::clone(std::vector<std::string> lines){
+	Instructions * b = new Numeric(lines[1],lines[2],stoi(lines[3]));
 	return b;
 	
 }

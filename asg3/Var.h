@@ -11,7 +11,7 @@ public:
     virtual std::string getName();
 	virtual int * getVal();
     Var * decode(std::vector<std::string> lines);
-	virtual Var * clone(std::vector<std::string>) = 0;
+	virtual Instructions * clone(std::vector<std::string>) = 0;
 private:
     std::string varType;
     std::string name;

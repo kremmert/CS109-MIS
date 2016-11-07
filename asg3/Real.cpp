@@ -10,8 +10,8 @@ std::string Real::getName()
     return this->name;
 }
 
-Var * Real::clone(std::vector<std::string> lines){
-	Var * b = new Real(lines[1],lines[2],stoi(lines[3]));
+Instructions * Real::clone(std::vector<std::string> lines){
+	Instructions * b = new Real(lines[1],lines[2],stoi(lines[3]));
 	return b;
 	
 }

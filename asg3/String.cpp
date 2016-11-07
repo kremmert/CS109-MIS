@@ -11,8 +11,8 @@ std::string String::getName()
     return this->name;
 }
 
-Var * String::clone(std::vector<std::string> lines){
-	Var * b = new String(lines[1],lines[2],lines[4]);
+Instructions * String::clone(std::vector<std::string> lines){
+	Instructions * b = new String(lines[1],lines[2],lines[4]);
 	return b;
 	
 }

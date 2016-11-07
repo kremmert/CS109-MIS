@@ -10,7 +10,7 @@ public:
     virtual ~Real();
     std::string getName();
 	int * getVal();
-	Var * clone(std::vector<std::string>);
+	Instructions * clone(std::vector<std::string>);
 private:
     std::string name;
     std::string type;

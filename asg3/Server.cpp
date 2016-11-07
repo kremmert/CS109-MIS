@@ -54,7 +54,7 @@ void Server::morethanfetch()
 		cout<<"\ncounter:: "<<counter-1<<"\n";
 		
 		
-		Var * kk = vobj[lines[counter-1][2]];
+		Instructions * kk = vobj[lines[counter-1][2]];
 		
 		
 		kk = kk->clone(lines[counter-1]);
@@ -63,7 +63,7 @@ void Server::morethanfetch()
 		//if(counter == lines.size()-1) break;
 	}
 	//fuck printing map
-	for (std::map<string,Var*>::iterator it=storevobj.begin(); it!=storevobj.end(); ++it)
+	for (std::map<string,Instructions*>::iterator it=storevobj.begin(); it!=storevobj.end(); ++it)
 		std::cout <<"\n"<< it->first << " => " << it->second << '\n';
 
 	cout<< "\n printing stored variables";
