@@ -53,12 +53,20 @@ void Server::morethanfetch()
 		
 		cout<<"\ncounter:: "<<counter-1<<"\n";
 		
+		if(lines[counter][0].compare("VAR")==0){
+			
 		
 		Instructions * kk = vobj[lines[counter-1][2]];
 		
-		
+		cout<<"\nhere 5";
 		kk = kk->clone(lines[counter-1]);
+		cout<<"\nhere 88888";
 		storevobj[lines[counter-1][1]] = kk;
+		cout<<"\nhere 7";
+		}
+		else{
+			
+		}
 		
 		//if(counter == lines.size()-1) break;
 	}
