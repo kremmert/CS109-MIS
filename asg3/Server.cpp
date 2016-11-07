@@ -31,8 +31,8 @@ void Server::readLines()
 void Server::morethanfetch()
 {
 
-	map <string,Var *> vobj;//var obj
-	map <string,Var *> storevobj;//store var obj
+	map <string,Instructions *> vobj;//var obj
+	map <string,Instructions *> storevobj;//store var obj
 
 	vobj["REAL"] = new Real();
 	vobj["NUMERIC"] = new Numeric();
@@ -55,11 +55,9 @@ void Server::morethanfetch()
 		
 		Var * kk = vobj[lines[counter-1][2]];
 		
-
 		
 		kk = kk->clone(lines[counter-1]);
 		storevobj[lines[counter-1][1]] = kk;
-
 		
 		//if(counter == lines.size()-1) break;
 	}
