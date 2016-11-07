@@ -1,5 +1,9 @@
 #ifndef INSTRUCTIONS_H
 #define INSTRUCTIONS_H
+
+
+#include "common.h"
+
 class Instructions {
 public:
     Instructions();
