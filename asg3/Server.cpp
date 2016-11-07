@@ -21,6 +21,8 @@ void Server::readLines()
 
 void Server::fetch()
 {
+    Var v;
+    Var w = v->decode(lines[counter]);
     string str;
     cout << endl;
     for(int i = 0; i < lines[counter].size(); ++i)

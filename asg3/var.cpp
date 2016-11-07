@@ -23,21 +23,21 @@ void Var::decode(std::vector<std::string> lines)
     
     if(name.compare("NUMERIC"))
     {
-
+        Var v = new Numeric(name,type,num);
     }
     
     if(name.compare("REAL"))
     {
-
+        Var v = new Real(name,type,num);
     }
 
     if(name.compare("CHAR"))
     {
-
+        Var v = new Char(name,type,val);
     }
 
     if(name.compare("STRING"))
     {
-
+        Var v = new String(name,type,val);
     }    
 }
