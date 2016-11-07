@@ -9,3 +9,9 @@ std::string Numeric::getName()
 {
     return this->name;
 }
+
+Var * Numeric::clone(std::vector<std::string> lines){
+	Var * b = new Numeric(lines[1],lines[2],stoi(lines[3]));
+	return b;
+	
+}

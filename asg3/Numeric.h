@@ -9,6 +9,7 @@ public:
     Numeric(std::string n, std::string t, int v);
     virtual ~Numeric();
     std::string getName();
+	Var * clone(std::vector<std::string>);
 private:
     std::string name;
     std::string type;

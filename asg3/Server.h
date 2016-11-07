@@ -12,7 +12,7 @@ class Server
     public:
         Server(); //map1 has everything instantiated, arrays allocated
         void readLines();
-        void fetch(); //count indexes until next insn
+        void morethanfetch(); //count indexes until next insn
         template<typename T, typename... insns>
         T execute(T res, insns... args);
         //forms and puts object into map, clone 

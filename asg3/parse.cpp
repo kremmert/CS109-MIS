@@ -19,7 +19,7 @@ Parse::~Parse() {
 
 vector<vector<string>> Parse::parsingf(){
 	std::vector<std::vector<std::string>> lines(50,std::vector<string>(50));
-	std::ifstream file("InputTest2.txt");
+	std::ifstream file("InputTest.txt");
 	std::string str;
 	std::string temp;
 
@@ -70,11 +70,3 @@ vector<vector<string>> Parse::parsingf(){
 	
 }
 
-
-int main(int argc, char** argv)
-{
-
-	cout<<"\n";
-	Parse *pthing = new Parse();
-	pthing->parsingf();
-}

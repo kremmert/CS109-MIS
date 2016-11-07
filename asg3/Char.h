@@ -9,11 +9,12 @@ public:
     Char(std::string n, std::string t, std::string v);
     virtual ~Char();
     std::string getName();
+	Var * clone(std::vector<std::string>);
 private:
     std::string name;
     std::string type;
     std::string val;
-    int num;
+
 
 };
 

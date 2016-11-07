@@ -9,6 +9,7 @@ public:
     virtual ~Var();
     virtual std::string getName();
     Var * decode(std::vector<std::string> lines);
+	virtual Var * clone(std::vector<std::string>) = 0;
 private:
     std::string varType;
     std::string name;
