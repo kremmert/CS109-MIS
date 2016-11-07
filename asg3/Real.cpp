@@ -1,7 +1,7 @@
 #include "Real.h"
 Real::Real(){}
 
-Real::Real(std::string n, std::string t, int v):name(n), type(t), val(v) {}
+Real::Real(std::string n, std::string t, double v):name(n), type(t), val(v) {}
 
 Real::~Real() {}
 
@@ -15,8 +15,12 @@ Instructions * Real::clone(std::vector<std::string> lines){
 	return b;
 	
 }
-int * Real::getVal()
+double * Real::getVal()
 {
-	int * pointer = &this->val;
+	double * pointer = &this->val;
     return pointer;
+}
+void Real::setVal(double a)
+{
+	val = a;
 }

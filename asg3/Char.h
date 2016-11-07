@@ -11,6 +11,7 @@ public:
     std::string getName();
 	int * getVal();
 	Instructions * clone(std::vector<std::string>);
+    void setVal(char a);
 private:
     std::string name;
     std::string type;

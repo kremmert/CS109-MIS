@@ -21,3 +21,8 @@ int * String::getVal()
 {
 	return 0;
 }
+
+void setVal(std::string a)
+{
+	val = a;
+}

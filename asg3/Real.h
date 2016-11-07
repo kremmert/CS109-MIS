@@ -6,15 +6,16 @@
 class Real: public Var {
 public:
     Real();
-    Real(std::string n, std::string t, int v);
+    Real(std::string n, std::string t, double v);
     virtual ~Real();
     std::string getName();
-	int * getVal();
+	double * getVal();
+    void setVal(double a);
 	Instructions * clone(std::vector<std::string>);
 private:
     std::string name;
     std::string type;
-    int val;
+    double val;
 
 
 };

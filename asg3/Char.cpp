@@ -21,3 +21,8 @@ int * Char::getVal()
 {
 	return 0;
 }
+
+void Char::setVal(char a)
+{
+	val = a;
+}

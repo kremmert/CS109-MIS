@@ -10,6 +10,11 @@ std::string Numeric::getName()
     return this->name;
 }
 
+void Numeric::setVal(int a)
+{
+	val = a;
+}
+
 int * Numeric::getVal()
 {
 	int * pointer = &this->val;
