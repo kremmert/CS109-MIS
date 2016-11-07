@@ -1,7 +1,7 @@
 
 #ifndef SUB_H
 #define SUB_H
-#include "var.h"
+#include "Var.h"
 
 class Sub {
 public:

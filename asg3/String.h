@@ -1,6 +1,6 @@
 #ifndef STRING_H
 #define STRING_H
-#include "var.h"
+#include "Var.h"
 #include "common.h"
 #include <string.h>
 class String: public Var {

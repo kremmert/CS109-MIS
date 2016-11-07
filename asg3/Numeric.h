@@ -1,6 +1,6 @@
 #ifndef NUMERIC_H
 #define NUMERIC_H
-#include "var.h"
+#include "Var.h"
 #include "common.h"
 #include <string.h>
 class Numeric: public Var {

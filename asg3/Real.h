@@ -1,6 +1,6 @@
 #ifndef REAL_H
 #define REAL_H
-#include "var.h"
+#include "Var.h"
 #include "common.h"
 #include <string.h>
 class Real: public Var {

@@ -1,6 +1,6 @@
 #include "Server.h"
-#include "var.h"
-#include "parse.h"
+#include "Var.h"
+#include "Parse.h"
 #include "Numeric.h"
 #include "Real.h"
 #include "Char.h"
