@@ -1,6 +1,6 @@
 #ifndef CHAR_H
 #define CHAR_H
-#include "var.h"
+#include "Var.h"
 #include "common.h"
 #include <string.h>
 class Char: public Var {
