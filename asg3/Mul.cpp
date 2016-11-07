@@ -6,6 +6,16 @@ Mul::Mul()
 
 }
 
+Mul::Mul(const Mul& orig)
+{
+
+}
+
+Mul::~Mul()
+{
+
+}
+
 template<typename T>
 T mul(T a)
 {

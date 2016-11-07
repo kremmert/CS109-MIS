@@ -17,7 +17,7 @@ Instructions * String::clone(std::vector<std::string> lines){
 	
 }
 
-int * getVal()
+int * String::getVal()
 {
 	return 0;
 }

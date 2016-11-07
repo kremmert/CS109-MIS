@@ -17,7 +17,7 @@ Instructions * Char::clone(std::vector<std::string> lines){
 	
 }
 
-int * getVal()
+int * Char::getVal()
 {
 	return 0;
 }

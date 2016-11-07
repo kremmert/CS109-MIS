@@ -6,6 +6,17 @@ Add::Add()
 
 }
 
+Add::Add(const Add& orig)
+{
+
+}
+
+
+Add::~Add()
+{
+
+}
+
 template<typename T>
 T add(T a)
 {
