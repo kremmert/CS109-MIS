@@ -4,4 +4,3 @@ VAR	$mychar,CHAR,'c'
 VAR	$mystr,STRING,100, "Hello	world	MIS!!"
 VAR	$myint2,NUMERIC,100
 VAR	$myint3,NUMERIC,10
-SUB	$myint,200,100

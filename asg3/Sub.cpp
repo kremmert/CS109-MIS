@@ -15,3 +15,8 @@ void Sub::subtract(std::vector<std::string> lines){
 	
 
 }
+
+
+void Sub::functor(std::vector<std::string> lines){
+	std::cout<<"   ";
+}

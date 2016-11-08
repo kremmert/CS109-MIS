@@ -8,6 +8,7 @@ public:
     Sub();
     Sub(const Sub& orig);
     virtual ~Sub();
+	void functor(std::vector<std::string>);
 private:
 	void subtract(std::vector<std::string> lines);
 

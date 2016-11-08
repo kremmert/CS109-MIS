@@ -1,4 +1,5 @@
-
+#ifndef FUNCTION_H
+#define FUNCTION_H
 #include "Instructions.h"
 class Function: public Instructions{
 public:
@@ -11,3 +12,5 @@ public:
 private:
 
 };
+
+#endif

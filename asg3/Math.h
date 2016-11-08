@@ -6,6 +6,7 @@ public:
     Math();
     Math(const Math& orig);
     virtual ~Math();
+	virtual void functor(std::vector<std::string>) = 0;
 private:
 	Instructions * clone(std::vector<std::string> lines);
     

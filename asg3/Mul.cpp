@@ -27,3 +27,7 @@ T multiply(T res, num... args)
 {
     return res * mul(args...);
 }
+
+void Mul::functor(std::vector<std::string> lines){
+	std::cout<<"           ";
+}

@@ -10,6 +10,5 @@ Math::~Math() {
 }
 
 Instructions * Math::clone(std::vector<std::string>){
-	Instructions * b = new Math();
-	return b;
+
 	}

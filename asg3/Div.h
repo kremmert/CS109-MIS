@@ -7,9 +7,10 @@ public:
     Div();
     Div(const Div& orig);
     virtual ~Div();
-    void divide(int, int, int );
+	void divide(int, int, int );
+	void functor(std::vector<std::string>);
 private:
-	
+
 
 };
 
