@@ -24,8 +24,12 @@ void Sub::functor(std::vector<std::string> lines,std::map <std::string,Instructi
 	std::cout << "THIS IS A NULL PTR PROBABLY: "<<lines[3]<< "end";
 	std::cout << "\n\nis this a num: (a) = "<<isnum(a);
 	std::cout << "\n\nis this a num: (b) ="<<isnum(b);
+	std::cout << "\n\nlines[3]**********"<<mapy[lines[1]];
 	int x,y;
 	std::cout<<"\n lagnlhglag";
+	
+	for (std::map<string,Instructions*>::iterator it=storevobj.begin(); it!=storevobj.end(); ++it)
+		std::cout <<"\n"<< it->first << " => " << it->second << '\n';
 	try{
 		x = stoi(a);
 	}
@@ -46,7 +50,10 @@ void Sub::functor(std::vector<std::string> lines,std::map <std::string,Instructi
 	}
 	catch(...)
 	{
-		std::cout << "\n\nlines[3]**********"<<lines[3];
+		std::cout << "\n\nlines[3]**********"<<mapy[lines[3]];
+		std::cout<<"\n";
+		std::cout<<"\n";
+		std::cout<<"\n";
 		std::cout << "value of lines[3]" << mapy[lines[3]]->getV();
 		y = stoi(mapy[lines[3]]->getV());
 	}
