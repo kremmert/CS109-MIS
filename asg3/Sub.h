@@ -10,6 +10,7 @@ public:
     Sub(const Sub& orig);
     virtual ~Sub();
 	void functor(std::vector<std::string> lines,std::map <std::string,Instructions *> & mapy);
+
 private:
 	void subtract(std::vector<std::string> lines);
 

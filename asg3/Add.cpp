@@ -32,3 +32,4 @@ T add(T res, num... args)
 void Add::functor(std::vector<std::string> lines,std::map <std::string,Instructions *> & mapy){
 	std::cout<< "grsg";
 }
+

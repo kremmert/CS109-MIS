@@ -11,6 +11,7 @@ public:
     virtual ~Instructions();
 	virtual Instructions * clone(std::vector<std::string>) = 0;
 	virtual void functor(std::vector<std::string> lines,std::map <std::string,Instructions *> & mapy) = 0;
+	virtual auto getVal() = 0;
 private:
     
 

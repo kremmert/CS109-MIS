@@ -18,5 +18,25 @@ void Sub::subtract(std::vector<std::string> lines){
 
 
 void Sub::functor(std::vector<std::string> lines,std::map <std::string,Instructions *> & mapy){
-	std::cout<<"   ";
+
+
+    std::string a = lines[2];
+	std::string b = lines[3];
+	
+
+	if(isnum(a)){
+		a = stoi(a);
+	}else{
+		a = mapy[lines[2]]->getVal();
+	}
+	
+	if(isnum(b)){
+		b = stoi(b);
+	}else{
+		b = mapy[lines[3]]->getVal();
+	}
+	
+	mapy[lines[1]]->val = a-b;
+	
 }
+

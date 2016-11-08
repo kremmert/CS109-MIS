@@ -10,6 +10,7 @@ public:
 
 	virtual Instructions * clone(std::vector<std::string>) = 0;
 	virtual void functor(std::vector<std::string> lines,std::map <std::string,Instructions *> & mapy) = 0;
+	auto getVal(){return 2;}
 private:
 
 };

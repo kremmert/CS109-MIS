@@ -10,6 +10,7 @@ public:
     virtual ~Div();
 	void divide(int, int, int );
 	void functor(std::vector<std::string> lines,std::map <std::string,Instructions *> & mapy);
+	
 private:
 
 

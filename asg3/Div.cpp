@@ -27,3 +27,4 @@ void Div::functor(std::vector<std::string> lines,std::map <std::string,Instructi
 	
 	std::cout<<" ";
 }
+
