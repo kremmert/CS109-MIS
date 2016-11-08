@@ -12,7 +12,7 @@ std::string Numeric::getName()
 
 void Numeric::setVal(std::string a)
 {
-	val = std::stoi(a);
+	this->val = std::stoi(a);
 }
 
 int * Numeric::getVal()
@@ -28,5 +28,5 @@ Instructions * Numeric::clone(std::vector<std::string> lines){
 
 std::string Numeric::getV()
 {
-	return std::to_string(this->val);
+	return std::to_string(val);
 }

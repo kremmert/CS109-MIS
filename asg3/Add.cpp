@@ -30,6 +30,22 @@ T add(T res, num... args)
 }
 
 void Add::functor(std::vector<std::string> lines,std::map <std::string,Instructions *> & mapy){
-	std::cout<< "grsg";
+	std::cout<<"\n help me";
+	std::string a = lines[2];
+
+	int x,y;
+	int v = 2;
+	while(2<lines.size()){
+		if(isnum(a)){
+			x = stoi(a);
+		}else{
+			x = stoi(mapy[lines[2]]->getV());
+		}
+		y += x;
+	}
+	
+	mapy[lines[1]]->setVal(std::to_string(y));
+	cout<<"\n value of add:"<<mapy[lines[1]]->getV();
+
 }
 

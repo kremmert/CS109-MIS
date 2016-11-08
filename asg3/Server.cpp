@@ -53,7 +53,7 @@ void Server::morethanfetch()
 		if(lines[counter-1][0].compare("")==0) continue;
 		
 		
-		cout<<"\ncounter:: "<<counter-1<<"\n";
+		cout<<"\ncounter:: "<<counter-1<<"\n"<<lines[counter-1][0];
 		
 		if(lines[counter-1][0].compare("VAR")==0){
 			
@@ -68,9 +68,11 @@ void Server::morethanfetch()
 		}
 		else{
 			
-			cout<<"else";
+			cout<<"\n else";
+			cout<<"\n else";
 			vobj[lines[counter-1][0]]->functor(lines[counter-1],storevobj);
-			
+			cout<<"\n hhosnb";
+			cout<<"\n hhosnb";
 		}
 		
 		//if(counter == lines.size()-1) break;
