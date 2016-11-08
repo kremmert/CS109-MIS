@@ -21,15 +21,16 @@ void Sub::functor(std::vector<std::string> lines,std::map <std::string,Instructi
 
     std::string a = lines[2];
 	std::string b = lines[3];
-	std::cout << "THIS IS A NULL PTR PROBABLY: "<<lines[3]<< "end";
-	std::cout << "\n\nis this a num: (a) = "<<isnum(a);
+	std::cout << "THIS IS A NULL PTR PROBABLY: "<<lines[3];
+	std::cout << "\n is this a num: (a) = "<<isnum(a);
 	std::cout << "\n\nis this a num: (b) ="<<isnum(b);
 	std::cout << "\n\nlines[3]**********"<<mapy[lines[1]];
 	int x,y;
 	std::cout<<"\n lagnlhglag";
 	
-	for (std::map<string,Instructions*>::iterator it=storevobj.begin(); it!=storevobj.end(); ++it)
+	for (std::map<std::string,Instructions*>::iterator it=mapy.begin(); it!=mapy.end(); ++it)
 		std::cout <<"\n"<< it->first << " => " << it->second << '\n';
+
 	try{
 		x = stoi(a);
 	}
@@ -45,7 +46,11 @@ void Sub::functor(std::vector<std::string> lines,std::map <std::string,Instructi
 	}*/
 
 	try{
+		
+		std::cout << "\n\nlines[3]****4*****"<<mapy[lines[3]];
 		y = stoi(b);
+		
+		std::cout << "\n\nlines[3]*****5****"<<mapy[lines[3]];
 		
 	}
 	catch(...)
@@ -65,6 +70,7 @@ void Sub::functor(std::vector<std::string> lines,std::map <std::string,Instructi
 	int j = x-y;
 	std::cout<<"\n fuck this";
 	mapy[lines[1]]->setVal(std::to_string(j));
+	
 	std::cout << "*************************************\n\n";
 	std::cout << "\n" <<mapy[lines[1]]->getV() << "\n";
 }
