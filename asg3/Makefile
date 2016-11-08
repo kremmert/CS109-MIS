@@ -10,7 +10,7 @@ default: all
 all : server
 
 server: $(CLASSES)
-	$(CC) -std=c++14 $(CLASSES) $(CLASSESMATH) $(CLASSES1) $(CFLAGS) server
+	$(CC) -std=c++14 -g $(CLASSES) $(CLASSESMATH) $(CLASSES1) $(CFLAGS) server
 
 clean:
 	$(RM) server
