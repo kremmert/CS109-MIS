@@ -67,7 +67,7 @@ void Server::morethanfetch()
 		cout<<"\nhere 7";
 		}
 		else{
-			storevobj[lines[counter-1][0]](lines[counter-1]);
+		//	storevobj[lines[counter-1][0]](lines[counter-1]);
 		}
 		
 		//if(counter == lines.size()-1) break;
