@@ -29,6 +29,6 @@ T add(T res, num... args)
     return res + add(args...);
 }
 
-void Add::functor(std::vector<std::string> lines){
+void Add::functor(std::vector<std::string> lines,std::map <std::string,Instructions *> & mapy){
 	std::cout<< "grsg";
 }

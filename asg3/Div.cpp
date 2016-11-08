@@ -23,7 +23,7 @@ void Div:: divide(int c, int a, int b){
 
 }
 
-void Div::functor(std::vector<std::string> lines){
+void Div::functor(std::vector<std::string> lines,std::map <std::string,Instructions *> & mapy){
 	
 	std::cout<<" ";
 }

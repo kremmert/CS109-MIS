@@ -3,6 +3,7 @@
 #include "common.h"
 #include <stdlib.h>
 #include "Instructions.h"
+#include <map>
 class Var: public Instructions{
 public:
     Var();
@@ -15,6 +16,7 @@ public:
     virtual char getVal(); */
     Var * decode(std::vector<std::string> lines);
 	virtual Instructions * clone(std::vector<std::string>) = 0;
+	void functor(std::vector<std::string> lines,std::map <std::string,Instructions *> & mapy){};
 private:
     std::string varType;
     std::string name;

@@ -17,6 +17,6 @@ void Sub::subtract(std::vector<std::string> lines){
 }
 
 
-void Sub::functor(std::vector<std::string> lines){
+void Sub::functor(std::vector<std::string> lines,std::map <std::string,Instructions *> & mapy){
 	std::cout<<"   ";
 }
