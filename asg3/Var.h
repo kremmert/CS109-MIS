@@ -11,6 +11,8 @@ public:
     virtual ~Var();
     virtual std::string getName();
     Var * decode(std::vector<std::string> lines);
+    virtual std::string getV() =0;
+    virtual void setVal(std::string a)=0;
 	virtual Instructions * clone(std::vector<std::string>) = 0;
 	void functor(std::vector<std::string> lines,std::map <std::string,Instructions *> & mapy){};
 private:

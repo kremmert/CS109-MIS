@@ -22,21 +22,22 @@ void Sub::functor(std::vector<std::string> lines,std::map <std::string,Instructi
 
     std::string a = lines[2];
 	std::string b = lines[3];
-	
+	int x,y;
 
 	if(isnum(a)){
-		a = stoi(a);
+		x = stoi(a);
 	}else{
-		a = mapy[lines[2]]->getVal();
+		x = stoi(mapy[lines[2]]->getV());
 	}
 	
 	if(isnum(b)){
-		b = stoi(b);
+		y = stoi(b);
 	}else{
-		b = mapy[lines[3]]->getVal();
+		y = stoi(mapy[lines[3]]->getV());
 	}
-	
-	mapy[lines[1]]->val = a-b;
-	
+	int j = x-y;
+	mapy[lines[1]]->setVal(std::to_string(j));
+	std::cout << "*************************************\n\n";
+	std::cout << "\n" <<mapy[lines[1]]->getV() << "\n";
 }
 

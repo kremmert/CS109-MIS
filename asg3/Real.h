@@ -10,6 +10,8 @@ public:
     virtual ~Real();
     std::string getName();
 	double * getVal();
+    std::string getV();
+    void setVal(std::string a);
 	Instructions * clone(std::vector<std::string>);
 private:
     std::string name;

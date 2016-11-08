@@ -20,3 +20,13 @@ double * Real::getVal()
 	double * pointer = &this->val;
     return pointer;
 }
+
+std::string Real::getV()
+{
+	return std::to_string(this->val);
+}
+
+void Real::setVal(std::string a)
+{
+	val = std::stoi(a);
+}

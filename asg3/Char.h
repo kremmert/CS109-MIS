@@ -10,6 +10,8 @@ public:
     virtual ~Char();
     std::string getName();
 	std::string getVal();
+    std::string getV();
+    void setVal(std::string a);
 	Instructions * clone(std::vector<std::string>);
     void setVal(char a);
 private:

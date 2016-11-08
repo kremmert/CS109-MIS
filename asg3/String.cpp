@@ -26,3 +26,8 @@ void String::setVal(std::string a)
 {
 	this->val = a;
 }
+
+std::string String::getV()
+{
+	return this->val;
+}

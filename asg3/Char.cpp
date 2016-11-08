@@ -22,7 +22,12 @@ std::string Char::getVal()
 	return this->val;
 }
 
-void Char::setVal(char a)
+void Char::setVal(std::string a)
 {
-	val = a;
+	this->val = a;
+}
+
+std::string Char::getV()
+{
+	return this->val;
 }
