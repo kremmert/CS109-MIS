@@ -9,7 +9,10 @@ public:
     Var(const Var& orig);
     virtual ~Var();
     virtual std::string getName();
-	virtual int * getVal();
+/*	virtual int * getVal();
+    virtual double * getVal();
+    virtual std::string getVal();
+    virtual char getVal(); */
     Var * decode(std::vector<std::string> lines);
 	virtual Instructions * clone(std::vector<std::string>) = 0;
 private:

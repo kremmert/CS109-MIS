@@ -41,10 +41,10 @@ void Server::morethanfetch()
 	vobj["CHAR"] = new Char();
 	
 
-	vobj["ADD"] = &Add::add;
-	vobj["SUB"] = &Sub::subtract;
-	vobj["MUL"] = &Mul::mul;
-	vobj["DIV"] = &Div::divide;
+	vobj["ADD"] = new Add();
+	vobj["SUB"] = new Sub();
+	vobj["MUL"] = new Mul();
+	vobj["DIV"] = new Div();
 
 	cout<<lines.size();
 	cout<<"\n"<<lines[0].size();

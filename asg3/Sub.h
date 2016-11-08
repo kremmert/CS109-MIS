@@ -9,7 +9,7 @@ public:
     Sub(const Sub& orig);
     virtual ~Sub();
 private:
-	void subtract(vector<std::string> lines);
+	void subtract(std::vector<std::string> lines);
 
 };
 

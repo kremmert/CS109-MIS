@@ -9,8 +9,7 @@ public:
     Real(std::string n, std::string t, double v);
     virtual ~Real();
     std::string getName();
-	int * getVal();
-    void setVal(double a);
+	double * getVal();
 	Instructions * clone(std::vector<std::string>);
 private:
     std::string name;

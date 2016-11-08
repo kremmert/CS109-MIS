@@ -15,12 +15,8 @@ Instructions * Real::clone(std::vector<std::string> lines){
 	return b;
 	
 }
-int * Real::getVal()
+double * Real::getVal()
 {
-	int * pointer = &this->val;
+	double * pointer = &this->val;
     return pointer;
-}
-void Real::setVal(double a)
-{
-	val = a;
 }

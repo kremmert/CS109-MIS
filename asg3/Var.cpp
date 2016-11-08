@@ -61,8 +61,23 @@ std::string Var::getName()
 {
     return name;
 }
-
+/*
 int * Var::getVal()
 {
     return 0;
 }
+
+double * Var::getVal()
+{
+    return 0;
+}
+
+char Var::getVal()
+{
+    return 0;
+}
+
+std::string Var::getVal()
+{
+    return 0;
+} */

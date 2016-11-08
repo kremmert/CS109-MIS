@@ -17,12 +17,12 @@ Instructions * String::clone(std::vector<std::string> lines){
 	
 }
 
-int * String::getVal()
+std::string String::getVal()
 {
-	return 0;
+	return this->val;
 }
 
-void setVal(std::string a)
+void String::setVal(std::string a)
 {
-	val = a;
+	this->val = a;
 }
