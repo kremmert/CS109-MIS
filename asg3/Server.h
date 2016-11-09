@@ -1,5 +1,5 @@
-#ifndef SLEEP_H
-#define SLEEP_H
+#ifndef SERVER_H
+#define SERVER_H
 
 #include "common.h"
 #include <map>

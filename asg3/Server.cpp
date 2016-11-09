@@ -77,6 +77,8 @@ void Server::morethanfetch()
 		cout<<"\nhere 88888";
 		storevobj[lines[counter-1][1]] = kk;
 		cout<<"\nhere 7";
+		}else if(lines[counter-1][0].compare("LABEL")==0){
+			
 		}
 		else{
 			
