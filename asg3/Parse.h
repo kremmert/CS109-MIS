@@ -17,7 +17,7 @@ public:
 	//parameters into different positions within the inner vector
 	std::vector<std::vector<std::string>> parsingf();
 	
-	std::map <std::string, int> labelget();
+	std::map <std::string, int> labelget(std::vector<std::vector<std::string>> lines);
 
 	
 	

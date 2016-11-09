@@ -98,13 +98,16 @@ vector<vector<string>> Parse::parsingf(){
 	
 	
 }
-std::map <std::string,int> Parse::labelget(){
+std::map <std::string,int> Parse::labelget(std::vector<std::vector<std::string>> lines){
 	std::map <std::string,int> labelmap;
 	
 	for(int x = 0; x <lines.size();x++){
+		
 		if (lines[x][0].compare("")==0) continue;
-		if(lines[x][0].compare("LABEL")){
-			labelmap[lines[x][0]]= x;
+		if(lines[x][0].compare("LABEL")==0){
+			std::cout<<"\n LOOOPx value for tags: "<< x;
+			std::cout<<"\n LOOOOOP**************************";
+			labelmap[lines[x][1]]= x;
 		}
 	}
 	return labelmap;

@@ -13,8 +13,8 @@ class Server
         Server(); //map1 has everything instantiated, arrays allocated
         void readLines();
         void morethanfetch(); //count indexes until next insn
-        template<typename T, typename... insns>
-        T execute(T res, insns... args);
+		void jump();
+		int infinite = 0;
         //forms and puts object into map, clone 
         //then performs the insns, and stores into another map, then calls fetch again
         //increments counter

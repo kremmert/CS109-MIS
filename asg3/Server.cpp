@@ -31,7 +31,7 @@ void Server::readLines()
 {
     Parse p;
     lines = p.parsingf();
-	labels = p.labelget();
+	labels = p.labelget(lines);
     this->morethanfetch();
 }
 
@@ -65,28 +65,27 @@ void Server::morethanfetch()
 		if(lines[counter-1][0].compare("")==0) continue;
 		
 		
-		cout<<"\ncounter:: "<<counter-1<<"\n"<<lines[counter-1][0];
 		
 		if(lines[counter-1][0].compare("VAR")==0){
 			
-		cout<<"if";
 		Instructions * kk = vobj[lines[counter-1][2]];
 		
-		cout<<"\nhere 5";
 		kk = kk->clone(lines[counter-1]);
-		cout<<"\nhere 88888";
+		
 		storevobj[lines[counter-1][1]] = kk;
 		cout<<"\nhere 7";
 		}else if(lines[counter-1][0].compare("LABEL")==0){
-			
+			//labels were put into a map with line number right after being parsed
+		}else if(lines[counter-1][0].substr(0,3).compare("JMP")==0){
+			jump();
+			std::cout<<"\n counter after jump"<<counter;
 		}
 		else{
 			
-			cout<<"\n else";
+			cout<<"\n else"<<lines[counter-1][0].substr(0,2);
 			cout<<"\n else";
 			vobj[lines[counter-1][0]]->functor(lines[counter-1],storevobj);
-			cout<<"\n hhosnb";
-			cout<<"\n hhosnb";
+			
 		}
 		
 	}
@@ -102,14 +101,42 @@ void Server::morethanfetch()
 	
 	
 	cout<<"\n end?";
-
 }
 
-
-template<typename T, typename... insns>
-T Server::execute(T res, insns... args)
-{
-
+void Server::jump(){
+	if(infinite>1000){
+		std::cout<<"\n infinite loop: ignoring jump";
+		return;
+	}
+		
+	std::string a = lines[counter-1][0];
+	std::cout<<"\nline[0]: COUNTER"<<counter;
+	std::cout<<"\nline[0]: *********"<<lines[counter-1][0];
+	std::cout<<"\nline[0]: ??????????"<<lines[counter-1][1];
+	std::cout<<"\nline[0]: VALLLLLUE"<<labels[lines[counter-1][1]];
+	if(a.compare("JMP")==0)
+	{
+		counter = labels[lines[counter-1][1]];
+	}
+	if(a.compare("JMPZ")==0){
+		counter = labels[lines[counter-1][1]];
+	}
+	if(a.compare("JMPNZ")==0){
+		counter = labels[lines[counter-1][1]];
+	}
+	if(a.compare("JMPGT")==0){
+		counter = labels[lines[counter-1][1]];
+	}
+	if(a.compare("JMPGTE")==0){
+		counter = labels[lines[counter-1][1]];
+	}
+	if(a.compare("JMPLT")==0){
+		counter = labels[lines[counter-1][1]];
+	}
+	if(a.compare("JMPLTE")==0){
+		counter = labels[lines[counter-1][1]];
+	}
+	this->infinite++;
 }
 
 int main(){
