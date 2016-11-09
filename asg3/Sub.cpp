@@ -21,8 +21,8 @@ void Sub::functor(std::vector<std::string> lines,std::map <std::string,Instructi
 
     std::string a = lines[2];
 	std::string b = lines[3];
-	int x,y;
-	
+	int x = 0;
+	int y = 0;
 	try{
 		x = stoi(a);
 	}
@@ -39,7 +39,14 @@ void Sub::functor(std::vector<std::string> lines,std::map <std::string,Instructi
 	}
 	catch(...)
 	{
-		std::string mn = lines[3].substr(0,lines[3].size()-1);
+		std::string mn = lines[3];
+		//std::string mn = lines[3].substr(0,lines[3].size()-1);
+		if(mn[mn.size()]=='\0')
+		{
+			std::cout <<"\n\nsubstring getting fixed";
+			mn = lines[3].substr(0,lines[3].size()-1);
+			//mn = lines[3].c_str();
+		}
 		y = std::stoi((mapy[mn])->getV());
 	}
 	

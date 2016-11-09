@@ -5,3 +5,4 @@ SUB	$myint,100,$myint
 VAR	$myint3,NUMERIC,10
 DIV	$myint3,$myint,$myint
 DIV	$myint3,50,5
+ADD	$myint,100,20,$myint3

@@ -62,6 +62,12 @@ vector<vector<string>> Parse::parsingf(){
 			//compares temp to empty string; if temp is empty, compare returns 0
 			if(temp.compare("")==0) break;//go to next line
 			//put parameter at current position in current inner vector
+		/*	if(temp[temp.size()]!='\0')
+			{
+				std::cout <<"\n\nsubstring getting fixed";
+				//temp = temp.substr(0,temp.size()-1);
+				temp = temp.c_str();
+			} */
 			lines[x][y] = temp;
 			y++;
 		}
