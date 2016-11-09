@@ -33,25 +33,26 @@ Server::~Server()
 
 void Server::readLines()
 {
-    Parse p;
-    lines = p.parsingf(input);
-	if(lines[0][0].compare("")==0) return;
-	labels = p.labelget(lines);
-    this->morethanfetch();
+    Parse p;//parse obj
+    lines = p.parsingf(input);//parsed lines of code
+	if(lines[0][0].compare("")==0) return;//if lines is empty, do nothing
+	labels = p.labelget(lines);// get map of labels with line num
+    this->morethanfetch();//start executing code
 }
 
 void Server::morethanfetch()
 {
 
-	map <string,Instructions *> vobj;//var obj
+	map <string,Instructions *> vobj;//var obj, and functions
 	map <string,Instructions *> storevobj;//store var obj
 
+	//var objects in map
 	vobj["REAL"] = new Real();
 	vobj["NUMERIC"] = new Numeric();
 	vobj["STRING"] = new String();
 	vobj["CHAR"] = new Char();
 	
-
+	//function objects in map
 	vobj["ADD"] = new Add();
 	vobj["SUB"] = new Sub();
 	vobj["MUL"] = new Mul();
@@ -63,38 +64,38 @@ void Server::morethanfetch()
 	vobj["GET_STR_CHAR"] = new Get_Str_Char();
 	
 	
-
+	//going through each linea of code 
 	while(counter<lines.size()){
 		counter++;
+		//if line is empty go on to next line
 		if(lines[counter-1][0].compare("")==0) continue;
 		
 		
-		
-		if(lines[counter-1][0].compare("VAR")==0){
+		//if first arg is Var make variable
+		if(lines[counter-1][0].compare("VAR")==0)
+		{	//get type of var
+			Instructions * kk = vobj[lines[counter-1][2]];
+			//make var obj
+			kk = kk->clone(lines[counter-1]);
+			//store var
+			storevobj[lines[counter-1][1]] = kk;
 			
-		Instructions * kk = vobj[lines[counter-1][2]];
-		
-		kk = kk->clone(lines[counter-1]);
-		
-		storevobj[lines[counter-1][1]] = kk;
-		}else if(lines[counter-1][0].compare("LABEL")==0){
-
+		}else if(lines[counter-1][0].compare("LABEL")==0)
+		{
 			//labels were put into a map with line number right after being parsed
 		}else if(lines[counter-1][0].substr(0,3).compare("JMP")==0){
-			
-
+			//execute jumps
 			jump(storevobj);
 		}
 		else{
-			
+			//call function : like add or sub
 			vobj[lines[counter-1][0]]->functor(lines[counter-1],storevobj);
-			
 		}
 		
 	}
 
 }
-
+//executes jumps
 void Server::jump(std::map <std::string, Instructions *> storevobj){
 	
 	this->infinite++;
@@ -110,7 +111,7 @@ void Server::jump(std::map <std::string, Instructions *> storevobj){
 	int y = 0;
 	
 
-	
+	//if the arg is jump
 	if(z.compare("JMP")==0)
 	{
 		counter = labels[a];
