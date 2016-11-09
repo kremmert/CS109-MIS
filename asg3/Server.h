@@ -1,3 +1,6 @@
+#ifndef SLEEP_H
+#define SLEEP_H
+
 #include "common.h"
 #include <map>
 class Server 
@@ -5,10 +8,7 @@ class Server
     private:
         std::vector<std::vector<std::string>> lines;
         int counter = 0;
-        int * labels;
-        std::map<std::string, Server *> map1;
-        std::map<std::string, double> map2;
-        std::map<std::string, std::string> map3;
+        std::map<std::string, int> labels;
     public:
         Server(); //map1 has everything instantiated, arrays allocated
         void readLines();
@@ -21,3 +21,5 @@ class Server
         virtual ~Server();
 
 };
+
+#endif

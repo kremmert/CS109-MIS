@@ -31,6 +31,7 @@ void Server::readLines()
 {
     Parse p;
     lines = p.parsingf();
+	labels = p.labelget();
     this->morethanfetch();
 }
 
@@ -86,40 +87,22 @@ void Server::morethanfetch()
 			cout<<"\n hhosnb";
 		}
 		
-		//if(counter == lines.size()-1) break;
 	}
 	//fuck printing map
 	for (std::map<string,Instructions*>::iterator it=storevobj.begin(); it!=storevobj.end(); ++it)
 		std::cout <<"\n"<< it->first << " => " << it->second << '\n';
 
 	cout<< "\n printing stored variables";
-/* 	typedef map<string, Var * >::const_iterator MapIterator;
-	for (MapIterator iter = storevobj.begin(); iter != storevobj.end(); iter++)
-	{
-		cout << "\n Key: " << iter->first << endl << "Values:";
-		//fuck printing values
-		typedef Var*::const_iterator ListIterator;
-		for (ListIterator list_iter = iter->second.begin(); list_iter != iter->second.end(); list_iter++)
-			cout << " " << *list_iter << endl;
-	} */
 
+
+	for (std::map<string,int>::iterator it=labels.begin(); it!=labels.end(); ++it)
+		std::cout <<"\n"<< it->first << " => " << it->second << '\n';
 	
 	
 	cout<<"\n end?";
-	/*
-    Var v;
-    Var * w = v.decode(lines[counter]);
-    string str;
-    cout << endl;
-    for(int i = 0; i < lines[counter].size(); ++i)
-    {
-        str = lines[counter][i];
-        cout << str << endl;
-        if(lines[counter][i].compare("")==0) break;
-    }
-    counter++;
-	*/
+
 }
+
 
 template<typename T, typename... insns>
 T Server::execute(T res, insns... args)

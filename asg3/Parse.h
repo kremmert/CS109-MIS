@@ -1,5 +1,9 @@
+#ifndef PARSE_H
+#define PARSE_H
+
 #include<string>
 #include <vector>
+#include <map>
 
 class Parse {
 public:
@@ -12,6 +16,8 @@ public:
 	//function to parse each line into the 2D vector and separate the type and 
 	//parameters into different positions within the inner vector
 	std::vector<std::vector<std::string>> parsingf();
+	
+	std::map <std::string, int> labelget();
 
 	
 	
@@ -23,3 +29,5 @@ private:
 	std::vector<std::vector<std::string>> lines;
 
 };
+
+#endif

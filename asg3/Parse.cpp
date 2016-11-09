@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <vector>
 #include <sstream>
+#include <map>
 
 using namespace std;
 //Constructor
@@ -96,5 +97,16 @@ vector<vector<string>> Parse::parsingf(){
 	return lines;
 	
 	
+}
+std::map <std::string,int> Parse::labelget(){
+	std::map <std::string,int> labelmap;
+	
+	for(int x = 0; x <lines.size();x++){
+		if (lines[x][0].compare("")==0) continue;
+		if(lines[x][0].compare("LABEL")){
+			labelmap[lines[x][0]]= x;
+		}
+	}
+	return labelmap;
 }
 
