@@ -63,5 +63,4 @@ void Mul::functor(std::vector<std::string> lines,std::map <std::string,Instructi
 	y *= x; //multiply
 	//sets the value
 	mapy[lines[1]]->setVal(std::to_string(y));
-	cout<<"\n value of mul:"<<mapy[lines[1]]->getV();
 }

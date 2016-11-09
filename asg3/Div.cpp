@@ -50,7 +50,5 @@ void Div::functor(std::vector<std::string> lines,std::map <std::string,Instructi
 	//the divide
 	double j = x/y;
 	mapy[lines[1]]->setVal(std::to_string(j));
-	std::cout<<"\n result: "<<mapy[lines[1]]->getV();
-	std::cout<<"\n";
 }
 

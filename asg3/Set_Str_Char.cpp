@@ -24,15 +24,9 @@ void Set_Str_Char::functor(std::vector<std::string> lines,std::map <std::string,
 
 	int x = 0;
 	std::string y;
-	std::cout<<"\n here z: "<<z;
 	if(mapy.find(z)== mapy.end()){
 		z = z.substr(0,z.size()-1);
-		
-		std::cout<<"\n if ***here z: "<<z;
 	}
-	std::cout<<"\n end z: "<<z;
-	std::cout<<"\n end z: "<<z;
-	std::cout<<"\n end z: "<<z;
 	z = mapy[z]->getV();
 	
 	try{
@@ -57,6 +51,5 @@ void Set_Str_Char::functor(std::vector<std::string> lines,std::map <std::string,
 	
 	z[x]=y[0];
 	mapy[lines[1]]->setVal(z);
-	std::cout<<"\n  output   "<<mapy[lines[1]]->getV();
 	
 }
