@@ -4,7 +4,7 @@ SUB	$myint,$myint2,10
 SUB	$myint,100,$myint
 VAR	$myint3,NUMERIC,10
 DIV	$myint3,$myint,$myint
-LABEL	fuck
+LABEL	cat
 DIV	$myint3,50,5
 ADD	$myint,100,20,$myint3
 ADD	$myint,100,20,$myint2
@@ -18,7 +18,7 @@ ASSIGN	$myint,$myint2
 MUL	$myint,$myint,$myint2,$myint3
 VAR	$mystring,STRING,100,"Kyle"
 VAR	$mystring2,STRING,200,"Petar"
-OUT	$mystring,$mystring2,"fuck me",222
+OUT	$mystring,$mystring2,"hello",222
 VAR	$mychar,CHAR,'c'
 JMPLTE	loop,0,$myint3
 SET_STR_CHAR	$mystring,2,p

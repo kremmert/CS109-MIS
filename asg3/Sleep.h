@@ -5,12 +5,13 @@
 #include "common.h"
 class Sleep: public Function{
 public:
-    Sleep();
+    Sleep();//constructor
     Sleep(const Sleep& orig);
-    virtual ~Sleep();
+    virtual ~Sleep();//destructor
 	void functor(std::vector<std::string> lines,std::map <std::string,Instructions *> & mapy);
+	//sleeps for x seconds
 private:
-	Instructions * clone(std::vector<std::string> lines);
+	Instructions * clone(std::vector<std::string> lines);// not implkemented
 };
 
 #endif

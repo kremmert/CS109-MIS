@@ -17,21 +17,22 @@ Instructions * Sleep::clone(std::vector<std::string> lines){
 	
 }
 
-
+//sleep for x seconds
 void Sleep::functor(std::vector<std::string> lines,std::map <std::string,Instructions *> & mapy){
 	std::string a = lines[1];
-
+	
 	int x = 0;
-	try{
+	try{//if x is an int
 		x = stoi(a);
 	}
 	catch(...)
-	{
-		
+	{//x is not an int
 		std::string mn = lines[1];
 		if(mapy.find(mn)== mapy.end()){
 			mn = mn.substr(0,mn.size()-1);
+			//fix edge case
 		}
+		//in map
 		x = stoi(mapy[mn]->getV());
 	}
 	//sleep for x seconds
