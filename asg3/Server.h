@@ -7,16 +7,16 @@
 class Server 
 {
     private:
-        std::vector<std::vector<std::string>> lines;
-		std::string input;
-        int counter = 0;
-        std::map<std::string, int> labels;
+        std::vector<std::vector<std::string>> lines;//parsed lines of code
+		std::string input;//input file
+        int counter = 0;//pointing to which line of code
+        std::map<std::string, int> labels;//map of labels with line number
     public:
 		Server();
         Server(std::string a); //map1 has everything instantiated, arrays allocated
-        void readLines();
+        void readLines();// calls method to parse
         void morethanfetch(); //count indexes until next insn
-		void jump(std::map <std::string,Instructions *> storevobj);
+		void jump(std::map <std::string,Instructions *> storevobj);//jump function
 		int infinite = 0;
         //forms and puts object into map, clone 
         //then performs the insns, and stores into another map, then calls fetch again
