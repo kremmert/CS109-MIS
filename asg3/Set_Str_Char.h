@@ -5,12 +5,14 @@
 #include "common.h"
 class Set_Str_Char: public Function{
 public:
+    //constructor
     Set_Str_Char();
-    Set_Str_Char(const Set_Str_Char& orig);
+    //destructor
     virtual ~Set_Str_Char();
+    //sets a char at a location
 	void functor(std::vector<std::string> lines,std::map <std::string,Instructions *> & mapy);
 private:
-	Instructions * clone(std::vector<std::string> lines);
+	Instructions * clone(std::vector<std::string> lines); //clone
 };
 
 #endif

@@ -5,12 +5,14 @@
 #include "common.h"
 class Get_Str_Char: public Function{
 public:
+    //constructor
     Get_Str_Char();
-    Get_Str_Char(const Get_Str_Char& orig);
+    //destructor
     virtual ~Get_Str_Char();
+    //function that gets a char at a location and places it elsewhere
 	void functor(std::vector<std::string> lines,std::map <std::string,Instructions *> & mapy);
 private:
-	Instructions * clone(std::vector<std::string> lines);
+	Instructions * clone(std::vector<std::string> lines); //clone
 };
 
 #endif
