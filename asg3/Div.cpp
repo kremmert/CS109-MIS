@@ -24,25 +24,36 @@ void Div:: divide(int c, int a, int b){
 }
 
 void Div::functor(std::vector<std::string> lines,std::map <std::string,Instructions *> & mapy){
-	std::cout<<"\n help me";
-	std::string a = lines[2];
+    std::string a = lines[2];
 	std::string b = lines[3];
 	int x,y;
-
-	if(isnum(a)){
+	
+	try{
 		x = stoi(a);
-	}else{
+	}
+	catch(...)
+	{
 		x = stoi(mapy[lines[2]]->getV());
 	}
-	
-	if(isnum(b)){
+
+
+	try{
+		
 		y = stoi(b);
-	}else{
-		y = stoi(mapy[lines[3]]->getV());
+		
 	}
-	int j = x-y;
+	catch(...)
+	{
+		std::string mn = lines[3].substr(0,lines[3].size()-1);
+		y = std::stoi((mapy[mn])->getV());
+	}
+	if(y==0){
+		std::cout<<" Divide by zero";
+		return;
+	}
+	int j = x/y;
 	mapy[lines[1]]->setVal(std::to_string(j));
-	std::cout << "*************************************\n\n";
-	std::cout << "\n" <<mapy[lines[1]]->getV() << "\n";
+	std::cout<<"\n result: "<<mapy[lines[1]]->getV();
+	std::cout<<"\n";
 }
 
