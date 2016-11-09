@@ -3,7 +3,7 @@ CFLAGS = -o
 RM = rm -f
 CLASSES = Server.cpp Var.cpp Parse.cpp Numeric.cpp String.cpp Real.cpp Char.cpp
 CLASSESMATH = Math.cpp Add.cpp Sub.cpp Div.cpp Mul.cpp
-CLASSES1 = Instructions.cpp Function.cpp Sleep.cpp
+CLASSES1 = Instructions.cpp Function.cpp Sleep.cpp Assign.cpp
 
 default: all
 
