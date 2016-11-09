@@ -46,13 +46,16 @@ void Div::functor(std::vector<std::string> lines,std::map <std::string,Instructi
 	catch(...)
 	{
 		std::string mn = lines[3];
+		if(mapy.find(mn)== mapy.end()){
+			mn = mn.substr(0,mn.size()-1);
+		}
 		//std::string mn = lines[3].substr(0,lines[3].size()-1);
-		if(mn[mn.size()]=='\0')
+	/*	if(mn[mn.size()]=='\0')
 		{
 			std::cout <<"\n\nsubstring getting fixed";
 			mn = lines[3].substr(0,lines[3].size()-1);
 			//mn = lines[3].c_str();
-		} 
+		} */
 		y = std::stoi((mapy[mn])->getV());
 	}
 	if(y==0){
