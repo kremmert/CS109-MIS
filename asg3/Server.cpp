@@ -13,6 +13,7 @@
 #include "Sleep.h"
 #include "Assign.h"
 #include "Out.h"
+#include "Set_Str_Char.h"
 using namespace std;
 
 Server::Server()
@@ -51,6 +52,7 @@ void Server::morethanfetch()
 	vobj["SLEEP"] = new Sleep();
 	vobj["ASSIGN"] = new Assign();
 	vobj["OUT"] = new Out();
+	vobj["SET_STR_CHAR"] = new Set_Str_Char();
 	
 	
 	cout<<lines.size();
