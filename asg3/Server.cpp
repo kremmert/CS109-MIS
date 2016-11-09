@@ -78,7 +78,7 @@ void Server::morethanfetch()
 			//labels were put into a map with line number right after being parsed
 		}else if(lines[counter-1][0].substr(0,3).compare("JMP")==0){
 			
-			std::cout<<"\nchan chan: "<<labels[counter-1][1];
+			std::cout<<"\nchan chan: "<<labels[lines[counter-1][1]];
 			jump(storevobj);
 			std::cout<<"\n counter after jump"<<counter;
 		}
