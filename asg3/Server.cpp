@@ -104,6 +104,8 @@ void Server::morethanfetch()
 }
 
 void Server::jump(std::map <std::string, Instructions *> storevobj){
+	
+	this->infinite++;
 	if(infinite>1000){
 		std::cout<<"\n infinite loop: ignoring jump";
 		return;
@@ -126,11 +128,11 @@ void Server::jump(std::map <std::string, Instructions *> storevobj){
 	
 	if(z.compare("JMP")==0)
 	{
-		counter = labels[lines[counter-1][1]];
+		counter = labels[a];
 		cout<<"In JMP";
 		return;
 	}
-	
+	/*
 	cout<<"a666: "<<labels[a];
 	if(labels.find(a) == labels.end()){
 		a = a.substr(0,a.size()-1);
@@ -138,15 +140,14 @@ void Server::jump(std::map <std::string, Instructions *> storevobj){
 		if(labels.find(a) == labels.end())
 			cout<<"\n fou77777nd1";
 	}
-	cout<<"a1: "<<labels[a];
-	cout<<"\n found2";
+	*/
+	
+
 	if(storevobj.find(b) == storevobj.end()){
 			b = b.substr(0,b.size()-1);
 			if(storevobj.find(b)== storevobj.end()){
-				
-	
-				cout<<"\n  **"<<lines[counter-1][2];
-				cout<<"\n  **************";
+
+
 				x = std::stoi(lines[counter-1][2]);
 			}else{
 			x = std::stoi((storevobj[b])->getV());	
@@ -155,17 +156,15 @@ void Server::jump(std::map <std::string, Instructions *> storevobj){
 		x = std::stoi((storevobj[b])->getV());
 		
 	}
-	cout<<"\n  *??????????????"<<x;
-	cout<<"\n  ------"<<labels[a];
+
 	
 	if(z.compare("JMPZ")==0){
 		if(x==0)
-			counter = labels[a];
+			counter = labels[lines[counter-1][1]];
 		cout<<"\nIn JMPZ"<<counter;
 		return;
 	}
 	
-	cout<<"\n  *||||||||||||?";
 	if(z.compare("JMPNZ")==0){
 		if(x!=0)
 			counter = labels[lines[counter-1][1]];
@@ -173,13 +172,18 @@ void Server::jump(std::map <std::string, Instructions *> storevobj){
 		return;
 	}
 	
-	if(storevobj.find(c)== storevobj.end()){
+	if(storevobj.find(c) == storevobj.end()){
 			c = c.substr(0,c.size()-1);
 			if(storevobj.find(c)== storevobj.end()){
-				y = std::stoi(lines[counter-1][3]);
+
+
+				y = std::stoi(lines[counter-1][2]);
+			}else{
+			y = std::stoi((storevobj[c])->getV());	
 			}
 	}else{
 		y = std::stoi((storevobj[c])->getV());
+		
 	}
 	
 	if(z.compare("JMPGT")==0){
@@ -197,16 +201,22 @@ void Server::jump(std::map <std::string, Instructions *> storevobj){
 	if(z.compare("JMPLT")==0){
 		if(x<y)
 			counter = labels[lines[counter-1][1]];
-		cout<<"In JMPLT";
+		cout<<"\n x :" <<x;
+		cout<<"\n y :" <<y;
+		cout<<"\n In JMPLT"<<counter;
 		return;
 	}
 	if(z.compare("JMPLTE")==0){
-		if(x<=y)
+		//we can't do <= for some reason, IT DOESNT ***** WORK!
+		if(x==y)
 			counter = labels[lines[counter-1][1]];
-		cout<<"In JMPLTE";
+		if(x<y)
+			counter = labels[lines[counter-1][1]];
+		cout<<"In JMPLTE"<<counter;
+		cout<<"\n x :" <<x;
+		cout<<"\n y :" <<y;
 		return;
 	}
-	this->infinite++;
 }
 
 int main(){

@@ -106,8 +106,8 @@ std::map <std::string,int> Parse::labelget(std::vector<std::vector<std::string>>
 		if (lines[x][0].compare("")==0) continue;
 		if(lines[x][0].compare("LABEL")==0){
 			std::cout<<"\n LOOOPx value for tags: "<< x;
-			std::cout<<"\n LOOOOOP**************************";
-			labelmap[lines[x][1]]= x;
+			std::cout<<"\n LOOOOOP******************"<<lines[x][1];
+			labelmap[lines[x][1].substr(0,lines[x][1].size()-1)]= x;
 		}
 	}
 	return labelmap;

@@ -20,7 +20,7 @@ VAR	$mystring,STRING,100,"Kyle"
 VAR	$mystring2,STRING,200,"Petar"
 OUT	$mystring,$mystring2,"fuck me",222
 VAR	$mychar,CHAR,'c'
-JMPZ	loop,0
+JMPLTE	loop,0,$myint3
 SET_STR_CHAR	$mystring,2,p
 SET_STR_CHAR	$mystring,2,$mychar
 GET_STR_CHAR	$mystring2,2,$mychar
