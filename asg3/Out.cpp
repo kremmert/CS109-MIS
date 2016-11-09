@@ -21,7 +21,7 @@ Instructions * Out::clone(std::vector<std::string> lines){
 void Out::functor(std::vector<std::string> lines,std::map <std::string,Instructions *> & mapy){
 
 	std::ofstream outputFile;;
-	outputFile.open("Output.out");//make file called Output.out
+	outputFile.open("Output.out",std::ios::app);//make file called Output.out
 	
 	std::string mn;
 	for(int x = 1; x <lines.size()-1;x++){
