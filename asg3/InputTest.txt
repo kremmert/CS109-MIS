@@ -14,3 +14,6 @@ MUL	$myint,5,10,2
 SLEEP	2
 ASSIGN	$myint,$myint2
 MUL	$myint,$myint,$myint2,$myint3
+VAR	$mystring,STRING,100,"Kyle"
+VAR	$mystring2,STRING,200,"Petar"
+OUT	$mystring,$mystring2,"fuck me",222

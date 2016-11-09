@@ -12,6 +12,7 @@
 #include "Div.h"
 #include "Sleep.h"
 #include "Assign.h"
+#include "Out.h"
 using namespace std;
 
 Server::Server()
@@ -49,6 +50,8 @@ void Server::morethanfetch()
 	vobj["DIV"] = new Div();
 	vobj["SLEEP"] = new Sleep();
 	vobj["ASSIGN"] = new Assign();
+	vobj["OUT"] = new Out();
+	
 	
 	cout<<lines.size();
 	cout<<"\n"<<lines[0].size();
