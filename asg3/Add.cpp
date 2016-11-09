@@ -17,35 +17,29 @@ Add::~Add()
 
 }
 
-template<typename T>
-T add(T a)
-{
-    return a;
-}
-
-template<typename T, typename... num>
-T add(T res, num... args)
-{
-    return res + add(args...);
-}
 
 void Add::functor(std::vector<std::string> lines,std::map <std::string,Instructions *> & mapy){
 
-	std::string a = lines[2];
+	std::string a = lines[2];//first number to be added
 
 	int x = 0;
 	int y = 0;
 	int v = 2;
+	//while we go through parameters
 	while(v < lines.size())	{
 
 		try{ 
+			//try to conver to int
 			x = stoi(lines[v]);
 		}
 		catch(...) {
+			//else get the string from object then convert to int
 			x = stoi(mapy[lines[v]]->getV());
 		}
-
+		
+		//add the number to itself
 		y+=x;
+		//if the next param is empty break
 		if(lines[v+2].compare("")==0)
 		{
 			break;
@@ -54,7 +48,7 @@ void Add::functor(std::vector<std::string> lines,std::map <std::string,Instructi
 		v++;
 	}
 	x = 0;
-
+	//edge case for ending null char
 	try{
 		
 		x = stoi(lines[v+1]);
@@ -69,6 +63,7 @@ void Add::functor(std::vector<std::string> lines,std::map <std::string,Instructi
 		}
 	x = std::stoi((mapy[mn])->getV());
 	}
+	
 	y += x;
 	
 	mapy[lines[1]]->setVal(std::to_string(y));

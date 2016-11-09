@@ -10,8 +10,6 @@ public:
 	void functor(std::vector<std::string> lines,std::map <std::string,Instructions *> & mapy);
 	
 private:
-	template<typename T, typename... num>
-    T add(T res, num... args);
 
 
 };
