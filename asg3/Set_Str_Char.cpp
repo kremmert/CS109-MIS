@@ -18,71 +18,45 @@ Instructions * Set_Str_Char::clone(std::vector<std::string> lines){
 
 void Set_Str_Char::functor(std::vector<std::string> lines,std::map <std::string,Instructions *> & mapy){
 	
-  /*  
-    std::string a = lines[1];
-	std::string b = lines[2];
-
-	int x = 0;
-	int y = 0;
-
-		
-	std::string mn = lines[2];
-	if(mapy.find(mn)== mapy.end()){
-		mn = mn.substr(0,mn.size()-1);
-	}
-	x = stoi(mapy[mn]->getV());
-
-	mapy[lines[1]]->setVal(std::to_string(x));
-*/
+	std::string z = lines[1];
     std::string a = lines[2];
 	std::string b = lines[3];
+
 	int x = 0;
 	std::string y;
-
+	std::cout<<"\n here z: "<<z;
+	if(mapy.find(z)== mapy.end()){
+		z = z.substr(0,z.size()-1);
+		
+		std::cout<<"\n if ***here z: "<<z;
+	}
+	std::cout<<"\n end z: "<<z;
+	std::cout<<"\n end z: "<<z;
+	std::cout<<"\n end z: "<<z;
+	z = mapy[z]->getV();
+	
 	try{
-		
 		x = stoi(a);
-		
 	}
 	catch(...)
 	{
-		std::string mn = lines[2];
-		if(mapy.find(mn)== mapy.end()){
-			mn = mn.substr(0,mn.size()-1);
-		}
-
-		x = std::stoi((mapy[mn])->getV());
+		x = stoi(mapy[lines[2]]->getV());
 	}
 
-
-    std::string mn = lines[3];
-    if(mapy.find(mn)== mapy.end()){
-        mn = mn.substr(0,mn.size()-1);
-    }
-    if(mapy.find(mn)== mapy.end())
-    {
-        mn = mn.substr(0,mn.size()-1);
-        if(mapy.find(mn)==mapy.end())
-        {
-            y = lines[3];
-        }
-        else
-            y = mapy[mn]->getV();
-    }
-    else
-        y = mapy[mn]->getV();
-
-
-    std::string zz = lines[1];
-    if(mapy.find(zz)== mapy.end()){
-        zz = zz.substr(0,zz.size()-1);
-    }
+		
+	if(mapy.find(b)== mapy.end()){
+		b = b.substr(0,b.size()-1);
+		if(mapy.find(b)==mapy.end()){
+			y = lines[3];
+		}else{
+			y = mapy[b]->getV();
+		}
+	}else{
+		y = mapy[b]->getV();
+	}
 	
-	std::string c = mapy[zz]->getV();
-    c[x] = y[0];
-	//mapy[lines[1]]->setVal(std::to_string(j));
-	std::cout<<"\n result: "<<mapy[lines[1]]->getV();
-	std::cout<<"\n";	
-	
+	z[x]=y[0];
+	mapy[lines[1]]->setVal(z);
+	std::cout<<"\n  output   "<<mapy[lines[1]]->getV();
 	
 }

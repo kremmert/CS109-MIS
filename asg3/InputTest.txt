@@ -17,4 +17,6 @@ MUL	$myint,$myint,$myint2,$myint3
 VAR	$mystring,STRING,100,"Kyle"
 VAR	$mystring2,STRING,200,"Petar"
 OUT	$mystring,$mystring2,"fuck me",222
-SET_STR_CHAR    $mystring,2,p
+VAR	$mychar,CHAR,'c'
+SET_STR_CHAR	$mystring,2,p
+SET_STR_CHAR	$mystring,2,$mychar
