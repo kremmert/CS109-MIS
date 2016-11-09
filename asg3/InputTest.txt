@@ -8,5 +8,7 @@ DIV	$myint3,50,5
 ADD	$myint,100,20,$myint3
 ADD	$myint,100,20,$myint2
 ADD	$myint,100,20,$myint
+SLEEP	$myint3
 MUL	$myint,5,10,2
+SLEEP	10
 MUL	$myint,$myint,$myint2,$myint3
