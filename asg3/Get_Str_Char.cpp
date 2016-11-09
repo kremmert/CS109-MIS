@@ -12,7 +12,6 @@ Get_Str_Char::~Get_Str_Char() {
 }
 
 Instructions * Get_Str_Char::clone(std::vector<std::string> lines){
-	
 }
 
 
@@ -56,7 +55,7 @@ void Get_Str_Char::functor(std::vector<std::string> lines,std::map <std::string,
 	}
 	
 	y[x]=z[0];
-	mapy[lines[3]]->setVal(y);
-	std::cout<<"\n  output   "<<mapy[lines[3]]->getV();
+	mapy[b]->setVal(y);
+	std::cout<<"\n  output   "<<mapy[b]->getV();
 	
 }
