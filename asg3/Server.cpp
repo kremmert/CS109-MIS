@@ -113,85 +113,87 @@ void Server::jump(std::map <std::string, Instructions *> storevobj){
 
 	//if the arg is jump
 	if(z.compare("JMP")==0)
-	{
+	{	//set counter to zero:THIS IS THE JUMP
 		counter = labels[a];
 		return;
 	}
 
 	
-
+	//find var in map
 	if(storevobj.find(b) == storevobj.end()){
+		//not in map
 			b = b.substr(0,b.size()-1);
 			if(storevobj.find(b)== storevobj.end()){
-
-
+				//its a constant
 				x = std::stoi(lines[counter-1][2]);
 			}else{
+			//edge case with null char at end rremoved
 			x = std::stoi((storevobj[b])->getV());	
 			}
 	}else{
+		//its in map
 		x = std::stoi((storevobj[b])->getV());
 		
 	}
 
-	
+	//arg is jump z, jump if is 0
 	if(z.compare("JMPZ")==0){
-		if(x==0)
-			counter = labels[lines[counter-1][1]];
+		if(x==0)//compare
+			counter = labels[lines[counter-1][1]];//jump
 		return;
 	}
 	
 	if(z.compare("JMPNZ")==0){
-		if(x!=0)
-			counter = labels[lines[counter-1][1]];
+		if(x!=0)//compare
+			counter = labels[lines[counter-1][1]];//jump
 		return;
 	}
-	
+	//see if its in map
 	if(storevobj.find(c) == storevobj.end()){
+		//not in map
 			c = c.substr(0,c.size()-1);
 			if(storevobj.find(c)== storevobj.end()){
-
-
+				//its a constant
 				y = std::stoi(lines[counter-1][2]);
-			}else{
-			y = std::stoi((storevobj[c])->getV());	
+			}else{//edge case, removed null char at end
+			y = std::stoi((storevobj[c])->getV());//in map	
 			}
-	}else{
+	}else{//its in map
 		y = std::stoi((storevobj[c])->getV());
 		
 	}
 	
 	if(z.compare("JMPGT")==0){
-		if(x>y)
-			counter = labels[lines[counter-1][1]];
+		if(x>y)//compare
+			counter = labels[lines[counter-1][1]];//jump
 		return;
 	}
 	if(z.compare("JMPGTE")==0){
-		if(x>=y)
-			counter = labels[lines[counter-1][1]];
+		if(x>=y)//compare
+			counter = labels[lines[counter-1][1]];//jump
 		return;
 	}
 	if(z.compare("JMPLT")==0){
-		if(x<y)
-			counter = labels[lines[counter-1][1]];
+		if(x<y)//compare
+			counter = labels[lines[counter-1][1]];//jump
 		return;
 	}
 	if(z.compare("JMPLTE")==0){
 		//we can't do <= for some reason, IT DOESNT ***** WORK!
-		if(x==y)
-			counter = labels[lines[counter-1][1]];
-		if(x<y)
-			counter = labels[lines[counter-1][1]];
+		if(x==y)//compare
+			counter = labels[lines[counter-1][1]];//jump
+		if(x<y)//compare
+			counter = labels[lines[counter-1][1]];//jump
 		return;
 	}
 }
 
 int main(){
 	
-	std::string a;
+	std::string a;//will be nane of input file
 	std::cout<<"please input file ending in .mis\n";
 	std::cin>>a;
-    Server * s = new Server(a);
+    Server * s = new Server(a);//start everything
 	cout << "\nOut instructions are in file Output.out" << endl;
     cout << "Ending Program" << endl;
 }
