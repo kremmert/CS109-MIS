@@ -18,7 +18,11 @@
 using namespace std;
 
 Server::Server()
-{
+{	
+}
+Server::Server(std::string a)
+{	
+	input = a;
     this->readLines();
 }
 
@@ -30,7 +34,8 @@ Server::~Server()
 void Server::readLines()
 {
     Parse p;
-    lines = p.parsingf();
+    lines = p.parsingf(input);
+	if(lines[0][0].compare("")==0) return;
 	labels = p.labelget(lines);
     this->morethanfetch();
 }
@@ -220,7 +225,11 @@ void Server::jump(std::map <std::string, Instructions *> storevobj){
 }
 
 int main(){
-    Server * s = new Server();
+	
+	std::string a;
+	std::cout<<"please input file ending in .mis\n";
+	std::cin>>a;
+    Server * s = new Server(a);
     cout << "\nmade it" << endl;
 }
 

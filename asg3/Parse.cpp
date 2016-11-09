@@ -23,11 +23,15 @@ Parse::~Parse() {
 }
 
 //[CHANGE] change to accept filename so it can call from constructor?
-vector<vector<string>> Parse::parsingf(){
+vector<vector<string>> Parse::parsingf(std::string input){
 	//BIG [CHANGE] currently only handles up to 50 lines need to expand to handle more dynamically
 	std::vector<std::vector<std::string>> lines(50,std::vector<string>(50));
 	//[CHANGE] to variable passed
-	std::ifstream file("InputTest.txt");
+	if(input.find(".mis")==-1){
+		std::cout<<"\n not a .mis file";
+		return lines;
+	}
+	std::ifstream file(input);
 	//string variable to hold current line being parsed
 	std::string str;
 	//

@@ -15,7 +15,7 @@ public:
     virtual ~Parse();
 	//function to parse each line into the 2D vector and separate the type and 
 	//parameters into different positions within the inner vector
-	std::vector<std::vector<std::string>> parsingf();
+	std::vector<std::vector<std::string>> parsingf(std::string input);
 	
 	std::map <std::string, int> labelget(std::vector<std::vector<std::string>> lines);
 

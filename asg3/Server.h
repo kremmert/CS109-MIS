@@ -8,10 +8,12 @@ class Server
 {
     private:
         std::vector<std::vector<std::string>> lines;
+		std::string input;
         int counter = 0;
         std::map<std::string, int> labels;
     public:
-        Server(); //map1 has everything instantiated, arrays allocated
+		Server();
+        Server(std::string a); //map1 has everything instantiated, arrays allocated
         void readLines();
         void morethanfetch(); //count indexes until next insn
 		void jump(std::map <std::string,Instructions *> storevobj);
