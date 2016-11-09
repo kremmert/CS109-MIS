@@ -67,12 +67,7 @@ vector<vector<string>> Parse::parsingf(std::string input){
 			//compares temp to empty string; if temp is empty, compare returns 0
 			if(temp.compare("")==0) break;//go to next line
 			//put parameter at current position in current inner vector
-		/*	if(temp[temp.size()]!='\0')
-			{
-				std::cout <<"\n\nsubstring getting fixed";
-				//temp = temp.substr(0,temp.size()-1);
-				temp = temp.c_str();
-			} */
+
 			lines[x][y] = temp;
 			y++;
 		}
@@ -82,36 +77,23 @@ vector<vector<string>> Parse::parsingf(std::string input){
 		x++;
 
 	} 
-	//Printing the 2d vector
-	for(int i=0; i<lines.size(); ++i){
-		//stops if vector isn't populated
-		if(lines[i][0].compare("")==0) break;
-		std::cout<<"\n";//newline
-		for(int v = 0; v < lines[i].size(); ++v){	
-			//if no parameter stop printing
-			if(lines[i][v].compare("")==0) break;
-			//print parameter at current position
-			std::cout <<"arg" <<v<<":"<< lines[i][v] << "\t";
-		}
-		
-	}
+
 	
-	cout<<"\n end parse \n";
 	//return 2D vector of instructions
 	return lines;
 	
 	
 }
+// return map of labels with line number
 std::map <std::string,int> Parse::labelget(std::vector<std::vector<std::string>> lines){
 	std::map <std::string,int> labelmap;
 	
 	for(int x = 0; x <lines.size();x++){
-		
+		//if empty line continue
 		if (lines[x][0].compare("")==0) continue;
 		if(lines[x][0].compare("LABEL")==0){
-			std::cout<<"\n LOOOPx value for tags: "<< x;
-			std::cout<<"\n LOOOOOP******************"<<lines[x][1];
 			labelmap[lines[x][1].substr(0,lines[x][1].size()-1)]= x;
+			//set map[label] = line number
 		}
 	}
 	return labelmap;

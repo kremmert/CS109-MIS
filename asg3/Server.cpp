@@ -63,8 +63,7 @@ void Server::morethanfetch()
 	vobj["GET_STR_CHAR"] = new Get_Str_Char();
 	
 	
-	cout<<lines.size();
-	cout<<"\n"<<lines[0].size();
+
 	while(counter<lines.size()){
 		counter++;
 		if(lines[counter-1][0].compare("")==0) continue;
@@ -79,13 +78,12 @@ void Server::morethanfetch()
 		
 		storevobj[lines[counter-1][1]] = kk;
 		}else if(lines[counter-1][0].compare("LABEL")==0){
-			cout<<"\nchan chan: "<<counter;
+
 			//labels were put into a map with line number right after being parsed
 		}else if(lines[counter-1][0].substr(0,3).compare("JMP")==0){
 			
-			std::cout<<"\nchan chan: "<<labels[lines[counter-1][1]];
+
 			jump(storevobj);
-			std::cout<<"\n counter after jump"<<counter;
 		}
 		else{
 			
@@ -94,18 +92,7 @@ void Server::morethanfetch()
 		}
 		
 	}
-	//fuck printing map
-	for (std::map<string,Instructions*>::iterator it=storevobj.begin(); it!=storevobj.end(); ++it)
-		std::cout <<"\n"<< it->first << " => " << it->second << '\n';
 
-	cout<< "\n printing stored variables";
-
-
-	for (std::map<string,int>::iterator it=labels.begin(); it!=labels.end(); ++it)
-		std::cout <<"\n"<< it->first << " => " << it->second << '\n';
-	
-	
-	cout<<"\n end?";
 }
 
 void Server::jump(std::map <std::string, Instructions *> storevobj){
@@ -122,30 +109,14 @@ void Server::jump(std::map <std::string, Instructions *> storevobj){
 	int x = 0;
 	int y = 0;
 	
-	for (std::map<string,int>::iterator it=labels.begin(); it!=labels.end(); ++it)
-		std::cout <<"\n"<< it->first << " => " << it->second << '\n';
-	std::cout<<"\nline[0]: COUNTER"<<counter;
-	std::cout<<"\nline[0]: *********"<<lines[counter-1][0];
-	std::cout<<"\nline[0]: ??????????"<<lines[counter-1][1];
-	std::cout<<"\nline[0]: VALLLLLUE"<<labels[lines[counter-1][1]];
-	cout<<"\n z: "<<z<<"\n a: "<<a <<"\n b: "<< b <<"\n c"<< c;
-	cout<<"\n counter: "<< counter;
+
 	
 	if(z.compare("JMP")==0)
 	{
 		counter = labels[a];
-		cout<<"In JMP";
 		return;
 	}
-	/*
-	cout<<"a666: "<<labels[a];
-	if(labels.find(a) == labels.end()){
-		a = a.substr(0,a.size()-1);
-		cout<<"\n found1";
-		if(labels.find(a) == labels.end())
-			cout<<"\n fou77777nd1";
-	}
-	*/
+
 	
 
 	if(storevobj.find(b) == storevobj.end()){
@@ -166,14 +137,12 @@ void Server::jump(std::map <std::string, Instructions *> storevobj){
 	if(z.compare("JMPZ")==0){
 		if(x==0)
 			counter = labels[lines[counter-1][1]];
-		cout<<"\nIn JMPZ"<<counter;
 		return;
 	}
 	
 	if(z.compare("JMPNZ")==0){
 		if(x!=0)
 			counter = labels[lines[counter-1][1]];
-		cout<<"In JMPNZ";
 		return;
 	}
 	
@@ -194,21 +163,16 @@ void Server::jump(std::map <std::string, Instructions *> storevobj){
 	if(z.compare("JMPGT")==0){
 		if(x>y)
 			counter = labels[lines[counter-1][1]];
-		cout<<"In JMPGT";
 		return;
 	}
 	if(z.compare("JMPGTE")==0){
 		if(x>=y)
 			counter = labels[lines[counter-1][1]];
-		cout<<"In JMPGTE";
 		return;
 	}
 	if(z.compare("JMPLT")==0){
 		if(x<y)
 			counter = labels[lines[counter-1][1]];
-		cout<<"\n x :" <<x;
-		cout<<"\n y :" <<y;
-		cout<<"\n In JMPLT"<<counter;
 		return;
 	}
 	if(z.compare("JMPLTE")==0){
@@ -217,9 +181,6 @@ void Server::jump(std::map <std::string, Instructions *> storevobj){
 			counter = labels[lines[counter-1][1]];
 		if(x<y)
 			counter = labels[lines[counter-1][1]];
-		cout<<"In JMPLTE"<<counter;
-		cout<<"\n x :" <<x;
-		cout<<"\n y :" <<y;
 		return;
 	}
 }
@@ -230,7 +191,8 @@ int main(){
 	std::cout<<"please input file ending in .mis\n";
 	std::cin>>a;
     Server * s = new Server(a);
-    cout << "\nmade it" << endl;
+	cout << "\nOut instructions are in file Output.out" << endl;
+    cout << "Ending Program" << endl;
 }
 
 
