@@ -3,6 +3,7 @@
 
 #include "common.h"
 #include <map>
+#include "Instructions.h"
 class Server 
 {
     private:
@@ -13,7 +14,7 @@ class Server
         Server(); //map1 has everything instantiated, arrays allocated
         void readLines();
         void morethanfetch(); //count indexes until next insn
-		void jump();
+		void jump(std::map <std::string,Instructions *> storevobj);
 		int infinite = 0;
         //forms and puts object into map, clone 
         //then performs the insns, and stores into another map, then calls fetch again
