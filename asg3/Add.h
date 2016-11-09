@@ -4,9 +4,11 @@
 #include <map>
 class Add: public Math {
 public:
+    //constructor
     Add();
-    Add(const Add& orig);
+    //destructor
     virtual ~Add();
+    //function that adds up an instruction
 	void functor(std::vector<std::string> lines,std::map <std::string,Instructions *> & mapy);
 	
 private:

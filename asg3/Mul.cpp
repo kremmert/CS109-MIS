@@ -1,49 +1,39 @@
 #include "common.h"
 #include "Mul.h"
 using namespace std;
+
+//constructor
 Mul::Mul()
 {
 	
 }
 
-Mul::Mul(const Mul& orig)
-{
-
-}
-
+//destructor
 Mul::~Mul()
 {
 
 }
 
-template<typename T>
-T mul(T a)
-{
-    return a;
-}
-
-template<typename T, typename... num>
-T multiply(T res, num... args)
-{
-    return res * mul(args...);
-}
-
+//multiplying function
 void Mul::functor(std::vector<std::string> lines,std::map <std::string,Instructions *> & mapy){
+	//get first variable and set others
 	std::string a = lines[2];
 
-	int x = 0;
-	int y = 1;
+	double x = 0;
+	double y = 1;
 	int v = 2;
 	while(v < lines.size())	{
-
+		//attempt to change string to number
 		try{ 
-			x = stoi(lines[v]);
+			x = stod(lines[v]);
 		}
 		catch(...) {
-			x = stoi(mapy[lines[v]]->getV());
+		//if not check for value of variable
+			x = stod(mapy[lines[v]]->getV());
 		}
-
+		//multiply together
 		y*=x;
+		//break when vector is empty
 		if(lines[v+2].compare("")==0)
 		{
 			break;
@@ -53,6 +43,8 @@ void Mul::functor(std::vector<std::string> lines,std::map <std::string,Instructi
 	}
 	x = 0;
 
+	//checks if last element is in map because null character
+	//basically does same as above
 	try{
 		
 		x = stoi(lines[v+1]);
@@ -64,12 +56,12 @@ void Mul::functor(std::vector<std::string> lines,std::map <std::string,Instructi
 		std::string mn = lines[v+1];
 
 		if(mapy.find(mn)== mapy.end()){
-			mn = mn.substr(0,mn.size()-1);
+			mn = mn.substr(0,mn.size()-1); //removes null character to match up
 		}
 	x = std::stoi((mapy[mn])->getV());
 	}
-	y *= x;
-	
+	y *= x; //multiply
+	//sets the value
 	mapy[lines[1]]->setVal(std::to_string(y));
 	cout<<"\n value of mul:"<<mapy[lines[1]]->getV();
 }

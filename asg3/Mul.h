@@ -4,12 +4,11 @@
 #include <map>
 class Mul: public Math {
 public:
+    //constructor
     Mul();
-    Mul(const Mul& orig);
+    //destructor
     virtual ~Mul();
-	
-	template<typename T, typename... num>
-    T multiply(T res, num... args);
+	//function for multiplying
 	void functor(std::vector<std::string> ,std::map <std::string,Instructions *> & mapy);
 private:
 

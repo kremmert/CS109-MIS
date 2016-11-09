@@ -44,5 +44,5 @@ std::string Real::getV()
 void Real::setVal(std::string a)
 {
 	//convert and set data member
-	val = std::stoi(a);
+	val = std::stod(a);
 }

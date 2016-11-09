@@ -5,10 +5,10 @@
 #include <map>
 class Div: public Math {
 public:
+    //constructor
     Div();
-    Div(const Div& orig);
+    //destructor
     virtual ~Div();
-	void divide(int, int, int );
 	void functor(std::vector<std::string> lines,std::map <std::string,Instructions *> & mapy);
 	
 private:

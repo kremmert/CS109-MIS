@@ -1,68 +1,54 @@
 #include "Div.h"
 #include "common.h"
 
+//constructor
 Div::Div() {
 }
-
-Div::Div(const Div& orig) {
-}
-
+//destructor
 Div::~Div() {
 }
 
-
-//Divide the second parameter by the third parameter and store the result in the first parameter.	 
-//Note: divide	by	zero	should	be	detected and reported.	
-
-void Div:: divide(int c, int a, int b){
-    if(b == 0){
-        std::cout<<"divide by zero error";
-        return;
-    }
-
-
-}
-
+//divides the second element with the third
 void Div::functor(std::vector<std::string> lines,std::map <std::string,Instructions *> & mapy){
-    std::string a = lines[2];
+    //initialize variables
+	std::string a = lines[2];
 	std::string b = lines[3];
-	int x = 0;
-	int y = 0;
+	double x = 0;
+	double y = 0;
 	
+	//attempt to turn the first string into an int
 	try{
-		x = stoi(a);
+		x = stod(a);
 	}
 	catch(...)
-	{
-		x = stoi(mapy[lines[2]]->getV());
+	{	//if that fails, get the value of the variable
+		x = stod(mapy[lines[2]]->getV());
 	}
 
-
+	//same as above
 	try{
 		
-		y = stoi(b);
+		y = stod(b);
 		
 	}
 	catch(...)
 	{
 		std::string mn = lines[3];
+		//a check if the last element has a null character which will
+		//make the string not equal to the one stored in the map
 		if(mapy.find(mn)== mapy.end()){
 			mn = mn.substr(0,mn.size()-1);
 		}
-		//std::string mn = lines[3].substr(0,lines[3].size()-1);
-	/*	if(mn[mn.size()]=='\0')
-		{
-			std::cout <<"\n\nsubstring getting fixed";
-			mn = lines[3].substr(0,lines[3].size()-1);
-			//mn = lines[3].c_str();
-		} */
-		y = std::stoi((mapy[mn])->getV());
+
+		y = std::stod((mapy[mn])->getV());
 	}
+	//make sure you aren't dividing by zero'
 	if(y==0){
 		std::cout<<" Divide by zero";
 		return;
 	}
-	int j = x/y;
+	//the divide
+	double j = x/y;
 	mapy[lines[1]]->setVal(std::to_string(j));
 	std::cout<<"\n result: "<<mapy[lines[1]]->getV();
 	std::cout<<"\n";
