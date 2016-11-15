@@ -24,4 +24,7 @@ SET_STR_CHAR	$mystring,2,p
 SET_STR_CHAR	$mystring,2,$mychar
 GET_STR_CHAR	$mystring2,2,$mychar
 LABEL	loop
+ASSIGN	$myint,42
+ASSIGN	$myint2,67
+OUT	$myint,$myint2
 GET_STR_CHAR	$mystring2,2,$mystring
