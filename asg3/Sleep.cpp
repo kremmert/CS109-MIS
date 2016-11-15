@@ -28,10 +28,10 @@ void Sleep::functor(std::vector<std::string> lines,std::map <std::string,Instruc
 	catch(...)
 	{//x is not an int
 		std::string mn = lines[1];
-		if(mapy.find(mn)== mapy.end()){
-			mn = mn.substr(0,mn.size()-1);
+/*		if(mapy.find(mn)== mapy.end()){
+			mn = mn.substr(0,mn.size()-1); 
 			//fix edge case
-		}
+		}*/
 		//in map
 		x = stoi(mapy[mn]->getV());
 	}
