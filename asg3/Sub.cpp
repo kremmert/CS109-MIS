@@ -16,7 +16,7 @@ void Sub::functor(std::vector<std::string> lines,std::map <std::string,Instructi
 
     std::string a = lines[2];// arg 1,constant or var
 	std::string b = lines[3];//arg 2, constant or var
-	std::cout<<"\n var name"<<lines[3];
+
 	int x = 0;
 	int y = 0;
 	//try to convert to int
@@ -46,7 +46,7 @@ void Sub::functor(std::vector<std::string> lines,std::map <std::string,Instructi
 	int j = x-y;
 	//seting the value
 	mapy[lines[1]]->setVal(std::to_string(j));
-	std::cout<<"\n sub answer: "<<j;
+
 
 }
 

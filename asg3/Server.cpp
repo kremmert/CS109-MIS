@@ -107,11 +107,6 @@ void Server::jump(std::map <std::string, Instructions *> storevobj){
 	std::string a = lines[counter-1][1];//where im jumping
 	std::string b = lines[counter-1][2];//var or int
 	std::string c = lines[counter-1][3];//var or int
-	std::cout<<"\n a: "<<a;
-	std::cout<<"\n b: "<<b;
-	std::cout<<"\n c: "<<c;
-	std::cout<<"\n z: "<<z;
-	std::cout<<"\n end";
 	int x = 0;
 	int y = 0;
 	
@@ -119,7 +114,6 @@ void Server::jump(std::map <std::string, Instructions *> storevobj){
 	//if the arg is jump
 	if(z.compare("JMP")==0)
 	{	//set counter to zero:THIS IS THE JUMP
-		std::cout<<"\n labels:"<<labels[a];
 		counter = labels[a];
 		return;
 	}
@@ -157,8 +151,6 @@ void Server::jump(std::map <std::string, Instructions *> storevobj){
 	}
 	
 	if(z.compare("JMPGT")==0){
-		std::cout<<"\nx: "<<x;
-		std::cout<<"\ny: "<<y;
 		if(x>y)//compare
 			counter = labels[lines[counter-1][1]];//jump
 		return;
@@ -169,8 +161,6 @@ void Server::jump(std::map <std::string, Instructions *> storevobj){
 		return;
 	}
 	if(z.compare("JMPLT")==0){
-		std::cout<<"\nx: "<<x;
-		std::cout<<"\ny: "<<y;
 		if(x<y)//compare
 			counter = labels[lines[counter-1][1]];//jump
 		return;
