@@ -107,6 +107,11 @@ void Server::jump(std::map <std::string, Instructions *> storevobj){
 	std::string a = lines[counter-1][1];//where im jumping
 	std::string b = lines[counter-1][2];//var or int
 	std::string c = lines[counter-1][3];//var or int
+	std::cout<<"\n a: "<<a;
+	std::cout<<"\n b: "<<b;
+	std::cout<<"\n c: "<<c;
+	std::cout<<"\n z: "<<z;
+	std::cout<<"\n end";
 	int x = 0;
 	int y = 0;
 	
@@ -114,6 +119,7 @@ void Server::jump(std::map <std::string, Instructions *> storevobj){
 	//if the arg is jump
 	if(z.compare("JMP")==0)
 	{	//set counter to zero:THIS IS THE JUMP
+		std::cout<<"\n labels:"<<labels[a];
 		counter = labels[a];
 		return;
 	}
@@ -121,15 +127,8 @@ void Server::jump(std::map <std::string, Instructions *> storevobj){
 	
 	//find var in map
 	if(storevobj.find(b) == storevobj.end()){
-		//not in map
-			b = b.substr(0,b.size()-1);
-			if(storevobj.find(b)== storevobj.end()){
-				//its a constant
-				x = std::stoi(lines[counter-1][2]);
-			}else{
-			//edge case with null char at end rremoved
-			x = std::stoi((storevobj[b])->getV());	
-			}
+		x = std::stoi(lines[counter-1][2]);
+
 	}else{
 		//its in map
 		x = std::stoi((storevobj[b])->getV());
@@ -150,20 +149,16 @@ void Server::jump(std::map <std::string, Instructions *> storevobj){
 	}
 	//see if its in map
 	if(storevobj.find(c) == storevobj.end()){
-		//not in map
-			c = c.substr(0,c.size()-1);
-			if(storevobj.find(c)== storevobj.end()){
-				//its a constant
-				y = std::stoi(lines[counter-1][2]);
-			}else{//edge case, removed null char at end
-			y = std::stoi((storevobj[c])->getV());//in map	
-			}
+		y = std::stoi(lines[counter-1][2]);
+
 	}else{//its in map
 		y = std::stoi((storevobj[c])->getV());
 		
 	}
 	
 	if(z.compare("JMPGT")==0){
+		std::cout<<"\nx: "<<x;
+		std::cout<<"\ny: "<<y;
 		if(x>y)//compare
 			counter = labels[lines[counter-1][1]];//jump
 		return;
@@ -174,6 +169,8 @@ void Server::jump(std::map <std::string, Instructions *> storevobj){
 		return;
 	}
 	if(z.compare("JMPLT")==0){
+		std::cout<<"\nx: "<<x;
+		std::cout<<"\ny: "<<y;
 		if(x<y)//compare
 			counter = labels[lines[counter-1][1]];//jump
 		return;

@@ -1,5 +1,10 @@
 VAR	$myint,NUMERIC,100
 VAR	$myint2,NUMERIC,10
 VAR	$myint3,NUMERIC,1
-MUL	$myint,80,10
-MUL	$myint2,10,$myint3
+SUB	$myint,80,10
+SUB	$myint2,53,$myint3
+JMP	cat
+SUB	$myint2,10,$myint3
+LABEL	cat
+SUB	$myint2,$myint2,$myint3
+JMPLTE	cat,48,$myint2

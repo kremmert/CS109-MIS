@@ -47,7 +47,10 @@ vector<vector<string>> Parse::parsingf(std::string input){
 	{
 		//use string as a sequence of chars
 		std::stringstream ss(str);	
-		
+		if(x!=0){
+			lines[x-1][y-1] = lines[x-1][y-1].substr(0,lines[x-1][y-1].size()-1);
+		}
+		y = 0;
 		//check for eof in stream (end of the line in this case)
 		while(ss.good()){
 			if(y == 0){//get instruction name
@@ -67,11 +70,14 @@ vector<vector<string>> Parse::parsingf(std::string input){
 			getline(ss, temp, ',');
 
 			lines[x][y] = temp;
+			//std::cout<<" \t"<<lines[x][y];
 			y++;
 		}//get rid of null char at the end
-		lines[x][y-1] = lines[x][y-1].substr(0,lines[x][y-1].size()-1);
+		std::cout<<"\n";
+		
+		std::cout<<"\t"<<lines[x][0]<<"\t"<<lines[x][1]<<"\t"<<lines[x][2]<<"\t"<<lines[x][3];
 		//inner vector position is reset
-		y = 0;
+		
 		//goes to next vector being held in the outer vector
 		x++;
 
@@ -91,7 +97,7 @@ std::map <std::string,int> Parse::labelget(std::vector<std::vector<std::string>>
 		//if empty line continue
 		if (lines[x][0].compare("")==0) continue;
 		if(lines[x][0].compare("LABEL")==0){
-			labelmap[lines[x][1].substr(0,lines[x][1].size()-1)]= x;
+			labelmap[lines[x][1]]= x;
 			//set map[label] = line number
 		}
 	}

@@ -46,7 +46,7 @@ void Sub::functor(std::vector<std::string> lines,std::map <std::string,Instructi
 	int j = x-y;
 	//seting the value
 	mapy[lines[1]]->setVal(std::to_string(j));
-
+	std::cout<<"\n sub answer: "<<j;
 
 }
 
