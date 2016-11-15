@@ -34,33 +34,14 @@ void Mul::functor(std::vector<std::string> lines,std::map <std::string,Instructi
 		//multiply together
 		y*=x;
 		//break when vector is empty
-		if(lines[v+2].compare("")==0)
+		if(lines[v+1].compare("")==0)
 		{
 			break;
 		}
 
 		v++;
 	}
-	x = 0;
 
-	//checks if last element is in map because null character
-	//basically does same as above
-	try{
-		
-		x = stoi(lines[v+1]);
-		
-	}
-	catch(...)
-	{
-		
-		std::string mn = lines[v+1];
-
-		if(mapy.find(mn)== mapy.end()){
-			mn = mn.substr(0,mn.size()-1); //removes null character to match up
-		}
-	x = std::stoi((mapy[mn])->getV());
-	}
-	y *= x; //multiply
 	//sets the value
 	mapy[lines[1]]->setVal(std::to_string(y));
 }

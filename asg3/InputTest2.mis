@@ -1,5 +1,5 @@
 VAR	$myint,NUMERIC,100
 VAR	$myint2,NUMERIC,10
 VAR	$myint3,NUMERIC,1
-SUB	$myint,80,10
-SUB	$myint2,10,$myint3
+MUL	$myint,80,10
+MUL	$myint2,10,$myint3

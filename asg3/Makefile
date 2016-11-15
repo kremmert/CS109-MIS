@@ -14,4 +14,4 @@ server: $(CLASSES)
 	$(CC) -std=c++14 -g $(CLASSES) $(CLASSESMATH) $(CLASSES1) $(CLASSES2) $(CFLAGS) server
 
 clean:
-	$(RM) server
+	$(RM) server Output.out

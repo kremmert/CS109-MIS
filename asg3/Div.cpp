@@ -36,9 +36,6 @@ void Div::functor(std::vector<std::string> lines,std::map <std::string,Instructi
 		std::string mn = lines[3];
 		//a check if the last element has a null character which will
 		//make the string not equal to the one stored in the map
-		if(mapy.find(mn)== mapy.end()){
-			mn = mn.substr(0,mn.size()-1);
-		}
 
 		y = std::stod((mapy[mn])->getV());
 	}

@@ -34,33 +34,14 @@ void Add::functor(std::vector<std::string> lines,std::map <std::string,Instructi
 		//add the number to itself
 		y+=x;
 		//if the next param is empty break
-		if(lines[v+2].compare("")==0)
+		if(lines[v+1].compare("")==0)
 		{
 			break;
 		}
 
 		v++;
 	}
-	x = 0;
-	//edge case for ending null char
-	try{
-		
-		x = stod(lines[v+1]);
-		
-	}
-	catch(...)
-	{
-		std::string mn = lines[v+1];
 
-		if(mapy.find(mn)== mapy.end()){
-			mn = mn.substr(0,mn.size()-1);
-		}
-	x = std::stod((mapy[mn])->getV());
-	}
-	//adding the last element
-	y += x;
-	
 	mapy[lines[1]]->setVal(std::to_string(y));
-	std::cout<<"\n value = "<< y;
 }
 
