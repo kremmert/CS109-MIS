@@ -28,13 +28,11 @@ void Out::functor(std::vector<std::string> lines,std::map <std::string,Instructi
 		if(lines[x].compare("")==0) break;//if empty arg break
 		mn = lines[x];
 		//mn equals arg
-		if(mapy.find(mn)== mapy.end()){
-			mn = mn.substr(0,mn.size()-1);//fix edge case
-			if(mapy.find(mn)==mapy.end()){
-				outputFile<<"Arg: "<<lines[x]<<std::endl;//it was a constant, print
-				continue;
-			}
+		if(mapy.find(mn)==mapy.end()){
+			outputFile<<"Arg: "<<lines[x]<<std::endl;//it was a constant, print
+			continue;
 		}
+		
 		//print var
 		outputFile<<"Arg: "<<mn<<"    Val::"<<mapy[mn]->getV()<<std::endl;
 	}

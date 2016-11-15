@@ -22,34 +22,28 @@ void Get_Str_Char::functor(std::vector<std::string> lines,std::map <std::string,
 	int x = 0;
 	std::string y;
 	//makes sure the null character doesn't change anything
-	if(mapy.find(z)== mapy.end()){
-		z = z.substr(0,z.size()-1);
-	}
+
 	//gets the value of the variable
 	z = mapy[z]->getV();
 	
 	//attempts if a number
 	try{
-		x = stoi(a);
+		x = stod(a);
 	}
 	catch(...)
 	{
 		//if not it's a variable
-		x = stoi(mapy[lines[2]]->getV());
+		x = stod(mapy[lines[2]]->getV());
 	}
 
 	//does the same as above
-	if(mapy.find(b)== mapy.end()){
-		b = b.substr(0,b.size()-1);
-		if(mapy.find(b)==mapy.end()){
-			y = lines[3];
-		}else{
-			y = mapy[b]->getV();
-		}
+
+	if(mapy.find(b)==mapy.end()){
+		y = lines[3];
 	}else{
 		y = mapy[b]->getV();
 	}
-	
+
 	//sets the char
 	y[x]=z[0];
 	mapy[b]->setVal(y);
