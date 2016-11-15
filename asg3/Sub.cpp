@@ -16,6 +16,7 @@ void Sub::functor(std::vector<std::string> lines,std::map <std::string,Instructi
 
     std::string a = lines[2];// arg 1,constant or var
 	std::string b = lines[3];//arg 2, constant or var
+	std::cout<<"\n var name"<<lines[3];
 	int x = 0;
 	int y = 0;
 	//try to convert to int
@@ -37,18 +38,15 @@ void Sub::functor(std::vector<std::string> lines,std::map <std::string,Instructi
 	}
 	catch(...)
 	{
-		std::string mn = lines[3];
-		if(mapy.find(mn)== mapy.end()){
-			//edge case of nul char at end
-			mn = mn.substr(0,mn.size()-1);
-		}
 		//this is a var
-		y = std::stoi((mapy[mn])->getV());
+		
+		y = std::stoi((mapy[lines[3]])->getV());
 	}
 	//the actual subtraction
 	int j = x-y;
 	//seting the value
 	mapy[lines[1]]->setVal(std::to_string(j));
+
 
 }
 

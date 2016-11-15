@@ -61,5 +61,6 @@ void Add::functor(std::vector<std::string> lines,std::map <std::string,Instructi
 	y += x;
 	
 	mapy[lines[1]]->setVal(std::to_string(y));
+	std::cout<<"\n value = "<< y;
 }
 

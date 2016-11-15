@@ -1,11 +1,12 @@
 #include "Parse.h"
-#include<iostream>
-#include<fstream>
-#include<string>
+#include <iostream>
+#include <fstream>
+#include <string>
 #include <stdio.h>
 #include <vector>
 #include <sstream>
 #include <map>
+#include <string.h> 
 
 using namespace std;
 //Constructor
@@ -64,13 +65,11 @@ vector<vector<string>> Parse::parsingf(std::string input){
 			}
 			//get params(all separated by commas)
 			getline(ss, temp, ',');
-			//compares temp to empty string; if temp is empty, compare returns 0
-			if(temp.compare("")==0) break;//go to next line
-			//put parameter at current position in current inner vector
 
 			lines[x][y] = temp;
 			y++;
-		}
+		}//get rid of null char at the end
+		lines[x][y-1] = lines[x][y-1].substr(0,lines[x][y-1].size()-1);
 		//inner vector position is reset
 		y = 0;
 		//goes to next vector being held in the outer vector
