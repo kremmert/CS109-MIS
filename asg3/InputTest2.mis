@@ -10,5 +10,5 @@ LABEL	cat
 SUB	$myint2,$myint2,$myint3
 JMPLTE	cat,48,$myint2
 OUT	$mystr
-SET_STR_CHAR	$mystr,2,'a'
+GET_STR_CHAR	$mystr,2,$mystr
 OUT	$myint,$myint2,22,$mystr

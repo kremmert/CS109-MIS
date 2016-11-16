@@ -45,7 +45,7 @@ void Get_Str_Char::functor(std::vector<std::string> lines,std::map <std::string,
 	}
 
 	//sets the char
-	y[x]=z[0];
+	y[x]=z[1];
 	mapy[b]->setVal(y);
 	
 }
