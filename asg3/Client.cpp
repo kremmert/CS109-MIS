@@ -9,6 +9,18 @@ Client::~Client() {
 	
 }
 
+void terminate_with_error (int sock)
+{
+    //printf ("%s\n",error_msg); // printing error
+    //perror("Socket Error:"); // printing system error
+    printf("error\n");
+    if (sock != -1) // Close socket and exit is socket opened
+    {
+    close (sock);
+    exit(1);
+    }
+}
+
 int main (int argc,char ** argv) 
 {
     if ( argc != 2) 

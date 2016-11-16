@@ -18,4 +18,4 @@ client: $(CLIENTSTUFF)
 	$(CC) -std=c++14 -g $(CLIENTSTUFF) $(CFLAGS) client
 	
 clean:
-	$(RM) server Output.out
+	$(RM) server client Output.out
