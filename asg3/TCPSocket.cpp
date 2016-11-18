@@ -124,7 +124,7 @@ int TCPSocket::writeToSocket (const char * buffer, long maxBytes ) //Write data 
     if ( buffer != NULL ) { // If buffer is not NULL
         int wrote = send (sock,buffer,maxBytes,0); // user send system call to write data to socket
         stream_out_size += wrote; // add  to stream_out_size the amount of data written
-        if ( wrote != maxBytes) perror("socket error"); // if wrote != maxBytes then an error occurred during writing
+        if ( wrote != maxBytes) perror("error in writeToSocket:");  //if wrote != maxBytes then an error occurred during writing
         return wrote; // return the number of bytes written
     } else return -1; // else return 01
 }
@@ -149,7 +149,7 @@ void TCPSocket::shutDownWrite ( ) // Shutdown the write channel of the socket
 }
 void TCPSocket::shutDown ( ) // Shutdown socket read and write channels
 {
-        shutDownRead ();
+    shutDownRead ();
 	shutDownWrite();
 }
 
@@ -162,8 +162,13 @@ TCPSocket::~TCPSocket ( ) // Descriptor
 
 int main()
 {
+	std::string mn = "xy";
 	int sock; // Socket Handler
-     TCPSocket * test = new TCPSocket((char*)("128.114.104.55"),9999);
-     test->writeToSocket("Hello there\n",65536);
+     TCPSocket * test = new TCPSocket((char*)("128.114.104.57"),9999);
+     //test->writeToSocket("Hello there\n",65536);
+	 for(int x = 0; x < 11; x++){
+		 mn = mn + "z";
+		test->writeToSocket(mn.c_str(),65536);
+	 }
      return 0;   
 }
