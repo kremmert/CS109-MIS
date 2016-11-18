@@ -1,4 +1,5 @@
 #include "TCPServerSocket.h"
+#include "TCPSocket.h"
 // Constructor
 TCPServerSocket::TCPServerSocket (const char * _address, int _port, int _backlog )
 {
@@ -118,10 +119,15 @@ TCPServerSocket::~TCPServerSocket ( ) // Destructor
 
 int main()
 {
-        TCPServerSocket * test = new TCPServerSocket("1",9999,65536);
-        bool status = test->initializeSocket();
-        TCPSocket * client = test->getConnection(0,0,65536,65536);
-
-
+        TCPServerSocket * s = new TCPServerSocket("128.114.104.57",9999,65536);
+        bool status = s->initializeSocket();
+        TCPSocket * client = s->getConnection(0,0,65536,65536);
+        char buffer[65536];
+        int counter = 0;
+        while(counter < 10000) {
+               int x = client->readFromSocketWithTimeout(buffer,65536,20,100);
+                std::cout << buffer << "\n";
+                counter++;
+        }
         return 0;   
 }
