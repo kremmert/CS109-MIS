@@ -1,5 +1,8 @@
 #include "TCPServerSocket.h"
 #include "TCPSocket.h"
+#include <unistd.h>
+#include <chrono>
+#include <thread>
 // Constructor
 TCPServerSocket::TCPServerSocket (const char * _address, int _port, int _backlog )
 {
@@ -123,11 +126,7 @@ int main()
         bool status = s->initializeSocket();
         TCPSocket * client = s->getConnection(0,0,65536,65536);
         char buffer[65536];
-        int counter = 0;
-        while(counter < 10000) {
-               int x = client->readFromSocketWithTimeout(buffer,65536,20,100);
-                std::cout << buffer << "\n";
-                counter++;
-        }
+        int x = client->readFromSocketWithTimeout(buffer,65536,2,10000);
+        std::cout << buffer << "\n";
         return 0;   
 }
