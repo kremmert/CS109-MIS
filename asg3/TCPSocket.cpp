@@ -162,7 +162,8 @@ TCPSocket::~TCPSocket ( ) // Descriptor
 
 int main()
 {
-     TCPSocket * test = new TCPSocket("",9999);
-     test->writeToSocket("Hello there\n");
+	int sock; // Socket Handler
+     TCPSocket * test = new TCPSocket((char*)("128.114.104.55"),9999);
+     test->writeToSocket("Hello there\n",65536);
      return 0;   
 }
