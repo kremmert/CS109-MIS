@@ -158,3 +158,11 @@ TCPSocket::~TCPSocket ( ) // Descriptor
         shutDown(); // Shutdown
         close (sock); // Close socket descriptor
 }
+
+
+int main()
+{
+     TCPSocket * test = new TCPSocket("",9999);
+     test->writeToSocket("Hello there\n");
+     return 0;   
+}

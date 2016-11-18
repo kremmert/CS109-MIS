@@ -114,3 +114,14 @@ TCPServerSocket::~TCPServerSocket ( ) // Destructor
 	close (sock);              // Close socket descriptor
 	if ( address != NULL ) free (address); // free the address buffer
 }
+
+
+int main()
+{
+        TCPServerSocket * test = new TCPServerSocket("1",9999,65536);
+        bool status = test->initializeSocket();
+        TCPSocket * client = test->getConnection(0,0,65536,65536);
+
+
+        return 0;   
+}
