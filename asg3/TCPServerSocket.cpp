@@ -122,11 +122,23 @@ TCPServerSocket::~TCPServerSocket ( ) // Destructor
 
 int main()
 {
-        TCPServerSocket * s = new TCPServerSocket("128.114.104.57",9999,65536);
+        TCPServerSocket * s = new TCPServerSocket("128.114.104.57",9999,1024);
         bool status = s->initializeSocket();
-        TCPSocket * client = s->getConnection(0,0,65536,65536);
-        char buffer[65536];
-        int x = client->readFromSocketWithTimeout(buffer,65536,2,10000);
-        std::cout << buffer << "\n";
+        TCPSocket * client = s->getConnection(0,0,1024,1024);
+        char buffer[1024];
+        int counter = 0;
+        for(; ; )
+        {
+                //std::cout << "\ncounter: " << counter;
+                int x = client->readFromSocketWithTimeout(buffer,1024,20,10000);
+                if(x == 0)
+                        break;
+                else {
+                        //if(buffer[1024-1] == '\n')
+                        buffer[1024-1] = '\0';
+                        std::cout << buffer << std::endl;
+                }
+
+        } 
         return 0;   
 }

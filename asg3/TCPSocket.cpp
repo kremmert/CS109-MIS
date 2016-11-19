@@ -1,4 +1,7 @@
 #include "TCPSocket.h"
+#include <unistd.h>
+#include <chrono>
+#include <thread>
 // Ths constructor is used when the socket is already created and established prior to object instantiation
 TCPSocket::TCPSocket (int _sock,char * _address, int _port ,int readBufferSize,int writeBufferSize)
 {
@@ -95,6 +98,7 @@ int TCPSocket::readFromSocket (char * buffer, int maxBytes ) { // Blocking read 
 
 int TCPSocket::readFromSocketWithTimeout (char * buffer, int maxBytes, long timeoutSec, long timeoutMilli)
 {
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     fd_set fds; // A file descriptors set
     int read =-1;  // A variable for storing the amount of data read and initialized to -1
     struct timeval tv; // a timeval structure
@@ -157,18 +161,4 @@ TCPSocket::~TCPSocket ( ) // Descriptor
 {
         shutDown(); // Shutdown
         close (sock); // Close socket descriptor
-}
-
-
-int main()
-{
-	std::string mn = "xy";
-	int sock; // Socket Handler
-     TCPSocket * test = new TCPSocket((char*)("128.114.104.57"),9999);
-     //test->writeToSocket("Hello there\n",65536);
-	 for(int x = 0; x < 11; x++){
-		 mn = mn + "z";
-		test->writeToSocket(mn.c_str(),65536);
-	 }
-     return 0;   
 }
