@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <chrono>
 #include <thread>
+#include <vector>
 // Constructor
 TCPServerSocket::TCPServerSocket (const char * _address, int _port, int _backlog )
 {
@@ -122,23 +123,30 @@ TCPServerSocket::~TCPServerSocket ( ) // Destructor
 
 int main()
 {
-        TCPServerSocket * s = new TCPServerSocket("128.114.104.57",9999,1024);
+        TCPServerSocket * s = new TCPServerSocket("128.114.104.57",9999,512);
         bool status = s->initializeSocket();
-        TCPSocket * client = s->getConnection(0,0,1024,1024);
+        TCPSocket * client = s->getConnection(0,0,512,512);
         char buffer[1024];
         int counter = 0;
+        std::vector<std::string> v(50);
+        char test[1024];
         for(; ; )
         {
-                //std::cout << "\ncounter: " << counter;
-                int x = client->readFromSocketWithTimeout(buffer,1024,20,10000);
+                int x = client->readFromSocketWithTimeout(buffer,512,20,10000);
                 if(x == 0)
                         break;
                 else {
-                        //if(buffer[1024-1] == '\n')
-                        buffer[1024-1] = '\0';
                         std::cout << buffer << std::endl;
+                        stringstream s;
+                        s << buffer;
+                        v[counter] = s.str();
+                        counter++;
                 }
 
-        } 
+        }
+        for(int i=0; i < 10; i++)
+        {
+                std::cout << v[i] << std::endl;
+        }
         return 0;   
 }
