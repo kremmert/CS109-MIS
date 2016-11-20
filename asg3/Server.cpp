@@ -187,7 +187,7 @@ int main(){
         TCPSocket * client = s->getConnection(0,0,512,512);
         char buffer[1024];
         int counter = 0;
-        std::vector<std::string> v(50);
+        std::vector<std::vector<std::string>> v(50,std::vector<string>(50));
         char test[1024];
 		
 		//get number of lines
@@ -210,20 +210,18 @@ int main(){
 				if(x == 0)
 					break;
 				else {
-					std::cout << buffer << std::endl;
+					std::cout << buffer <<" ";
 					stringstream s;
 					s << buffer;
-					v[counter] = s.str();
-					counter++;
+					v[h][ff] = s.str();
+
 				}
 			}
+			std::cout<<std::endl;
 
 
         }
-        for(int i=0; i < 10; i++)
-        {
-                std::cout << v[i] << std::endl;
-        }
+
         return 0;   
 }
 
