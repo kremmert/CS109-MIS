@@ -60,7 +60,7 @@ int main()
 	test->writeToSocket(std::to_string(gg).c_str(),512);
      //test->writeToSocket("Hello there\n",65536);
 	 while(1){
-		 argnum = c.howmanyargs(lines[x]);
+
 		 
 		for(int x = 0; x < gg; x++){
 			argnum = c.howmanyargs(lines[x]);

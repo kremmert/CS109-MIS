@@ -6,8 +6,9 @@ class Client {
 public:
     Client();//constructor
     virtual ~Client();//destructor
-private:
 	int howmanyargs(std::vector<std::string>);
+private:
+	
 };
 
 #endif
