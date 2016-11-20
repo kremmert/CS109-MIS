@@ -181,6 +181,7 @@ void Server::jump(std::map <std::string, Instructions *> storevobj){
 int main(){
 		int x = 0;
 		int y = 0;
+		int argnum = 0;
         TCPServerSocket * s = new TCPServerSocket("128.114.104.57",9999,512);
         bool status = s->initializeSocket();
         TCPSocket * client = s->getConnection(0,0,512,512);
@@ -189,24 +190,34 @@ int main(){
         std::vector<std::string> v(50);
         char test[1024];
 		
+		//get number of lines
 		y = client->readFromSocketWithTimeout(buffer,512,20,10000);
 		
 		stringstream aaa(buffer);
-		aaa >> y;
+		aaa >> y;// y = number of lines
 		
 		
         for(int h = 0 ;h < y ;h ++ )
-        {
-			x = client->readFromSocketWithTimeout(buffer,512,20,10000);
-			if(x == 0)
+        {			
+			//get number of args
+			y = client->readFromSocketWithTimeout(buffer,512,20,10000);
+		
+			stringstream aaa(buffer);
+			aaa >> argnum;//argnum = number of args
+			
+			for(int ff = 0; ff <argnum;ff++ ){
+				x = client->readFromSocketWithTimeout(buffer,512,20,10000);
+				if(x == 0)
 					break;
-			else {
+				else {
 					std::cout << buffer << std::endl;
 					stringstream s;
 					s << buffer;
 					v[counter] = s.str();
 					counter++;
+				}
 			}
+
 
         }
         for(int i=0; i < 10; i++)
