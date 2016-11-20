@@ -27,12 +27,11 @@ void terminate_with_error (int sock)
 int main()
 {
 	
-	std::ifstream file("InputTest2.mis");
-	auto input = file;
+
 	
 	Parse p;//parse obj
-    std::vector<std::vector<std::string>> lines = p.parsingf(input);//parsed lines of code
-	if(lines[0][0].compare("")==0) return;//if lines is empty, do nothing
+    std::vector<std::vector<std::string>> lines = p.parsingf("InputTest2.mis");//parsed lines of code
+	if(lines[0][0].compare("")==0) return 0;//if lines is empty, do nothing
 	//std::map <std::string,int> mapy = p.labelget(lines);// get map of labels with line num
     //this->morethanfetch();//start executing code
 	int gg=0;

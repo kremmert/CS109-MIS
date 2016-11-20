@@ -191,7 +191,9 @@ int main(){
 		
 		y = client->readFromSocketWithTimeout(buffer,512,20,10000);
 		
-		y = atoi(buffer[0]);
+		stringstream aaa(buffer);
+		aaa >> y;
+		
 		
         for(int h = 0 ;h < y ;h ++ )
         {
