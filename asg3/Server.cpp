@@ -210,7 +210,7 @@ int main(){
 				if(x == 0)
 					break;
 				else {
-					std::cout <<"arg: "<<ff<<" "<< buffer <<" ";
+					std::cout << buffer <<" ";
 					stringstream s;
 					s << buffer;
 					v[h][ff] = s.str();
