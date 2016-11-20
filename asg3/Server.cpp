@@ -182,34 +182,31 @@ int main(){
 		int x = 0;
 		int y = 0;
 		int argnum = 0;
-        TCPServerSocket * s = new TCPServerSocket("128.114.104.57",9999,512);
+        TCPServerSocket * s = new TCPServerSocket("128.114.104.57",9999,256);
         bool status = s->initializeSocket();
-        TCPSocket * client = s->getConnection(0,0,512,512);
+        TCPSocket * client = s->getConnection(0,0,256,256);
         char buffer[1024];
         int counter = 0;
         std::vector<std::vector<std::string>> v(50,std::vector<string>(50));
         char test[1024];
 		
 		//get number of lines
-		y = client->readFromSocketWithTimeout(buffer,512,20,10000);
+		y = client->readFromSocketWithTimeout(buffer,256,20,10000);
 		
 		stringstream aaa(buffer);
 		aaa >> y;// y = number of lines
 		
-		std::cout<<"lines: "<<y<<std::endl;
-		
         for(int h = 0 ;h < y ;h ++ )
         {			
 			//get number of args
-			y = client->readFromSocketWithTimeout(buffer,512,20,10000);
+			y = client->readFromSocketWithTimeout(buffer,256,20,10000);
 			if(y==0){
 				break;
 			}
 			stringstream aaa(buffer);
 			aaa >> argnum;//argnum = number of args
-			std::cout<<"argnum :" << argnum<< std::endl;
 			for(int ff = 0; ff <argnum;ff++ ){
-				x = client->readFromSocketWithTimeout(buffer,512,20,10000);
+				x = client->readFromSocketWithTimeout(buffer,256,20,10000);
 				if(x == 0)
 					break;
 				else {
