@@ -4,6 +4,7 @@
 #include "common.h"
 #include <map>
 #include "Instructions.h"
+#include "TCPSocket.h"
 class Server 
 {
     private:
@@ -18,6 +19,8 @@ class Server
         void morethanfetch(); //count indexes until next insn
 		void jump(std::map <std::string,Instructions *> storevobj);//jump function
 		int infinite = 0;
+        void setLines(std::vector<std::vector<std::string>> lines);
+        void sConnection(TCPSocket * client);
         //forms and puts object into map, clone 
         //then performs the insns, and stores into another map, then calls fetch again
         //increments counter

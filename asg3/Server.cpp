@@ -37,7 +37,7 @@ Server::~Server()
 void Server::readLines()
 {
     Parse p;//parse obj
-    lines = p.parsingf(input);//parsed lines of code
+    //lines = p.parsingf(input);//parsed lines of code
 	if(lines[0][0].compare("")==0) return;//if lines is empty, do nothing
 	labels = p.labelget(lines);// get map of labels with line num
     this->morethanfetch();//start executing code
@@ -177,51 +177,63 @@ void Server::jump(std::map <std::string, Instructions *> storevobj){
 		return;
 	}
 }
+void Server::setLines(std::vector<std::vector<std::string>> lines)
+{
+	this->lines = lines;
+}
+
+void Server::sConnection(TCPSocket * client)
+{
+	int x = 0;
+	int y = 0;
+	int argnum = 0;
+	char buffer[1024];
+	int counter = 0;
+	std::vector<std::vector<std::string>> v(50,std::vector<string>(50));
+	char test[1024];
+	
+	//get number of lines
+	y = client->readFromSocketWithTimeout(buffer,256,20,10000);
+	
+	stringstream aaa(buffer);
+	aaa >> y;// y = number of lines
+	
+	for(int h = 0 ;h < y ;h ++ )
+	{			
+		//get number of args
+		y = client->readFromSocketWithTimeout(buffer,256,20,10000);
+		if(y==0){
+			break;
+		}
+		stringstream aaa(buffer);
+		aaa >> argnum;//argnum = number of args
+		for(int ff = 0; ff <argnum;ff++ ){
+			x = client->readFromSocketWithTimeout(buffer,256,20,10000);
+			if(x == 0)
+				break;
+			else {
+				std::cout << buffer <<" ";
+				stringstream s;
+				s << buffer;
+				v[h][ff] = s.str();
+
+			}
+		}
+		std::cout<<std::endl;
+
+
+	}
+	this->setLines(v);
+	this->readLines();
+}
 
 int main(){
-		int x = 0;
-		int y = 0;
-		int argnum = 0;
+
         TCPServerSocket * s = new TCPServerSocket("128.114.104.57",9999,256);
         bool status = s->initializeSocket();
         TCPSocket * client = s->getConnection(0,0,256,256);
-        char buffer[1024];
-        int counter = 0;
-        std::vector<std::vector<std::string>> v(50,std::vector<string>(50));
-        char test[1024];
-		
-		//get number of lines
-		y = client->readFromSocketWithTimeout(buffer,256,20,10000);
-		
-		stringstream aaa(buffer);
-		aaa >> y;// y = number of lines
-		
-        for(int h = 0 ;h < y ;h ++ )
-        {			
-			//get number of args
-			y = client->readFromSocketWithTimeout(buffer,256,20,10000);
-			if(y==0){
-				break;
-			}
-			stringstream aaa(buffer);
-			aaa >> argnum;//argnum = number of args
-			for(int ff = 0; ff <argnum;ff++ ){
-				x = client->readFromSocketWithTimeout(buffer,256,20,10000);
-				if(x == 0)
-					break;
-				else {
-					std::cout << buffer <<" ";
-					stringstream s;
-					s << buffer;
-					v[h][ff] = s.str();
-
-				}
-			}
-			std::cout<<std::endl;
-
-
-        }
-
+		Server * s2 = new Server();
+		s2->sConnection(client);
         return 0;   
 }
 
