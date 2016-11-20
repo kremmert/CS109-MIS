@@ -176,13 +176,39 @@ void Server::jump(std::map <std::string, Instructions *> storevobj){
 }
 
 int main(){
-	
-	std::string a;//will be nane of input file
-	std::cout<<"please input file ending in .mis\n";
-	std::cin>>a;
-    Server * s = new Server(a);//start everything
-	cout << "\nOut instructions are in file Output.out" << endl;
-    cout << "Ending Program" << endl;
+		int x = 0;
+		int y = 0;
+        TCPServerSocket * s = new TCPServerSocket("128.114.104.57",9999,512);
+        bool status = s->initializeSocket();
+        TCPSocket * client = s->getConnection(0,0,512,512);
+        char buffer[1024];
+        int counter = 0;
+        std::vector<std::string> v(50);
+        char test[1024];
+		
+		y = client->readFromSocketWithTimeout(buffer,512,20,10000);
+		
+		y = atoi(buffer[0])
+		
+        for(int h = 0 ;h < y ;h ++ )
+        {
+                x = client->readFromSocketWithTimeout(buffer,512,20,10000);
+                if(x == 0)
+                        break;
+                else {
+                        std::cout << buffer << std::endl;
+                        stringstream s;
+                        s << buffer;
+                        v[counter] = s.str();
+                        counter++;
+                }
+
+        }
+        for(int i=0; i < 10; i++)
+        {
+                std::cout << v[i] << std::endl;
+        }
+        return 0;   
 }
 
 
