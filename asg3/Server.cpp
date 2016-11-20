@@ -201,10 +201,12 @@ int main(){
         {			
 			//get number of args
 			y = client->readFromSocketWithTimeout(buffer,512,20,10000);
-		
+			if(y==0){
+				break;
+			}
 			stringstream aaa(buffer);
 			aaa >> argnum;//argnum = number of args
-			
+			std::cout<<"argnum :" << argnum<< std::endl;
 			for(int ff = 0; ff <argnum;ff++ ){
 				x = client->readFromSocketWithTimeout(buffer,512,20,10000);
 				if(x == 0)
