@@ -120,7 +120,7 @@ TCPServerSocket::~TCPServerSocket ( ) // Destructor
 	if ( address != NULL ) free (address); // free the address buffer
 }
 
-
+/*
 int main()
 {
         TCPServerSocket * s = new TCPServerSocket("128.114.104.57",9999,512);
@@ -153,4 +153,4 @@ int main()
                 std::cout << v[i] << std::endl;
         }
         return 0;   
-}
+} */

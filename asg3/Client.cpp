@@ -2,7 +2,7 @@
 #include "TCPSocket.h"
 #include "includes.h"
 #include "Parse.h"
-
+#include <vector>
 Client::Client() {
 }
 
