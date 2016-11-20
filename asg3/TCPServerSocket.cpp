@@ -125,17 +125,21 @@ int main()
 {
         TCPServerSocket * s = new TCPServerSocket("128.114.104.57",9999,512);
         bool status = s->initializeSocket();
+        if(status == false)
+        {
+                 return 0;
+        }       
         TCPSocket * client = s->getConnection(0,0,512,512);
         char buffer[1024];
         int counter = 0;
         std::vector<std::string> v(50);
-        char test[1024];
         for(; ; )
         {
                 int x = client->readFromSocketWithTimeout(buffer,512,20,10000);
                 if(x == 0)
                         break;
-                else {
+                else 
+                {
                         std::cout << buffer << std::endl;
                         stringstream s;
                         s << buffer;
