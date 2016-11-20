@@ -196,6 +196,7 @@ int main(){
 		stringstream aaa(buffer);
 		aaa >> y;// y = number of lines
 		
+		std::cout<<"lines: "<<y<<std::endl;
 		
         for(int h = 0 ;h < y ;h ++ )
         {			
@@ -212,7 +213,7 @@ int main(){
 				if(x == 0)
 					break;
 				else {
-					std::cout << buffer <<" ";
+					std::cout <<"arg: "<<ff<<" "<< buffer <<" ";
 					stringstream s;
 					s << buffer;
 					v[h][ff] = s.str();
