@@ -15,6 +15,9 @@
 #include "Out.h"
 #include "Set_Str_Char.h"
 #include "Get_Str_Char.h"
+#include "includes.h"
+#include "TCPSocket.h"
+#include "TCPServerSocket.h"
 using namespace std;
 
 Server::Server()
@@ -188,7 +191,7 @@ int main(){
 		
 		y = client->readFromSocketWithTimeout(buffer,512,20,10000);
 		
-		y = atoi(buffer[0])
+		y = atoi(buffer[0]);
 		
         for(int h = 0 ;h < y ;h ++ )
         {
