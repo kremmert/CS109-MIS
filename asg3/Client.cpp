@@ -22,11 +22,22 @@ void terminate_with_error (int sock)
     }
 }
 
-
+int Client::howmanyargs(std::vector<std::string> args){
+	int zz =0;
+	while(1){
+		if(args[zz].compare("")==0){
+			return zz;
+		}
+		zz++;
+	}
+	return zz;
+}
 	
 int main()
 {
+	int argnum = 0;
 	
+	Client c;
 
 	std::cout<<"here1"<<std::endl;
 	Parse p;//parse obj
@@ -46,11 +57,20 @@ int main()
 	std::cout<<"here7"<<std::endl;
 	 
 	 
-	test->writeToSocket((char*)(gg),512);
+	test->writeToSocket(std::to_string(gg).c_str(),512);
      //test->writeToSocket("Hello there\n",65536);
-	 for(int x = 0; x < gg; x++){
-		test->writeToSocket(lines[x][0].c_str(),512);
+	 while(1){
+		 argnum = c.howmanyargs(lines[x]);
+		 
+		for(int x = 0; x < gg; x++){
+			argnum = c.howmanyargs(lines[x]);
+			test->writeToSocket(std::to_string(argnum).c_str(),512);
+			for(int starts = 0; starts< argnum; starts++){
+				test->writeToSocket(lines[x][starts].c_str(),512);
+				
+			}
 		
+		}
 	 }
 	std::cout<<"here99"<<std::endl;
      return 0;   

@@ -197,16 +197,16 @@ int main(){
 		
         for(int h = 0 ;h < y ;h ++ )
         {
-                x = client->readFromSocketWithTimeout(buffer,512,20,10000);
-                if(x == 0)
-                        break;
-                else {
-                        std::cout << buffer << std::endl;
-                        stringstream s;
-                        s << buffer;
-                        v[counter] = s.str();
-                        counter++;
-                }
+			x = client->readFromSocketWithTimeout(buffer,512,20,10000);
+			if(x == 0)
+					break;
+			else {
+					std::cout << buffer << std::endl;
+					stringstream s;
+					s << buffer;
+					v[counter] = s.str();
+					counter++;
+			}
 
         }
         for(int i=0; i < 10; i++)
