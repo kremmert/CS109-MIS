@@ -18,15 +18,31 @@
 #include "includes.h"
 #include "TCPSocket.h"
 #include "TCPServerSocket.h"
+#include "Thread.h"
 using namespace std;
 
 Server::Server()
 {	
 }
+	std::vector<std::vector<std::string>> Server::lines;//parsed lines of code
+	map <string,Instructions *> Server::storevobj;
+	std::map<std::string, int> Server::labels;//map of labels with line number
+	std::map<int, int> Server::threadsbend;
+	int Server::threadnum;
+	
 Server::Server(std::string a)
 {	
 	input = a;
     this->readLines();
+}
+
+Server::Server(int cthread, map <string,Instructions *> varsmap, bool flagend, std::vector<std::vector<std::string>> codelines,std::map <std::string,int> labelmap){
+	this->counter = cthread;
+	this->storevobj = varsmap;
+	this->flagend = true;
+	this->lines = codelines;
+	this->labels = labelmap;
+	this->morethanfetch();
 }
 
 Server::~Server()
@@ -36,10 +52,12 @@ Server::~Server()
 
 void Server::readLines()
 {
+	flagend = false;
     Parse p;//parse obj
     //lines = p.parsingf(input);//parsed lines of code
 	if(lines[0][0].compare("")==0) return;//if lines is empty, do nothing
 	labels = p.labelget(lines);// get map of labels with line num
+	threadsbend = p.threadends(lines);
     this->morethanfetch();//start executing code
 }
 
@@ -47,7 +65,7 @@ void Server::morethanfetch()
 {
 
 	map <string,Instructions *> vobj;//var obj, and functions
-	map <string,Instructions *> storevobj;//store var obj
+	//store var obj
 
 	//var objects in map
 	vobj["REAL"] = new Real();
@@ -65,6 +83,7 @@ void Server::morethanfetch()
 	vobj["OUT"] = new Out();
 	vobj["SET_STR_CHAR"] = new Set_Str_Char();
 	vobj["GET_STR_CHAR"] = new Get_Str_Char();
+
 	
 	
 	//going through each linea of code 
@@ -81,22 +100,34 @@ void Server::morethanfetch()
 			//make var obj
 			kk = kk->clone(lines[counter-1]);
 			//store var
-			storevobj[lines[counter-1][1]] = kk;
+			this->storevobj[lines[counter-1][1]] = kk;
 			
 		}else if(lines[counter-1][0].compare("LABEL")==0)
 		{
 			//labels were put into a map with line number right after being parsed
 		}else if(lines[counter-1][0].substr(0,3).compare("JMP")==0){
 			//execute jumps
-			jump(storevobj);
+			jump(this->storevobj);
+		}else if((lines[counter-1][0].compare("THREAD_END")==0)&&flagend){//
+			return;
+		}else if(lines[counter-1][0].compare("THREAD_BEGIN")==0){
+			//new thread(threadmethod);
+			threadnum = counter-1;
+			Thread * t2 = new Thread(&threadmethod);
+			t2->start();
 		}
 		else{
 			//call function : like add or sub
-			vobj[lines[counter-1][0]]->functor(lines[counter-1],storevobj);
+			vobj[lines[counter-1][0]]->functor(lines[counter-1],this->storevobj);
 		}
 		
 	}
 
+}
+
+void * Server::threadmethod(void * ptr){
+	int x = threadsbend[threadnum];
+	Server * s5 = new Server(x,storevobj,true,lines,labels);
 }
 //executes jumps
 void Server::jump(std::map <std::string, Instructions *> storevobj){

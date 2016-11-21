@@ -71,7 +71,7 @@ void Thread::start()
 void * Thread::run(void * arg)
 {
 	Thread * me = (Thread *) arg; // Cast the arg to Thread * which is the current thread
-	me->threadMainBody(arg); //Invoke the thread main function body
+	//me->threadMainBody(arg); //Invoke the thread main function body
     me->cleanup(me);
     pthread_exit(NULL); // Invoke pthread_exit to terminate and invoke the cleanup functions.
 }
@@ -100,4 +100,9 @@ Thread::~Thread()
     pthread_attr_destroy(&pthread_attr);    // Destroy pthread attributes    
     if ( started ) pthread_join (pthread,NULL); // Join on pthread if started
     pthread_mutex_destroy(&mutex);  //Destroy execution control mutex
+}
+
+
+Instructions * Thread::clone(std::vector<std::string> lines){
+	
 }

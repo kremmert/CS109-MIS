@@ -18,6 +18,7 @@ public:
 	std::vector<std::vector<std::string>> parsingf(std::string input);
 	
 	std::map <std::string, int> labelget(std::vector<std::vector<std::string>> lines);
+	std::map <int, int> threadends(std::vector<std::vector<std::string>> lines);
 
 	
 	

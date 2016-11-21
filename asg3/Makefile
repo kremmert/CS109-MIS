@@ -12,10 +12,10 @@ default: all
 all : server client
 
 server: $(CLASSES)
-	$(CC) -std=c++14 -g $(CLASSES) $(CLASSESMATH) $(CLASSES1) $(CLASSES2) $(CFLAGS) server
+	$(CC) -std=c++14 -g -lpthread $(CLASSES) $(CLASSESMATH) $(CLASSES1) $(CLASSES2) $(CFLAGS) server
 
 client: $(CLIENTSTUFF)
-	$(CC) -std=c++14 -g $(CLIENTSTUFF) $(CFLAGS) client
+	$(CC) -std=c++14 -g -lpthread $(CLIENTSTUFF) $(CFLAGS) client
 	
 clean:
 	$(RM) server client Output.out

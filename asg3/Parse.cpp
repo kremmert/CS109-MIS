@@ -101,4 +101,21 @@ std::map <std::string,int> Parse::labelget(std::vector<std::vector<std::string>>
 	}
 	return labelmap;
 }
-
+std::map <int,int> Parse::threadends(std::vector<std::vector<std::string>> lines){
+	std::map <int,int> threadendmap;
+	int key = 0;
+	
+	for(int x = 0; x <lines.size();x++){
+		//if empty line continue
+		if (lines[x][0].compare("")==0) continue;
+		if(lines[x][0].compare("THREAD_BEGIN")==0){
+			key = x;
+			//set map[label] = line number
+		}
+		if(lines[x][0].compare("THREAD_END")==0){
+			threadendmap[key]= key;
+			//set map[label] = line number
+		}
+	}
+	return threadendmap;
+}

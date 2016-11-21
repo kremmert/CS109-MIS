@@ -8,12 +8,18 @@
 class Server 
 {
     private:
-        std::vector<std::vector<std::string>> lines;//parsed lines of code
+        static std::vector<std::vector<std::string>> lines;//parsed lines of code
+		static map <string,Instructions *> storevobj;
+		static std::map<std::string, int> labels;//map of labels with line number
+		static std::map<int, int> threadsbend;
+		static int threadnum;
+		bool flagend;
 		std::string input;//input file
         int counter = 0;//pointing to which line of code
-        std::map<std::string, int> labels;//map of labels with line number
+
     public:
 		Server();
+		Server(int cthread, map <string,Instructions *> varsmap, bool flagend, std::vector<std::vector<std::string>> codelines,std::map <std::string,int> labelmap);
         Server(std::string a); //map1 has everything instantiated, arrays allocated
         void readLines();// calls method to parse
         void morethanfetch(); //count indexes until next insn
@@ -21,6 +27,7 @@ class Server
 		int infinite = 0;
         void setLines(std::vector<std::vector<std::string>> lines);
         void sConnection(TCPSocket * client);
+		static void * threadmethod(void *);
         //forms and puts object into map, clone 
         //then performs the insns, and stores into another map, then calls fetch again
         //increments counter
