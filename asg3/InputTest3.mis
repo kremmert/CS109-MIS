@@ -1,0 +1,15 @@
+VAR	$myint,NUMERIC,100
+VAR	$myint2,NUMERIC,10
+VAR	$myint3,NUMERIC,1
+VAR	$mystr,STRING,100,"Hello"
+THREAD_BEGIN
+SUB	$myint,80,10
+SUB	$myint2,53,$myint3
+SUB	$myint2,10,$myint3
+OUT	$myint,$myint2
+THREAD_END
+THREAD_BEGIN
+SUB	$myint2,$myint2,$myint3
+GET_STR_CHAR	$mystr,2,$mystr
+OUT	$myint,$myint2,22,$mystr
+THREAD_END

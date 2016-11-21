@@ -9,9 +9,10 @@
 #define THREAD_H
 
 #include "includes.h"
+#include "Function.h"
 
 
-class Thread    // Thread Class
+class Thread: public Function    // Thread Class
 {
 	protected:
                 pthread_attr_t pthread_attr; // pthread attribute data member
@@ -35,6 +36,7 @@ class Thread    // Thread Class
 		void waitForRunToFinish (); // Blocks until the running thread finishes execution
 		char * getThreadIdentifier ();  // Return the thread identifier string
                 bool isAlive ();    // Checks if the thread start is initiated
+		void functor(std::vector<std::string> lines,std::map <std::string,Instructions *> & mapy)=0;
 		virtual ~Thread();  // Virtual Thread Destructor
 };
 
