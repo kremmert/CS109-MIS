@@ -27,13 +27,13 @@ using namespace std;
 //default constructor
 Server::Server() {}
 
-//static variables
+//static variables, used for thread method
 std::vector<std::vector<std::string>> Server::lines;//parsed lines of code
-map <string,Instructions *> Server::storevobj;
+map <string,Instructions *> Server::storevobj;// map of variables made in the .mis ex VAR int...
 std::map<std::string, int> Server::labels;//map of labels with line number
-std::map<int, int> Server::threadsbend;
-int Server::threadnum;
-TCPServerSocket * Server::sock;
+std::map<int, int> Server::threadsbend;// map of mape[thread_begin_line#]= thread_end_line#
+int Server::threadnum;//used to pass counter to thread
+TCPServerSocket * Server::sock;//used for initial socket, and a get method to be used in thread class
 	
 Server::Server(std::string a)
 {	
@@ -58,7 +58,7 @@ Server::~Server()
 }
 
 void Server::readLines()
-{
+{	//flagend is used to determine if this is the main program or a thread running the code
 	flagend = false;
     Parse p;//parse obj
     //lines = p.parsingf(input);//parsed lines of code
@@ -131,7 +131,7 @@ void Server::morethanfetch()
 			counter = threadsbend[counter-1]; //sets counter to thread_end
 			counter -= 1;
 		}else if(lines[counter-1][0].compare("BARRIER")==0) {
-			barrier();
+			barrier();//call barrier method. Used for threads.wait for thread to end
 		}
 		else{
 			//call function : like add or sub
@@ -157,22 +157,22 @@ int Server::getCounter()
 
 std::vector<std::vector<std::string>> Server::getLines()
 {
-	return lines;
+	return lines;//return the parsed lines of code.
 }
 
 std::map <std::string,Instructions *> Server::getObj()
 {
-	return storevobj;
+	return storevobj;//return the map of stored variables
 }
 
 std::map<std::string, int> Server::getLabel()
 {
-	return labels;
+	return labels;//return map of stored labels;
 }
 
 TCPServerSocket * Server::getSock()
 {
-	return sock;
+	return sock;//return main socket
 }
 
 //executes jumps
@@ -272,7 +272,9 @@ int Server::howmanyargs(std::vector<std::string> args){
 	}
 	return zz;
 }
-
+//this method get packets from client
+//calls methods to execute code
+//then Output.out file to client
 void Server::sConnection(TCPSocket * client)
 {
 	int x = 0;
@@ -291,18 +293,18 @@ void Server::sConnection(TCPSocket * client)
 	{			
 		//get number of args
 		y = client->readFromSocketWithTimeout(buffer,32,20,10000);
-		if(y==0){
+		if(y==0){//received zero packets
 			break;
 		}
-		stringstream aaa(buffer);
+		stringstream aaa(buffer);//convert buffer
 		aaa >> argnum;//argnum = number of args
 		for(int ff = 0; ff <argnum;ff++ ){
-			x = client->readFromSocketWithTimeout(buffer,32,20,10000); //read from socket
+			x = client->readFromSocketWithTimeout(buffer,32,20,10000); //read from socket, give timeout of 20 sec and 10000miliseconds
 			if(x == 0) //if buffer is empty break
 				break;
 			else {
 				std::cout << buffer <<" "; //turn char* into stringstream
-				stringstream s;
+				stringstream s;//convert buffer
 				s << buffer;
 				v[h][ff] = s.str(); //places a string into vector
 			}
@@ -327,10 +329,10 @@ void Server::sConnection(TCPSocket * client)
 
 	//write to socket 
 	client->writeToSocket(std::to_string(gg).c_str(),32);
-	for(int x = 0; x < gg; x++){
+	for(int x = 0; x < gg; x++){//for x to #of lines in outp
 		argnum = this->howmanyargs(outp[x]); //gets number of args
 		client->writeToSocket(std::to_string(argnum).c_str(),32);
-		for(int starts = 0; starts< argnum; starts++){
+		for(int starts = 0; starts< argnum; starts++){//for the number of strings in outp[x]
 			std::cout<<outp[x][starts].c_str();
 			client->writeToSocket(outp[x][starts].c_str(),32); //sends data
 		}

@@ -11,14 +11,14 @@ class Server
 {
     private:
         static std::vector<std::vector<std::string>> lines;//parsed lines of code
-		static map <string,Instructions *> storevobj;
+		static map <string,Instructions *> storevobj;//map of variables made in the .mis
 		static std::map<std::string, int> labels;//map of labels with line number
-		static std::map<int, int> threadsbend;
+		static std::map<int, int> threadsbend;//map[threadbegin_line#]=threadend_line#
 		static int threadnum;
-		bool flagend;
+		bool flagend;//used to see if in a threadbeing-end
 		std::string input;//input file
         int counter = 0;//pointing to which line of code
-        vector <Thread *> threads;
+        vector <Thread *> threads;//thread manager vector
     public:
 		Server();
 		Server(int cthread, map <string,Instructions *> varsmap, bool flagend, std::vector<std::vector<std::string>> codelines,std::map <std::string,int> labelmap);
@@ -27,10 +27,10 @@ class Server
         void readLines();// calls method to parse
         void morethanfetch(); //count indexes until next insn
 		void jump(std::map <std::string,Instructions *> storevobj);//jump function
-		int infinite = 0;
+		int infinite = 0;//used for inifinite loop
         void setLines(std::vector<std::vector<std::string>> lines); //setter
         void sConnection(TCPSocket * client); //recieves and sends a file
-        int getCounter();
+        int getCounter();//getter
         void barrier(); //blocks till threads finish
         std::vector<std::vector<std::string>> getLines(); //getters
         std::map <std::string,Instructions *> getObj();
