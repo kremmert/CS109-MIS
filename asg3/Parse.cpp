@@ -73,12 +73,8 @@ vector<vector<string>> Parse::parsingf(std::string input){
 			getline(ss, temp, ',');
 
 			lines[x][y] = temp;
-			//std::cout<<" \t"<<lines[x][y];
 			y++;
-		}//get rid of null char at the end
-
-		//inner vector position is reset
-		//goes to next vector being held in the outer vector
+		}
 		x++;
 		
 	} 
