@@ -356,27 +356,32 @@ void Server::sConnection(TCPSocket * client)
 	}
 }
 
-int main(){
-		vector <Thread *> t1; //thread vector for the sequential MIS
-		Server * s2 = new Server(); 
-		s2->sock = new TCPServerSocket("128.114.104.56",9999,32); //permanent socket
-		int i = 1;
-		while(i)
+int main(int argc,char ** argv){
+	
+	if ( argc != 3) { // Check on the number of arguments and exit if incorrect
+		printf ("usage: server	serverIPaddress	  serverport");
+		exit(1);
+	}
+	vector <Thread *> t1; //thread vector for the sequential MIS
+	Server * s2 = new Server(); 
+	s2->sock = new TCPServerSocket(argv[1],stoi(argv[2]),32); //permanent socket
+	int i = 1;
+	while(i)
+	{
+		bool status = s2->sock->initializeSocket(); //check for new connections
+		if(status) //if a new connection is found
 		{
-			bool status = s2->sock->initializeSocket(); //check for new connections
-			if(status) //if a new connection is found
-			{
-				Thread * t2 = new Thread(42); //create a new thread
-				t2->start(); //execute thread and place object in vector for barrier
-				t1.push_back(t2);
-				status = false;
-			}
-			std::cout <<"Enter 0 to end, anything else to continue \n"; //condition to keep searching for new connections
-			cin>>i;
-			
+			Thread * t2 = new Thread(42); //create a new thread
+			t2->start(); //execute thread and place object in vector for barrier
+			t1.push_back(t2);
+			status = false;
 		}
-		for ( int i = 0 ; i < t1.size();i++) t1[i]->waitForRunToFinish();
-        return 0;   
+		std::cout <<"Enter 0 to end, anything else to continue \n"; //condition to keep searching for new connections
+		cin>>i;
+		
+	}
+	for ( int i = 0 ; i < t1.size();i++) t1[i]->waitForRunToFinish();
+	return 0;   
 }
 
 
