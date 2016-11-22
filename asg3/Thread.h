@@ -9,8 +9,6 @@
 #define THREAD_H
 
 #include "includes.h"
-#include "Function.h"
-
 
 class Thread    // Thread Class
 {
