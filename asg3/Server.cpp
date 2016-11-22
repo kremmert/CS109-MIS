@@ -110,21 +110,17 @@ void Server::morethanfetch()
 			jump(this->storevobj);
 		}else if((lines[counter-1][0].compare("THREAD_END")==0)){//
 			if(flagend) {
-				std::cout << "flagged\n";
 				return;
 			}
 			else {
-				std::cout << "continue\n";
 				continue;
 			}
 		}else if(lines[counter-1][0].compare("THREAD_BEGIN")==0){
 			//new thread(threadmethod);
 			threadnum = counter-1;
-			std::cout << "threadnum: " << threadnum << std::endl;
 			Thread * t2 = new Thread();
 			t2->start();
 			counter = threadsbend[counter-1];
-			std::cout << "counter: " << counter << std::endl;
 		}
 		else{
 			//call function : like add or sub
