@@ -28,16 +28,15 @@ class Server
         void morethanfetch(); //count indexes until next insn
 		void jump(std::map <std::string,Instructions *> storevobj);//jump function
 		int infinite = 0;
-        void setLines(std::vector<std::vector<std::string>> lines);
-        void sConnection(TCPSocket * client);
-		static void * threadmethod(void *);
+        void setLines(std::vector<std::vector<std::string>> lines); //setter
+        void sConnection(TCPSocket * client); //recieves and sends a file
         int getCounter();
-        void barrier();
-        std::vector<std::vector<std::string>> getLines();
+        void barrier(); //blocks till threads finish
+        std::vector<std::vector<std::string>> getLines(); //getters
         std::map <std::string,Instructions *> getObj();
         std::map<std::string, int> getLabel();
         TCPServerSocket * getSock();
-        int howmanyargs(std::vector<std::string> args);
+        int howmanyargs(std::vector<std::string> args); //get lines in a file
         //forms and puts object into map, clone 
         //then performs the insns, and stores into another map, then calls fetch again
         //increments counter
