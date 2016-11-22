@@ -224,7 +224,7 @@ void Server::sConnection(TCPSocket * client)
 	char test[1024];
 	
 	//get number of lines
-	y = client->readFromSocketWithTimeout(buffer,256,20,10000);
+	y = client->readFromSocketWithTimeout(buffer,64,20,10000);
 	
 	stringstream aaa(buffer);
 	aaa >> y;// y = number of lines
@@ -232,14 +232,14 @@ void Server::sConnection(TCPSocket * client)
 	for(int h = 0 ;h < y ;h ++ )
 	{			
 		//get number of args
-		y = client->readFromSocketWithTimeout(buffer,256,20,10000);
+		y = client->readFromSocketWithTimeout(buffer,64,20,10000);
 		if(y==0){
 			break;
 		}
 		stringstream aaa(buffer);
 		aaa >> argnum;//argnum = number of args
 		for(int ff = 0; ff <argnum;ff++ ){
-			x = client->readFromSocketWithTimeout(buffer,256,20,10000);
+			x = client->readFromSocketWithTimeout(buffer,64,20,10000);
 			if(x == 0)
 				break;
 			else {
@@ -260,9 +260,9 @@ void Server::sConnection(TCPSocket * client)
 
 int main(){
 
-        TCPServerSocket * s = new TCPServerSocket("128.114.104.57",9999,256);
+        TCPServerSocket * s = new TCPServerSocket("128.114.104.55",9999,64);
         bool status = s->initializeSocket();
-        TCPSocket * client = s->getConnection(0,0,256,256);
+        TCPSocket * client = s->getConnection(0,0,64,64);
 		Server * s2 = new Server();
 		s2->sConnection(client);
         return 0;   
