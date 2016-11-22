@@ -103,8 +103,10 @@ std::map <std::string,int> Parse::labelget(std::vector<std::vector<std::string>>
 	}
 	return labelmap;
 }
+//make a map of where the threads begin end are
 std::map <int,int> Parse::threadends(std::vector<std::vector<std::string>> lines){
 	std::map <int,int> threadendmap;
+	//map format = map[thread_begin_line#] = thread_end_line#
 	int key = 0;
 	
 	for(int x = 0; x <lines.size();x++){
@@ -112,11 +114,11 @@ std::map <int,int> Parse::threadends(std::vector<std::vector<std::string>> lines
 		if (lines[x][0].compare("")==0) continue;
 		if(lines[x][0].compare("THREAD_BEGIN")==0){
 			key = x;
-			//set map[label] = line number
+			//set key = thread begin line #
 		}
 		if(lines[x][0].compare("THREAD_END")==0){
 			threadendmap[key]= x;
-			//set map[label] = line number
+			//set map[thread_begin_line#] = thread_end_line#
 		}
 	}
 	return threadendmap;

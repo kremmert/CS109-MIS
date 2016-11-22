@@ -11,13 +11,12 @@ SUB	$myint,80,10
 SUB	$myint2,53,$myint3
 SUB	$myint2,10,$myint3
 THREAD_END
-SLEEP	5
 THREAD_BEGIN
 ADD	$myint12,53,$myint13
 ADD	$myint10,2,3
 ADD	$myint11,10,$myint10
 THREAD_END
-SLEEP	10
+BARRIER
 OUT	$myint,$myint2
 OUT	$myint12,$myint10,$myint11
 ADD	$myint,1,1
