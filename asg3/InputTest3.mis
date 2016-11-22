@@ -2,14 +2,23 @@ VAR	$myint,NUMERIC,100
 VAR	$myint2,NUMERIC,10
 VAR	$myint3,NUMERIC,1
 VAR	$mystr,STRING,100,"Hello"
+VAR	$myint10,NUMERIC,1
+VAR	$myint11,NUMERIC,1
+VAR	$myint12,NUMERIC,1
+VAR	$myint13,NUMERIC,1
 THREAD_BEGIN
 SUB	$myint,80,10
 SUB	$myint2,53,$myint3
 SUB	$myint2,10,$myint3
-OUT	$myint,$myint2
 THREAD_END
 THREAD_BEGIN
-SUB	$myint2,$myint2,$myint3
-GET_STR_CHAR	$mystr,2,$mystr
-OUT	$myint,$myint2,22,$mystr
+SUB	$myint10,$myint11,$myint12
+ADD	$myint13,2,$myint10
+ADD	$myint12,$myint11,22,$myint13
+THREAD_END
+SLEEP	10
+OUT	$myint,$myint2
+OUT	$myint12,$myint10
+ADD	$myint,1,1
+THREAD_BEGIN
 THREAD_END

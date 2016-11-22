@@ -64,6 +64,7 @@ vector<vector<string>> Parse::parsingf(std::string input){
 				//set name at current position in current inner vector
 				lines[x][y] = temp;
 				//increment inner position
+				
 				y++;
 				continue;
 			}
@@ -76,10 +77,9 @@ vector<vector<string>> Parse::parsingf(std::string input){
 		}//get rid of null char at the end
 
 		//inner vector position is reset
-		
 		//goes to next vector being held in the outer vector
 		x++;
-
+		
 	} 
 
 	
