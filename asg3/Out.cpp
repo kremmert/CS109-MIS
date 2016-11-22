@@ -33,7 +33,7 @@ std::vector<std::string> Out::outputV(std::vector<std::string> lines,std::map <s
 		}
 		
 		//print var
-		std::cout<<"Arg: "<<mn<<"    Val::"<<mapy[mn]->getV()<<std::endl;
+		std::cout<<"Arg: "<<mn<<"    Val:"<<mapy[mn]->getV()<<std::endl;
 		temp[x] = mapy[mn]->getV();
 	}
 	//close file

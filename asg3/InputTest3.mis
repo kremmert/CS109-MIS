@@ -12,9 +12,11 @@ SUB	$myint2,53,$myint3
 SUB	$myint2,10,$myint3
 THREAD_END
 THREAD_BEGIN
+LOCK	$myint10
 ADD	$myint12,53,$myint13
 ADD	$myint10,2,3
 ADD	$myint11,10,$myint10
+UNLOCK	$myint10
 THREAD_END
 BARRIER
 OUT	$myint,$myint2
