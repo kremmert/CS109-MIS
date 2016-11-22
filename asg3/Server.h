@@ -10,15 +10,19 @@
 class Server 
 {
     private:
-        static std::vector<std::vector<std::string>> lines;//parsed lines of code
-		static map <string,Instructions *> storevobj;//map of variables made in the .mis
-		static std::map<std::string, int> labels;//map of labels with line number
-		static std::map<int, int> threadsbend;//map[threadbegin_line#]=threadend_line#
+        std::vector<std::vector<std::string>> lines;//parsed lines of code
+        static std::vector<std::vector<std::string>> linesthread;
+		map <string,Instructions *> storevobj;//map of variables made in the .mis
+        static map <string,Instructions *> store;
+		std::map<std::string, int> labels;//map of labels with line number
+        static std::map<std::string, int> labelsstuff;
+		/*static*/ std::map<int, int> threadsbend;//map[threadbegin_line#]=threadend_line#
 		static int threadnum;
 		bool flagend;//used to see if in a threadbeing-end
 		std::string input;//input file
         int counter = 0;//pointing to which line of code
         vector <Thread *> threads;//thread manager vector
+        std::vector<std::string> outp; //output
     public:
 		Server();
 		Server(int cthread, map <string,Instructions *> varsmap, bool flagend, std::vector<std::vector<std::string>> codelines,std::map <std::string,int> labelmap);

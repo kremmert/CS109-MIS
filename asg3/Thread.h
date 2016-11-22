@@ -12,11 +12,11 @@
 #include "Function.h"
 
 
-class Thread: public Function    // Thread Class
+class Thread    // Thread Class
 {
 	protected:
-                pthread_attr_t pthread_attr; // pthread attribute data member
-                long cpu_count;     // Number of CPUs data member
+        pthread_attr_t pthread_attr; // pthread attribute data member
+        long cpu_count;     // Number of CPUs data member
 		pthread_t pthread;  // pthread_t identifier data member
 		char identifier[128]; // A printable thread identifier represented by the time th thread created
 		bool started;   // A flag indicating if a thread is started or not
@@ -25,8 +25,7 @@ class Thread: public Function    // Thread Class
 		bool termination_request;   // A flag indicating that a termination request is initiated
 		void *(*threadRoutine   ) (void *); // A pointer to the start routine of the thread execution
 		void setRunning (bool _running);    // Sets the running flag data member of the thread
-                static void  cleanup(void * target_thread); // A static method that performs house keeping after the thread terminates
-		Instructions * clone(std::vector<std::string> );
+        static void  cleanup(void * target_thread); // A static method that performs house keeping after the thread terminates
 	public:
 		Thread(void *(*_threadRoutine) (void *) =NULL); // Constructor 
 		Thread(int x); //constructor
@@ -39,7 +38,6 @@ class Thread: public Function    // Thread Class
 		void waitForRunToFinish (); // Blocks until the running thread finishes execution
 		char * getThreadIdentifier ();  // Return the thread identifier string
         bool isAlive ();    // Checks if the thread start is initiated
-		void functor(std::vector<std::string> lines,std::map <std::string,Instructions *> & mapy){};
 		virtual ~Thread();  // Virtual Thread Destructor
 };
 

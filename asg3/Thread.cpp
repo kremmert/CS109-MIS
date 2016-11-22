@@ -137,8 +137,3 @@ Thread::~Thread()
     if ( started ) pthread_join (pthread,NULL); // Join on pthread if started
     pthread_mutex_destroy(&mutex);  //Destroy execution control mutex
 }
-
-
-Instructions * Thread::clone(std::vector<std::string> lines){
-	
-}

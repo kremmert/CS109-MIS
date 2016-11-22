@@ -28,10 +28,10 @@ using namespace std;
 Server::Server() {}
 
 //static variables, used for thread method
-std::vector<std::vector<std::string>> Server::lines;//parsed lines of code
-map <string,Instructions *> Server::storevobj;// map of variables made in the .mis ex VAR int...
-std::map<std::string, int> Server::labels;//map of labels with line number
-std::map<int, int> Server::threadsbend;// map of mape[thread_begin_line#]= thread_end_line#
+std::vector<std::vector<std::string>> Server::linesthread;//parsed lines of code
+map <string,Instructions *> Server::store;// map of variables made in the .mis ex VAR int...
+std::map<std::string, int> Server::labelsstuff;//map of labels with line number
+//std::map<int, int> Server::threadsbend;// map of mape[thread_begin_line#]= thread_end_line#
 int Server::threadnum;//used to pass counter to thread
 TCPServerSocket * Server::sock;//used for initial socket, and a get method to be used in thread class
 	
@@ -65,6 +65,7 @@ void Server::readLines()
 	if(lines[0][0].compare("")==0) return;//if lines is empty, do nothing
 	labels = p.labelget(lines);// get map of labels with line num
 	threadsbend = p.threadends(lines);
+	std::vector<std::string> outp(200);
     this->morethanfetch();//start executing code
 }
 
@@ -87,7 +88,6 @@ void Server::morethanfetch()
 	vobj["DIV"] = new Div();
 	vobj["SLEEP"] = new Sleep();
 	vobj["ASSIGN"] = new Assign();
-	vobj["OUT"] = new Out();
 	vobj["SET_STR_CHAR"] = new Set_Str_Char();
 	vobj["GET_STR_CHAR"] = new Get_Str_Char();
 
@@ -125,6 +125,9 @@ void Server::morethanfetch()
 		}else if(lines[counter-1][0].compare("THREAD_BEGIN")==0){
 			//creates a new thread, updates counter to thread_end
 			threadnum = counter-1;
+			linesthread = lines;
+			store = storevobj;
+			labelsstuff = labels;
 			Thread * t2 = new Thread();
 			t2->start(); //starts executing thread
 			threads.push_back(t2); //places thread object into vector for easy barrier
@@ -132,6 +135,12 @@ void Server::morethanfetch()
 			counter -= 1;
 		}else if(lines[counter-1][0].compare("BARRIER")==0) {
 			barrier();//call barrier method. Used for threads.wait for thread to end
+		}else if(lines[counter-1][0].compare("OUT")==0)
+		{
+			Out p;
+			std::vector<std::string> temp = p.outputV(lines[counter-1],this->storevobj);
+			outp.reserve(outp.size() + temp.size());
+			outp.insert(outp.end(),temp.begin(),temp.end());
 		}
 		else{
 			//call function : like add or sub
@@ -157,17 +166,17 @@ int Server::getCounter()
 
 std::vector<std::vector<std::string>> Server::getLines()
 {
-	return lines;//return the parsed lines of code.
+	return linesthread;//return the parsed lines of code.
 }
 
 std::map <std::string,Instructions *> Server::getObj()
 {
-	return storevobj;//return the map of stored variables
+	return store;//return the map of stored variables
 }
 
 std::map<std::string, int> Server::getLabel()
 {
-	return labels;//return map of stored labels;
+	return labelsstuff;//return map of stored labels;
 }
 
 TCPServerSocket * Server::getSock()
@@ -318,25 +327,27 @@ void Server::sConnection(TCPSocket * client)
 	//returning Output.out
 
 	Parse p;//parse obj
-    std::vector<std::vector<std::string>> outp = p.parsingf("Output.out");
-	int gg=0;			
+    //std::vector<std::vector<std::string>> outp = p.parsingf("Output.out");
+	int gg=0;	
+	int yy=0;		
 	//gets the number of filled lines in vector
-	for(gg = 0; gg < 50; gg++){
-		if(outp[gg][0].compare("")==0){
-			break;
+	for(gg = 0; gg < outp.size(); gg++){
+		if(outp[gg].compare("")==0){
+			continue;
 		}
+		yy++;
 	}
 
 	//write to socket 
-	client->writeToSocket(std::to_string(gg).c_str(),32);
+	client->writeToSocket(std::to_string(yy).c_str(),32);
 	for(int x = 0; x < gg; x++){//for x to #of lines in outp
-		argnum = this->howmanyargs(outp[x]); //gets number of args
-		client->writeToSocket(std::to_string(argnum).c_str(),32);
-		for(int starts = 0; starts< argnum; starts++){//for the number of strings in outp[x]
-			std::cout<<outp[x][starts].c_str();
-			client->writeToSocket(outp[x][starts].c_str(),32); //sends data
-		}
-		std::cout<<std::endl;
+		//argnum = this->howmanyargs(outp[x]); //gets number of args
+		//client->writeToSocket(std::to_string(argnum).c_str(),32);
+		//for(int starts = 0; starts< argnum; starts++){//for the number of strings in outp[x]
+			//std::cout<<outp[x][starts].c_str();
+		if(outp[x].compare("")!=0)
+			client->writeToSocket(outp[x].c_str(),32); //sends data
+		//}
 	}
 }
 
