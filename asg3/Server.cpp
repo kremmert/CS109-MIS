@@ -367,10 +367,10 @@ int main(){
 				status = false;
 			}
 			std::cout <<"Enter 0 to end, anything else to continue \n"; //condition to keep searching for new connections
-			cin>>i;
-			for ( int i = 0 ; i < t1.size();i++) t1[i]->waitForRunToFinish();
+			//cin>>i;
+			
 		}
-		
+		for ( int i = 0 ; i < t1.size();i++) t1[i]->waitForRunToFinish();
         return 0;   
 }
 
