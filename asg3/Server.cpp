@@ -19,6 +19,9 @@
 #include "TCPSocket.h"
 #include "TCPServerSocket.h"
 #include "Thread.h"
+#include <unistd.h>
+#include <chrono>
+#include <thread>
 using namespace std;
 
 Server::Server()
@@ -123,6 +126,7 @@ void Server::morethanfetch()
 			t2->start();
 			threads.push_back(t2);
 			counter = threadsbend[counter-1];
+			counter -= 1;
 		}else if(lines[counter-1][0].compare("BARRIER")==0) {
 			barrier();
 		}
@@ -136,9 +140,10 @@ void Server::morethanfetch()
 }
 
 void Server::barrier() {
- for ( int i = 0 ; i < threads.size();i++) threads[i]->waitForRunToFinish();
+ 	for ( int i = 0 ; i < threads.size();i++){
+ 		threads[i]->waitForRunToFinish();
+	}
 }
-
 int Server::getCounter()
 {
 	return threadnum;
@@ -335,7 +340,7 @@ void Server::sConnection(TCPSocket * client)
 
 
 int main(){
-
+		vector <Thread *> t1;
 		Server * s2 = new Server();
 		s2->sock = new TCPServerSocket("128.114.104.56",9999,32);
 		int i = 1;
@@ -346,11 +351,15 @@ int main(){
 			{
 				Thread * t2 = new Thread(42);
 				t2->start();
+				t1.push_back(t2);
 				status = false;
 			}
 			std::cout <<"Enter 0 to end, anything else to continue \n";
 			cin>>i;
+			for ( int i = 0 ; i < t1.size();i++) t1[i]->waitForRunToFinish();
 		}
+		
+
         return 0;   
 }
 
