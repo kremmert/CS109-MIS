@@ -312,13 +312,12 @@ void Server::sConnection(TCPSocket * client)
 	}
 
 	client->writeToSocket(std::to_string(gg).c_str(),32);
-			 
 	for(int x = 0; x < gg; x++){
-		argnum = this->howmanyargs(lines[x]);
+		argnum = this->howmanyargs(outp[x]);
 		client->writeToSocket(std::to_string(argnum).c_str(),32);
 		for(int starts = 0; starts< argnum; starts++){
-			std::cout<<lines[x][starts].c_str();
-			client->writeToSocket(lines[x][starts].c_str(),32);
+			std::cout<<outp[x][starts].c_str();
+			client->writeToSocket(outp[x][starts].c_str(),32);
 			
 		}
 		std::cout<<std::endl;

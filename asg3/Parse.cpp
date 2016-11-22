@@ -28,7 +28,7 @@ vector<vector<string>> Parse::parsingf(std::string input){
 	//BIG [CHANGE] currently only handles up to 50 lines need to expand to handle more dynamically
 	std::vector<std::vector<std::string>> lines(50,std::vector<string>(50));
 	//[CHANGE] to variable passed
-	if(input.find(".mis")==-1){
+	if(input.find(".mis")==-1 && input.find(".out")==-1){
 		std::cout<<"\n not a .mis file";
 		return lines;
 	}
