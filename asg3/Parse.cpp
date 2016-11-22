@@ -48,7 +48,8 @@ vector<vector<string>> Parse::parsingf(std::string input){
 		//use string as a sequence of chars
 		std::stringstream ss(str);	
 		if(x!=0){
-			lines[x-1][y-1] = lines[x-1][y-1].substr(0,lines[x-1][y-1].size()-1);
+			if(input.find(".out")==-1)
+				lines[x-1][y-1] = lines[x-1][y-1].substr(0,lines[x-1][y-1].size()-1);
 		}
 		y = 0;
 		//check for eof in stream (end of the line in this case)
