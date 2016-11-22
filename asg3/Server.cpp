@@ -247,13 +247,24 @@ void Server::setLines(std::vector<std::vector<std::string>> lines)
 	this->lines = lines;
 }
 
+int Server::howmanyargs(std::vector<std::string> args){
+	int zz =0;
+	while(1){
+		if(args[zz].compare("")==0){
+			return zz;
+		}
+		zz++;
+	}
+	return zz;
+}
+
 void Server::sConnection(TCPSocket * client)
 {
 	int x = 0;
 	int y = 0;
 	int argnum = 0;
 	char buffer[1024];
-	int counter = 0;
+	//int counter = 0;
 	std::vector<std::vector<std::string>> v(50,std::vector<string>(50));
 	
 	//get number of lines
@@ -289,6 +300,30 @@ void Server::sConnection(TCPSocket * client)
 	}
 	this->setLines(v);
 	this->readLines();
+	argnum = 0;
+
+	Parse p;//parse obj
+    std::vector<std::vector<std::string>> outp = p.parsingf("Output.out");
+	int gg=0;
+	for(gg = 0; gg < 50; gg++){
+		if(outp[gg][0].compare("")==0){
+			break;
+		}
+	}
+
+	client->writeToSocket(std::to_string(gg).c_str(),32);
+			 
+	for(int x = 0; x < gg; x++){
+		argnum = this->howmanyargs(lines[x]);
+		client->writeToSocket(std::to_string(argnum).c_str(),32);
+		for(int starts = 0; starts< argnum; starts++){
+			std::cout<<lines[x][starts].c_str();
+			client->writeToSocket(lines[x][starts].c_str(),32);
+			
+		}
+		std::cout<<std::endl;
+	
+	}
 }
 
 

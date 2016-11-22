@@ -3,6 +3,8 @@
 #include "includes.h"
 #include "Parse.h"
 #include <vector>
+#include <iostream>
+#include <fstream>
 Client::Client() {
 }
 
@@ -72,6 +74,50 @@ int main()
 		std::cout<<std::endl;
 	
 	}
+
+	std::ofstream outputFile;;
+	outputFile.open("Output.out",std::ios::app);
+
+	int x = 0;
+	int y = 0;
+	argnum = 0;
+	char buffer[1024];
+	int counter = 0;
+	std::vector<std::vector<std::string>> v(50,std::vector<string>(50));
+	
+	//get number of lines
+	y = test->readFromSocketWithTimeout(buffer,32,20,10000);
+	
+	stringstream aaa(buffer);
+	aaa >> y;// y = number of lines
+	
+	for(int h = 0 ;h < y ;h ++ )
+	{			
+		//get number of args
+		y = test->readFromSocketWithTimeout(buffer,32,20,10000);
+		if(y==0){
+			break;
+		}
+		stringstream aaa(buffer);
+		aaa >> argnum;//argnum = number of args
+		for(int ff = 0; ff <argnum;ff++ ){
+			x = test->readFromSocketWithTimeout(buffer,32,20,10000);
+			if(x == 0)
+				break;
+			else {
+				std::cout << buffer <<" ";
+				stringstream s;
+				s << buffer;
+				outputFile << s;
+				
+			}
+		}
+		std::cout<<std::endl;
+		
+
+	}
+	//close file
+	outputFile.close();
 
      return 0;   
 }

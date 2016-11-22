@@ -34,6 +34,7 @@ class Server
         std::map <std::string,Instructions *> getObj();
         std::map<std::string, int> getLabel();
         TCPServerSocket * getSock();
+        int howmanyargs(std::vector<std::string> args);
         //forms and puts object into map, clone 
         //then performs the insns, and stores into another map, then calls fetch again
         //increments counter
