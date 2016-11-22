@@ -16,17 +16,16 @@ public:
 	//function to parse each line into the 2D vector and separate the type and 
 	//parameters into different positions within the inner vector
 	std::vector<std::vector<std::string>> parsingf(std::string input);
-	
+	// make map of labels, map[label]= line number, method is passed parsed lines of code
 	std::map <std::string, int> labelget(std::vector<std::vector<std::string>> lines);
+	//make map of threads, map[thread_begin_line#] = thread_end_line#
 	std::map <int, int> threadends(std::vector<std::vector<std::string>> lines);
 
 	
 	
 private:
-	/*Holds the instructions of the functions in a 2D vector(vector of vectors)
-	inner vector styled as follows:
-	instruction name always in position 1 of inner vector 
-	variables and literals in following positions as needed*/
+	//Holds the instructions of the .mis file
+	//sperated by lines[line#][parameter#] = string
 	std::vector<std::vector<std::string>> lines;
 
 };

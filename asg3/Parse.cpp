@@ -35,20 +35,19 @@ vector<vector<string>> Parse::parsingf(std::string input){
 	std::ifstream file(input);
 	//string variable to hold current line being parsed
 	std::string str;
-	//
+	//used to hold what was parsed
 	std::string temp;
 
 	//track position within vector
-	int x = 0;
-	int y = 0;
+	int x = 0;//used for line#
+	int y = 0;//used for arg #
 	
 	//loop until eof
 	while (std::getline(file, str))
 	{
-		//use string as a sequence of chars
 		std::stringstream ss(str);	
-		if(x!=0){
-			if(input.find(".out")==-1)
+		if(x!=0){//if statement to remove null char at end of line.
+			if(input.find(".out")==-1)// if this is not .out
 				lines[x-1][y-1] = lines[x-1][y-1].substr(0,lines[x-1][y-1].size()-1);
 		}
 		y = 0;
@@ -71,7 +70,7 @@ vector<vector<string>> Parse::parsingf(std::string input){
 			}
 			//get params(all separated by commas)
 			getline(ss, temp, ',');
-
+			//set vector lines [lines number][arg number ] = arg/paramter
 			lines[x][y] = temp;
 			y++;
 		}
