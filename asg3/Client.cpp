@@ -40,7 +40,7 @@ int main()
 	Client c;
 
 	Parse p;//parse obj
-    std::vector<std::vector<std::string>> lines = p.parsingf("InputTest2.mis");//parsed lines of code
+    std::vector<std::vector<std::string>> lines = p.parsingf("InputTest3.mis");//parsed lines of code
 	//if(lines[0][0].compare("")==0) return 0;//if lines is empty, do nothing
 	//std::map <std::string,int> mapy = p.labelget(lines);// get map of labels with line num
     //this->morethanfetch();//start executing code
@@ -52,21 +52,21 @@ int main()
 		}
 	}
 
-     TCPSocket * test = new TCPSocket((char*)("128.114.104.57"),9999);
+     TCPSocket * test = new TCPSocket((char*)("128.114.104.55"),9999);
 
 
 	 
 	 
-	test->writeToSocket(std::to_string(gg).c_str(),256);
+	test->writeToSocket(std::to_string(gg).c_str(),64);
      //test->writeToSocket("Hello there\n",65536);
 
 
 		 
 	for(int x = 0; x < gg; x++){
 		argnum = c.howmanyargs(lines[x]);
-		test->writeToSocket(std::to_string(argnum).c_str(),256);
+		test->writeToSocket(std::to_string(argnum).c_str(),64);
 		for(int starts = 0; starts< argnum; starts++){
-			test->writeToSocket(lines[x][starts].c_str(),256);
+			test->writeToSocket(lines[x][starts].c_str(),64);
 			
 		}
 	

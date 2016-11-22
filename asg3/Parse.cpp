@@ -65,6 +65,7 @@ vector<vector<string>> Parse::parsingf(std::string input){
 				lines[x][y] = temp;
 				//increment inner position
 				y++;
+				continue;
 			}
 			//get params(all separated by commas)
 			getline(ss, temp, ',');
