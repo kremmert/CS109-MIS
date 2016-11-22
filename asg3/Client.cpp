@@ -94,26 +94,20 @@ int main()
 	//y = # of lines expected
 	for(int h = 0 ;h < y ;h ++ )
 	{			
-		//get number of args
-		y = test->readFromSocketWithTimeout(buffer,32,20,10000);
-		if(y==0){
+
+
+		//receive string
+		x = test->readFromSocketWithTimeout(buffer,32,20,10000);
+		if(x == 0)
 			break;
-		}
-		stringstream aaa(buffer);//convert to stringstream to int
-		aaa >> argnum;//argnum = number of args expected
-		for(int ff = 0; ff <argnum;ff++ ){
-			//receive string
-			x = test->readFromSocketWithTimeout(buffer,32,20,10000);
-			if(x == 0)
-				break;
-			else {
-				stringstream s;
-				s << buffer;//convert buffer to string stream
-				std::cout<<s.str()<<" ";
-				//write to Output.out
-				outputFile << s.str();
+		else {
+			stringstream s;
+			s << buffer;//convert buffer to string stream
+			std::cout<<s.str()<<" ";
+			//write to Output.out
+			outputFile << s.str();
 				
-			}
+			
 		}
 		//new line for Output.out for every new line expected
 		outputFile<<std::endl;
@@ -123,6 +117,6 @@ int main()
 	}
 	//close file
 	outputFile.close();
-	delete test;
+
      return 0;   
 }
