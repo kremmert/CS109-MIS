@@ -66,7 +66,7 @@ int main()
 		argnum = c.howmanyargs(lines[x]);
 		test->writeToSocket(std::to_string(argnum).c_str(),32);
 		for(int starts = 0; starts< argnum; starts++){
-			std::cout<<lines[x][starts].c_str()<<std::endl;
+			std::cout<<lines[x][starts].c_str();
 			test->writeToSocket(lines[x][starts].c_str(),32);
 			
 		}
