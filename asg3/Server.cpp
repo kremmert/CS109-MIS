@@ -22,6 +22,7 @@
 #include <unistd.h>
 #include <chrono>
 #include <thread>
+#include <mutex>
 using namespace std;
 
 //default constructor
@@ -71,7 +72,7 @@ void Server::readLines()
 
 void Server::morethanfetch()
 {
-
+	std::mutex m;
 	map <string,Instructions *> vobj;//var obj, and functions
 	//store var obj
 
@@ -141,6 +142,10 @@ void Server::morethanfetch()
 			std::vector<std::string> temp = p.outputV(lines[counter-1],this->storevobj);
 			outp.reserve(outp.size() + temp.size());
 			outp.insert(outp.end(),temp.begin(),temp.end());
+		}else if(lines[counter-1][0].compare("LOCK")==0){
+			m.lock();
+		}else if(lines[counter-1][0].compare("UNLOCK")==0){
+			m.unlock();
 		}
 		else{
 			//call function : like add or sub
@@ -367,7 +372,7 @@ int main(){
 				status = false;
 			}
 			std::cout <<"Enter 0 to end, anything else to continue \n"; //condition to keep searching for new connections
-			//cin>>i;
+			cin>>i;
 			
 		}
 		for ( int i = 0 ; i < t1.size();i++) t1[i]->waitForRunToFinish();
