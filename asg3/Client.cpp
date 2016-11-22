@@ -123,6 +123,6 @@ int main()
 	}
 	//close file
 	outputFile.close();
-
+	delete test;
      return 0;   
 }
