@@ -5,7 +5,8 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
-Client::Client() {
+Client::Client(char * a,char * port) {
+	test = new TCPSocket(a,stoi(port));
 }
 
 Client::~Client() {
@@ -35,14 +36,11 @@ int Client::howmanyargs(std::vector<std::string> args){
 	return zz;//in case something goes wrong
 }
 	
-int main()
-{
+void Client::sendfile(std::string input){
 	int argnum = 0;
-	
-	Client c;
 
 	Parse p;//parse obj
-    std::vector<std::vector<std::string>> lines = p.parsingf("InputTest3.mis");//parsed lines of code
+    std::vector<std::vector<std::string>> lines = p.parsingf(input);//parsed lines of code
 	
 	int gg=0;//gg = how many lines of code there are
 	for(gg = 0; gg < 50; gg++){
@@ -52,42 +50,43 @@ int main()
 	}
 	
 	//tcp socket 
-    TCPSocket * test = new TCPSocket((char*)("128.114.104.56"),9999);
+    
 
 
 	 
 	//send number of lines of code. THis will be used so that it can expect how many sends
-	test->writeToSocket(std::to_string(gg).c_str(),32);
+	this->test->writeToSocket(std::to_string(gg).c_str(),32);
 
 
 	//for loop for # of lines of code
 	for(int x = 0; x < gg; x++){
 		//find # of args per line of code
-		argnum = c.howmanyargs(lines[x]);
+		argnum = this->howmanyargs(lines[x]);
 		//send # of paramenters so server know what to expect
-		test->writeToSocket(std::to_string(argnum).c_str(),32);
+		this->test->writeToSocket(std::to_string(argnum).c_str(),32);
 		for(int starts = 0; starts< argnum; starts++){
 			std::cout<<lines[x][starts].c_str();
 			//send code
-			test->writeToSocket(lines[x][starts].c_str(),32);
+			this->test->writeToSocket(lines[x][starts].c_str(),32);
 			
 		}
 		std::cout<<std::endl;
 	
 	}
-	//this is for receiving file
+}
+
+void Client::receivefile(){
 	std::ofstream outputFile;;
 	outputFile.open("Output.out",std::ios::app);
 	
 	int x = 0;
 	int y = 0;
-	argnum = 0;
 	//buffer for packets received
 	char buffer[1024];
 	std::vector<std::vector<std::string>> v(50,std::vector<string>(50));
 	
 	//get number of lines
-	y = test->readFromSocketWithTimeout(buffer,32,300,10000);
+	y = this->test->readFromSocketWithTimeout(buffer,32,300,10000);
 	
 	stringstream aaa(buffer);//convert buffer to stringstream
 	aaa >> y;// y = number of lines, converted to in
@@ -97,26 +96,35 @@ int main()
 
 
 		//receive string
-		x = test->readFromSocketWithTimeout(buffer,32,20,10000);
+		x = this->test->readFromSocketWithTimeout(buffer,32,20,10000);
 		if(x == 0)
 			break;
-		else {
+		else 
+		{
 			stringstream s;
 			s << buffer;//convert buffer to string stream
 			std::cout<<s.str()<<" ";
 			//write to Output.out
-			outputFile << s.str();
-				
-			
+			outputFile << s.str();					
 		}
 		//new line for Output.out for every new line expected
 		outputFile<<std::endl;
 		std::cout<<std::endl;
-		
-
 	}
 	//close file
 	outputFile.close();
+}
+int main(int argc,char ** argv)
+{
+	if ( argc != 4) { // Check on the number of arguments and exit if incorrect
+		printf ("client_misvm	serverIPaddress	  serverport	file.mis");
+		exit(1);
+	}
+	Client * c = new Client(argv[1],argv[2]);
+	c->sendfile(argv[3]);
+	c->receivefile();
+	//this is for receiving file
+
 
      return 0;   
 }
