@@ -6,6 +6,7 @@
 #include "Instructions.h"
 #include "TCPServerSocket.h"
 #include "TCPSocket.h"
+#include "Thread.h"
 class Server 
 {
     private:
@@ -17,6 +18,7 @@ class Server
 		bool flagend;
 		std::string input;//input file
         int counter = 0;//pointing to which line of code
+        vector <Thread *> threads;
     public:
 		Server();
 		Server(int cthread, map <string,Instructions *> varsmap, bool flagend, std::vector<std::vector<std::string>> codelines,std::map <std::string,int> labelmap);
@@ -30,6 +32,7 @@ class Server
         void sConnection(TCPSocket * client);
 		static void * threadmethod(void *);
         int getCounter();
+        void barrier();
         std::vector<std::vector<std::string>> getLines();
         std::map <std::string,Instructions *> getObj();
         std::map<std::string, int> getLabel();

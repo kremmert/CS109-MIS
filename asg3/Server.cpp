@@ -121,7 +121,10 @@ void Server::morethanfetch()
 			threadnum = counter-1;
 			Thread * t2 = new Thread();
 			t2->start();
+			threads.push_back(t2);
 			counter = threadsbend[counter-1];
+		}else if(lines[counter-1][0].compare("BARRIER")==0) {
+			barrier();
 		}
 		else{
 			//call function : like add or sub
@@ -130,6 +133,10 @@ void Server::morethanfetch()
 		
 	}
 
+}
+
+void Server::barrier() {
+ for ( int i = 0 ; i < threads.size();i++) threads[i]->waitForRunToFinish();
 }
 
 int Server::getCounter()
