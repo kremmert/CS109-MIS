@@ -105,10 +105,9 @@ int main()
 			if(x == 0)
 				break;
 			else {
-				std::cout << buffer <<" ";
 				stringstream s;
 				s << buffer;
-				std::cout<<s.str();
+				std::cout<<s.str()<<" ";
 				outputFile << s.str();
 				
 			}
