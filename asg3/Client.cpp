@@ -87,7 +87,7 @@ int main()
 	std::vector<std::vector<std::string>> v(50,std::vector<string>(50));
 	
 	//get number of lines
-	y = test->readFromSocketWithTimeout(buffer,32,120,10000);
+	y = test->readFromSocketWithTimeout(buffer,32,300,10000);
 	
 	stringstream aaa(buffer);//convert buffer to stringstream
 	aaa >> y;// y = number of lines, converted to in
