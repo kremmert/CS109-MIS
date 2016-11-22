@@ -44,7 +44,6 @@ int main()
 	//if(lines[0][0].compare("")==0) return 0;//if lines is empty, do nothing
 	//std::map <std::string,int> mapy = p.labelget(lines);// get map of labels with line num
     //this->morethanfetch();//start executing code
-	std::cout<<"are you sure"<<lines[23][0]<<std::endl;
 	int gg=0;
 	for(gg = 0; gg < 50; gg++){
 		if(lines[gg][0].compare("")==0){
