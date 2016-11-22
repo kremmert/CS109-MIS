@@ -114,7 +114,7 @@ std::map <int,int> Parse::threadends(std::vector<std::vector<std::string>> lines
 			//set map[label] = line number
 		}
 		if(lines[x][0].compare("THREAD_END")==0){
-			threadendmap[key]= key;
+			threadendmap[key]= x;
 			//set map[label] = line number
 		}
 	}

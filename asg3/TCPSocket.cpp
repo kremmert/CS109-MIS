@@ -98,7 +98,7 @@ int TCPSocket::readFromSocket (char * buffer, int maxBytes ) { // Blocking read 
 
 int TCPSocket::readFromSocketWithTimeout (char * buffer, int maxBytes, long timeoutSec, long timeoutMilli)
 {
-    std::this_thread::sleep_for(std::chrono::milliseconds(500));
+    std::this_thread::sleep_for(std::chrono::milliseconds(250));
     fd_set fds; // A file descriptors set
     int read =-1;  // A variable for storing the amount of data read and initialized to -1
     struct timeval tv; // a timeval structure

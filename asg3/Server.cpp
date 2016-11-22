@@ -108,13 +108,19 @@ void Server::morethanfetch()
 		}else if(lines[counter-1][0].substr(0,3).compare("JMP")==0){
 			//execute jumps
 			jump(this->storevobj);
-		}else if((lines[counter-1][0].compare("THREAD_END")==0)&&flagend){//
-			return;
+		}else if((lines[counter-1][0].compare("THREAD_END")==0)){//
+			if(flagend) {
+				return;
+			}
+			else {
+				continue;
+			}
 		}else if(lines[counter-1][0].compare("THREAD_BEGIN")==0){
 			//new thread(threadmethod);
 			threadnum = counter-1;
 			Thread * t2 = new Thread();
 			t2->start();
+			counter = threadsbend[counter-1];
 		}
 		else{
 			//call function : like add or sub
