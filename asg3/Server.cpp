@@ -113,7 +113,7 @@ void Server::morethanfetch()
 		}else if(lines[counter-1][0].compare("THREAD_BEGIN")==0){
 			//new thread(threadmethod);
 			threadnum = counter-1;
-			Thread * t2 = new Thread(&threadmethod);
+			Thread * t2 = new Thread();
 			t2->start();
 		}
 		else{
@@ -125,10 +125,30 @@ void Server::morethanfetch()
 
 }
 
+int Server::getCounter()
+{
+	return threadnum;
+}
+
+std::vector<std::vector<std::string>> Server::getLines()
+{
+	return lines;
+}
+
+std::map <std::string,Instructions *> Server::getObj()
+{
+	return storevobj;
+}
+
+std::map<std::string, int> Server::getLabel()
+{
+	return labels;
+}
+/*
 void * Server::threadmethod(void * ptr){
 	int x = threadsbend[threadnum];
 	Server * s5 = new Server(x,storevobj,true,lines,labels);
-}
+}*/
 //executes jumps
 void Server::jump(std::map <std::string, Instructions *> storevobj){
 	

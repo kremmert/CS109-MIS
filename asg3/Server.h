@@ -28,6 +28,10 @@ class Server
         void setLines(std::vector<std::vector<std::string>> lines);
         void sConnection(TCPSocket * client);
 		static void * threadmethod(void *);
+        int getCounter();
+        std::vector<std::vector<std::string>> getLines();
+        std::map <std::string,Instructions *> getObj();
+        std::map<std::string, int> getLabel();
         //forms and puts object into map, clone 
         //then performs the insns, and stores into another map, then calls fetch again
         //increments counter

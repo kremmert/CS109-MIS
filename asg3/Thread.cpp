@@ -1,5 +1,5 @@
 #include "Thread.h"
-
+#include "Server.h"
 // Modifier: Set thread running flag
 void Thread::setRunning (bool _running)
 {
@@ -71,7 +71,12 @@ void Thread::start()
 void * Thread::run(void * arg)
 {
 	Thread * me = (Thread *) arg; // Cast the arg to Thread * which is the current thread
-	//me->threadMainBody(arg); //Invoke the thread main function body
+    Server s6;
+    int x = s6.getCounter();
+    std::vector<std::vector<std::string>> lines = s6.getLines();
+    map <string,Instructions *> storevobj = s6.getObj();
+    std::map<std::string, int> labels = s6.getLabel();
+	Server * s5 = new Server(x,storevobj,true,lines,labels); //Invoke the thread main function body
     me->cleanup(me);
     pthread_exit(NULL); // Invoke pthread_exit to terminate and invoke the cleanup functions.
 }
