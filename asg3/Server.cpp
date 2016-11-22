@@ -126,12 +126,8 @@ void Server::morethanfetch()
 }
 
 void * Server::threadmethod(void * ptr){
-
-	Thread * me = (Thread *) arg; // Cast the arg to Thread * which is the current thread
 	int x = threadsbend[threadnum];
 	Server * s5 = new Server(x,storevobj,true,lines,labels);
-    me->cleanup(me);
-    pthread_exit(NULL); // Invoke pthread_exit to terminate and invoke the cleanup functions.
 }
 //executes jumps
 void Server::jump(std::map <std::string, Instructions *> storevobj){
