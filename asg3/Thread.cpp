@@ -91,9 +91,9 @@ void Thread::start()
 void * Thread::run(void * arg)
 {
 	Thread * me = (Thread *) arg; // Cast the arg to Thread * which is the current thread
-    Server s6;
+    Server s6;      //create server object to invoke a thread
     int x = s6.getCounter()+1;
-    std::vector<std::vector<std::string>> lines = s6.getLines();
+    std::vector<std::vector<std::string>> lines = s6.getLines();    //getters
     map <string,Instructions *> storevobj = s6.getObj();
     std::map<std::string, int> labels = s6.getLabel();
 	Server * s5 = new Server(x,storevobj,true,lines,labels); //Invoke the thread main function body
@@ -104,7 +104,7 @@ void * Thread::run(void * arg)
 void * Thread::runClient(void * arg)
 {
 	Thread * me = (Thread *) arg; // Cast the arg to Thread * which is the current thread
-    Server s6;
+    Server s6; //gets the client address and invokes a new thread
     TCPServerSocket * s = s6.getSock(); //Invoke the thread main function body
     TCPSocket * client = s->getConnection(0,0,32,32);
     s6.sConnection(client);
