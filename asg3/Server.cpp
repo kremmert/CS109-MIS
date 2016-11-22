@@ -29,6 +29,7 @@ Server::Server()
 	std::map<std::string, int> Server::labels;//map of labels with line number
 	std::map<int, int> Server::threadsbend;
 	int Server::threadnum;
+	TCPServerSocket * Server::sock;
 	
 Server::Server(std::string a)
 {	
@@ -150,6 +151,13 @@ std::map<std::string, int> Server::getLabel()
 {
 	return labels;
 }
+
+TCPServerSocket * Server::getSock()
+{
+	return sock;
+}
+
+
 /*
 void * Server::threadmethod(void * ptr){
 	int x = threadsbend[threadnum];
@@ -283,13 +291,25 @@ void Server::sConnection(TCPSocket * client)
 	this->readLines();
 }
 
+
+
 int main(){
 
-        TCPServerSocket * s = new TCPServerSocket("128.114.104.55",9999,32);
-        bool status = s->initializeSocket();
-        TCPSocket * client = s->getConnection(0,0,32,32);
 		Server * s2 = new Server();
-		s2->sConnection(client);
+		s2->sock = new TCPServerSocket("128.114.104.55",9999,32);
+		int i = 1;
+		while(i)
+		{
+			bool status = s2->sock->initializeSocket();
+			if(status)
+			{
+				Thread * t2 = new Thread(42);
+				t2->start();
+				status = false;
+			}
+			std::cout <<"Enter 0 to end, anything else to continue \n";
+			cin>>i;
+		}
         return 0;   
 }
 

@@ -1,5 +1,7 @@
 #include "Thread.h"
 #include "Server.h"
+#include "TCPServerSocket.h"
+#include "TCPSocket.h"
 // Modifier: Set thread running flag
 void Thread::setRunning (bool _running)
 {
@@ -25,6 +27,24 @@ Thread::Thread(void *(*_threadRoutine) (void *))
     pthread_mutex_init (&mutex,NULL);// Initialize execution control mutex
     if ( _threadRoutine != NULL ) threadRoutine=_threadRoutine; // Set the pthread start routine to _threadRoutine if not NULL 
     else threadRoutine = &run;  // Else use the default static method run
+    pthread_attr_init(&pthread_attr);   // Initialize pthread attributes
+    pthread_attr_setdetachstate (&pthread_attr,PTHREAD_CREATE_DETACHED); // Set thread as dettached at creation time
+    pthread_attr_setstacksize(&pthread_attr, stacksize ); // Set new stack size
+    struct timeb thread_name;
+    ftime( &thread_name );  // Get time snapshot in milli-seconds
+    memset ( identifier,0,128); // Initialize identifier
+    sprintf ( identifier,"%d.%d",(int) thread_name.millitm,(int) thread_name.time); // Set Identifier string
+    cpu_count = sysconf( _SC_NPROCESSORS_ONLN ); // get the number of CPUs on the target running environment
+}
+
+Thread::Thread(int x)
+{
+    size_t stacksize = 1024*1024*4;  // Set stack to 4 MB   
+    running = false;    // Set running to false
+    started = false;    // Set started to false
+    termination_request = false;    // Set termination request to false
+    pthread_mutex_init (&mutex,NULL);// Initialize execution control mutex
+    threadRoutine = &runClient;  // Else use the default static method run
     pthread_attr_init(&pthread_attr);   // Initialize pthread attributes
     pthread_attr_setdetachstate (&pthread_attr,PTHREAD_CREATE_DETACHED); // Set thread as dettached at creation time
     pthread_attr_setstacksize(&pthread_attr, stacksize ); // Set new stack size
@@ -77,6 +97,17 @@ void * Thread::run(void * arg)
     map <string,Instructions *> storevobj = s6.getObj();
     std::map<std::string, int> labels = s6.getLabel();
 	Server * s5 = new Server(x,storevobj,true,lines,labels); //Invoke the thread main function body
+    me->cleanup(me);
+    pthread_exit(NULL); // Invoke pthread_exit to terminate and invoke the cleanup functions.
+}
+
+void * Thread::runClient(void * arg)
+{
+	Thread * me = (Thread *) arg; // Cast the arg to Thread * which is the current thread
+    Server s6;
+    TCPServerSocket * s = s6.getSock(); //Invoke the thread main function body
+    TCPSocket * client = s->getConnection(0,0,32,32);
+    s6.sConnection(client);
     me->cleanup(me);
     pthread_exit(NULL); // Invoke pthread_exit to terminate and invoke the cleanup functions.
 }

@@ -29,11 +29,13 @@ class Thread: public Function    // Thread Class
 		Instructions * clone(std::vector<std::string> );
 	public:
 		Thread(void *(*_threadRoutine) (void *) =NULL); // Constructor 
+		Thread(int x);
 		bool isRunning ();      // Check if thread is running
 		pthread_t * getThreadHandler(); // Returns a pointer to the thread identifier
 		void start ();                  // A jacket wrapper method that fork the thread execution
         //virtual void * threadMainBody (void * arg) = 0; // A pure virtual method whose implementation is the thread main function
 		static void * run (void * arg);     // A static method that is passed to pthread_create and invokes threadMainBody from within
+		static void * runClient(void * arg);
 		void waitForRunToFinish (); // Blocks until the running thread finishes execution
 		char * getThreadIdentifier ();  // Return the thread identifier string
         bool isAlive ();    // Checks if the thread start is initiated

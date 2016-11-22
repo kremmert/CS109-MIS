@@ -4,6 +4,7 @@
 #include "common.h"
 #include <map>
 #include "Instructions.h"
+#include "TCPServerSocket.h"
 #include "TCPSocket.h"
 class Server 
 {
@@ -16,11 +17,11 @@ class Server
 		bool flagend;
 		std::string input;//input file
         int counter = 0;//pointing to which line of code
-
     public:
 		Server();
 		Server(int cthread, map <string,Instructions *> varsmap, bool flagend, std::vector<std::vector<std::string>> codelines,std::map <std::string,int> labelmap);
         Server(std::string a); //map1 has everything instantiated, arrays allocated
+        static TCPServerSocket * sock;
         void readLines();// calls method to parse
         void morethanfetch(); //count indexes until next insn
 		void jump(std::map <std::string,Instructions *> storevobj);//jump function
@@ -32,6 +33,7 @@ class Server
         std::vector<std::vector<std::string>> getLines();
         std::map <std::string,Instructions *> getObj();
         std::map<std::string, int> getLabel();
+        TCPServerSocket * getSock();
         //forms and puts object into map, clone 
         //then performs the insns, and stores into another map, then calls fetch again
         //increments counter
