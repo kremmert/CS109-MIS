@@ -76,6 +76,7 @@ void Client::sendfile(std::string input){
 }
 
 void Client::receivefile(){
+	//create file
 	std::ofstream outputFile;;
 	outputFile.open("Output.out",std::ios::app);
 	
@@ -117,7 +118,7 @@ void Client::receivefile(){
 int main(int argc,char ** argv)
 {
 	if ( argc != 4) { // Check on the number of arguments and exit if incorrect
-		printf ("client_misvm	serverIPaddress	  serverport	file.mis");
+		printf ("Usage: client_misvm	serverIPaddress	  serverport	file.mis");
 		exit(1);
 	}
 	Client * c = new Client(argv[1],argv[2]);
