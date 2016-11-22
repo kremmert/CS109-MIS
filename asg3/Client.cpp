@@ -86,7 +86,7 @@ int main()
 	std::vector<std::vector<std::string>> v(50,std::vector<string>(50));
 	
 	//get number of lines
-	y = test->readFromSocketWithTimeout(buffer,32,20,10000);
+	y = test->readFromSocketWithTimeout(buffer,32,120,10000);
 	
 	stringstream aaa(buffer);
 	aaa >> y;// y = number of lines
@@ -108,10 +108,12 @@ int main()
 				std::cout << buffer <<" ";
 				stringstream s;
 				s << buffer;
+				std::cout<<s.str();
 				outputFile << s.str();
 				
 			}
 		}
+		outputFile<<std::endl;
 		std::cout<<std::endl;
 		
 
