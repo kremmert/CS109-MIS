@@ -24,15 +24,16 @@
 #include <thread>
 using namespace std;
 
-Server::Server()
-{	
-}
-	std::vector<std::vector<std::string>> Server::lines;//parsed lines of code
-	map <string,Instructions *> Server::storevobj;
-	std::map<std::string, int> Server::labels;//map of labels with line number
-	std::map<int, int> Server::threadsbend;
-	int Server::threadnum;
-	TCPServerSocket * Server::sock;
+//default constructor
+Server::Server() {}
+
+//static variables
+std::vector<std::vector<std::string>> Server::lines;//parsed lines of code
+map <string,Instructions *> Server::storevobj;
+std::map<std::string, int> Server::labels;//map of labels with line number
+std::map<int, int> Server::threadsbend;
+int Server::threadnum;
+TCPServerSocket * Server::sock;
 	
 Server::Server(std::string a)
 {	
@@ -40,6 +41,7 @@ Server::Server(std::string a)
     this->readLines();
 }
 
+//constructor for new threads
 Server::Server(int cthread, map <string,Instructions *> varsmap, bool flagend, std::vector<std::vector<std::string>> codelines,std::map <std::string,int> labelmap){
 	this->counter = cthread;
 	this->storevobj = varsmap;
@@ -49,6 +51,7 @@ Server::Server(int cthread, map <string,Instructions *> varsmap, bool flagend, s
 	this->morethanfetch();
 }
 
+//destructor
 Server::~Server()
 {
 
@@ -112,20 +115,20 @@ void Server::morethanfetch()
 		}else if(lines[counter-1][0].substr(0,3).compare("JMP")==0){
 			//execute jumps
 			jump(this->storevobj);
-		}else if((lines[counter-1][0].compare("THREAD_END")==0)){//
-			if(flagend) {
+		}else if((lines[counter-1][0].compare("THREAD_END")==0)){//checks for thread_end
+			if(flagend) {//if this is a thread, quit
 				return;
 			}
 			else {
-				continue;
+				continue;//otherwise continue on
 			}
 		}else if(lines[counter-1][0].compare("THREAD_BEGIN")==0){
-			//new thread(threadmethod);
+			//creates a new thread, updates counter to thread_end
 			threadnum = counter-1;
 			Thread * t2 = new Thread();
-			t2->start();
-			threads.push_back(t2);
-			counter = threadsbend[counter-1];
+			t2->start(); //starts executing thread
+			threads.push_back(t2); //places thread object into vector for easy barrier
+			counter = threadsbend[counter-1]; //sets counter to thread_end
 			counter -= 1;
 		}else if(lines[counter-1][0].compare("BARRIER")==0) {
 			barrier();
@@ -139,11 +142,14 @@ void Server::morethanfetch()
 
 }
 
+//blocks the main untill all threads are executed
 void Server::barrier() {
  	for ( int i = 0 ; i < threads.size();i++){
  		threads[i]->waitForRunToFinish();
 	}
 }
+
+//getters for various variables
 int Server::getCounter()
 {
 	return threadnum;
@@ -169,12 +175,6 @@ TCPServerSocket * Server::getSock()
 	return sock;
 }
 
-
-/*
-void * Server::threadmethod(void * ptr){
-	int x = threadsbend[threadnum];
-	Server * s5 = new Server(x,storevobj,true,lines,labels);
-}*/
 //executes jumps
 void Server::jump(std::map <std::string, Instructions *> storevobj){
 	
@@ -254,11 +254,14 @@ void Server::jump(std::map <std::string, Instructions *> storevobj){
 		return;
 	}
 }
+
+//setter for lines
 void Server::setLines(std::vector<std::vector<std::string>> lines)
 {
 	this->lines = lines;
 }
 
+//number of lines in file
 int Server::howmanyargs(std::vector<std::string> args){
 	int zz =0;
 	while(1){
@@ -276,7 +279,6 @@ void Server::sConnection(TCPSocket * client)
 	int y = 0;
 	int argnum = 0;
 	char buffer[1024];
-	//int counter = 0;
 	std::vector<std::vector<std::string>> v(50,std::vector<string>(50));
 	
 	//get number of lines
@@ -295,71 +297,67 @@ void Server::sConnection(TCPSocket * client)
 		stringstream aaa(buffer);
 		aaa >> argnum;//argnum = number of args
 		for(int ff = 0; ff <argnum;ff++ ){
-			x = client->readFromSocketWithTimeout(buffer,32,20,10000);
-			if(x == 0)
+			x = client->readFromSocketWithTimeout(buffer,32,20,10000); //read from socket
+			if(x == 0) //if buffer is empty break
 				break;
 			else {
-				std::cout << buffer <<" ";
+				std::cout << buffer <<" "; //turn char* into stringstream
 				stringstream s;
 				s << buffer;
-				v[h][ff] = s.str();
-				
+				v[h][ff] = s.str(); //places a string into vector
 			}
 		}
 		std::cout<<std::endl;
-
-
 	}
-	this->setLines(v);
+	this->setLines(v); //set lines then execute the instructions
 	this->readLines();
 	argnum = 0;
 
+	//returning Output.out
+
 	Parse p;//parse obj
     std::vector<std::vector<std::string>> outp = p.parsingf("Output.out");
-	int gg=0;
+	int gg=0;			
+	//gets the number of filled lines in vector
 	for(gg = 0; gg < 50; gg++){
 		if(outp[gg][0].compare("")==0){
 			break;
 		}
 	}
 
+	//write to socket 
 	client->writeToSocket(std::to_string(gg).c_str(),32);
 	for(int x = 0; x < gg; x++){
-		argnum = this->howmanyargs(outp[x]);
+		argnum = this->howmanyargs(outp[x]); //gets number of args
 		client->writeToSocket(std::to_string(argnum).c_str(),32);
 		for(int starts = 0; starts< argnum; starts++){
 			std::cout<<outp[x][starts].c_str();
-			client->writeToSocket(outp[x][starts].c_str(),32);
-			
+			client->writeToSocket(outp[x][starts].c_str(),32); //sends data
 		}
 		std::cout<<std::endl;
-	
 	}
 }
 
-
-
 int main(){
-		vector <Thread *> t1;
-		Server * s2 = new Server();
-		s2->sock = new TCPServerSocket("128.114.104.56",9999,32);
+		vector <Thread *> t1; //thread vector for the sequential MIS
+		Server * s2 = new Server(); 
+		s2->sock = new TCPServerSocket("128.114.104.56",9999,32); //permanent socket
 		int i = 1;
 		while(i)
 		{
-			bool status = s2->sock->initializeSocket();
-			if(status)
+			bool status = s2->sock->initializeSocket(); //check for new connections
+			if(status) //if a new connection is found
 			{
-				Thread * t2 = new Thread(42);
-				t2->start();
+				Thread * t2 = new Thread(42); //create a new thread
+				t2->start(); //execute thread and place object in vector for barrier
 				t1.push_back(t2);
 				status = false;
 			}
-			std::cout <<"Enter 0 to end, anything else to continue \n";
+			std::cout <<"Enter 0 to end, anything else to continue \n"; //condition to keep searching for new connections
 			cin>>i;
 			for ( int i = 0 ; i < t1.size();i++) t1[i]->waitForRunToFinish();
 		}
 		
-
         return 0;   
 }
 
