@@ -53,7 +53,7 @@ int main()
 		}
 	}
 
-     TCPSocket * test = new TCPSocket((char*)("128.114.104.55"),9999);
+     TCPSocket * test = new TCPSocket((char*)("128.114.104.56"),9999);
 
 
 	 
@@ -108,7 +108,7 @@ int main()
 				std::cout << buffer <<" ";
 				stringstream s;
 				s << buffer;
-				outputFile << s;
+				outputFile << s.str();
 				
 			}
 		}

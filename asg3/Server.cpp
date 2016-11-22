@@ -331,7 +331,7 @@ void Server::sConnection(TCPSocket * client)
 int main(){
 
 		Server * s2 = new Server();
-		s2->sock = new TCPServerSocket("128.114.104.55",9999,32);
+		s2->sock = new TCPServerSocket("128.114.104.56",9999,32);
 		int i = 1;
 		while(i)
 		{
