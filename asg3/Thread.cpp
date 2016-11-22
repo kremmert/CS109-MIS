@@ -72,7 +72,7 @@ void * Thread::run(void * arg)
 {
 	Thread * me = (Thread *) arg; // Cast the arg to Thread * which is the current thread
     Server s6;
-    int x = s6.getCounter();
+    int x = s6.getCounter()+1;
     std::vector<std::vector<std::string>> lines = s6.getLines();
     map <string,Instructions *> storevobj = s6.getObj();
     std::map<std::string, int> labels = s6.getLabel();
