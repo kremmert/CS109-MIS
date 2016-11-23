@@ -389,12 +389,12 @@ int main(int argc,char ** argv){
 	vector <Thread *> t1; //thread vector for the sequential MIS
 	Server * s2 = new Server(); 
 	s2->sock = new TCPServerSocket(argv[1],stoi(argv[2]),32); //permanent socket
-	int i = 1;
+	s2->sock->initializeSocket();
+	
 	for ( ;; ) // Loop forever
 	{
 		// Wait for connection and return a TCPSocket object upon one
-		TCPSocket * tcpSocket = s2->sock->getConnection();
-		if (tcpSocket == NULL) break; // if tcpSocket is NULL then error occured and we break the loop
+		
 		Thread * t2 = new Thread(42); //create a new thread
 		t2->start(); // Start the connection thread to communicate with the client
 		if(!t2->isRunning())

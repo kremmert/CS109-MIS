@@ -79,7 +79,7 @@ bool TCPServerSocket::initializeSocket ( ) // Initialize server socket
 TCPSocket * TCPServerSocket::getConnection (int timeoutSec, int timeoutMilli,int readBufferSize,int writeBufferSize )
 {
 	socklen_t sin_size ;//= sizeof(struct sockaddr_in);
-        int newsock = 0;
+    int newsock = 0;
 	if (timeoutSec==0 && timeoutMilli == 0 )// Blocking mode
 	{
                 // Wait for connection indefinitely
