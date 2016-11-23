@@ -37,7 +37,7 @@ int Client::howmanyargs(std::vector<std::string> args){
 }
 	
 void Client::sendfile(std::string input){
-	int argnum = 0;//number of args per line... eventually
+	int argnum = 0;
 
 	Parse p;//parse obj
     std::vector<std::vector<std::string>> lines = p.parsingf(input);//parsed lines of code
@@ -117,7 +117,7 @@ void Client::receivefile(){
 }
 int main(int argc,char ** argv)
 {
-	if ( argc != 4) { // Check number of args, exit if not equal
+	if ( argc != 4) { // Check on the number of arguments and exit if incorrect
 		printf ("Usage: client	serverIPaddress	  serverport	file.mis");
 		exit(1);
 	}

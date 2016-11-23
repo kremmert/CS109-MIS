@@ -359,7 +359,7 @@ void Server::sConnection(TCPSocket * client)
 
 int main(int argc,char ** argv){
 	
-	if ( argc != 3) { // Check on the number of args, exit if not correct
+	if ( argc != 3) { // Check on the number of arguments and exit if incorrect
 		printf ("usage: server	serverIPaddress	  serverport");
 		exit(1);
 	}
