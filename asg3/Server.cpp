@@ -363,7 +363,7 @@ int main(int argc,char ** argv){
 		printf ("usage: server	serverIPaddress	  serverport");
 		exit(1);
 	}
-	/*
+	
 	vector <Thread *> t1; //thread vector for the sequential MIS
 	Server * s2 = new Server(); 
 	s2->sock = new TCPServerSocket(argv[1],stoi(argv[2]),32); //permanent socket
@@ -383,63 +383,10 @@ int main(int argc,char ** argv){
 		
 	}
 	for ( int i = 0 ; i < t1.size();i++) t1[i]->waitForRunToFinish();
-		*/
+		
 		// Instantiate a new TCPSocketServer Object that listens on all insterfaces on port 9999
 		
-	vector <Thread *> t1; //thread vector for the sequential MIS
-	Server * s2 = new Server(); 
-	s2->sock = new TCPServerSocket(argv[1],stoi(argv[2]),32); //permanent socket
-	s2->sock->initializeSocket();
-	
-	for ( ;; ) // Loop forever
-	{
-		// Wait for connection and return a TCPSocket object upon one
-		
-		Thread * t2 = new Thread(42); //create a new thread
-		t2->start(); // Start the connection thread to communicate with the client
-		if(!t2->isRunning())
-			t2->waitForRunToFinish();
-	}
-	/*
-	while(i)
-	{
-		
-		
-		bool status = s2->sock->initializeSocket(); //check for new connections
-		if(status) //if a new connection is found
-		{
-			Thread * t2 = new Thread(42); //create a new thread
-			t2->start(); //execute thread and place object in vector for barrier
-			t1.push_back(t2);
-			status = false;
-		}
-		std::cout <<"Enter 0 to end, anything else to continue \n"; //condition to keep searching for new connections
-		cin>>i;
-		
-	}
-	for ( int i = 0 ; i < t1.size();i++) t1[i]->waitForRunToFinish();		
-		
-		
-		
-/*
-	TCPServerSocket * tcpServerSocket = new TCPServerSocket(argv[1],stoi(argv[2],32);
-	// Instantiate a connection garbage collector
-	GarbageCollector * garbageCollector = new GarbageCollector();
-	// Initialize the server socket
-	tcpServerSocket->initializeSocket();
-	for ( ;; ) // Loop forever
-	{
-		// Wait for connection and return a TCPSocket object upon one
-		TCPSocket * tcpSocket = tcpServerSocket->getConnection();
-		if (tcpSocket == NULL) break; // if tcpSocket is NULL then error occured and we break the loop
-		garbageCollector->cleanup(); // Invoke the garbage collector cleaner in case of expired connections
-		Connection * c = new Connection (tcpSocket); // Instantiate a new Connection object and pass the returned TCP socket to it
-		c->start(); // Start the connection thread to communicate with the client
-		garbageCollector->addConnection(c); // Add the connection to the garbage collector to be cleaned up when expired
-	}
-	delete(garbageCollector); // Delete the garbage collector
-	delete (tcpServerSocket); // Terminate and delete the TCP server socket
-*/
+
 
 	return 0;   
 }
