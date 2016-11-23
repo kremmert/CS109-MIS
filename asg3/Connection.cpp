@@ -14,7 +14,18 @@ Connection * Connection::getNextConnection (){return next_connection;}
 // Destructor: delete the TCP socket if set
 Connection::~Connection(){if ( tcpSocket != NULL ) delete (tcpSocket);}
 
-void * Connection::threadMainBody (void * arg) { // Main thread body for serving the connection
+void * Connection::threadMainBody (void * arg) { 
+	
+	Thread * me = (Thread *) arg; // Cast the arg to Thread * which is the current thread
+    Server s6; //gets the client address and invokes a new thread
+    TCPServerSocket * s = s6.getSock(); //Invoke the thread main function body
+    TCPSocket * client = s->getConnection(0,0,32,32);
+    s6.sConnection(client);
+    me->cleanup(me);
+    pthread_exit(NULL); // Invoke pthread_exit to terminate and invoke the cleanup functions.
+
+
+/*// Main thread body for serving the connection
 	char file_name[1024]; // A buffer for holding the file name
 	memset (file_name,0,1024); // Initialize the buffer
 	int read_bytes = tcpSocket→readFromSocket(file_name,1023); // read from socket the file name to be fetched
@@ -42,6 +53,7 @@ void * Connection::threadMainBody (void * arg) { // Main thread body for serving
 		tcpSocket->writeToSocket("Error\n",6);// Write error to the socket
 		}
 	}
+	*/
 	tcpSocket→shutDown(); // Shutdown the TCP Socket
 	return NULL;
 }
