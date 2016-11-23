@@ -9,6 +9,7 @@
 #define THREAD_H
 
 #include "includes.h"
+#include "TCPSocket.h"
 
 class Thread    // Thread Class
 {
@@ -24,9 +25,10 @@ class Thread    // Thread Class
 		void *(*threadRoutine   ) (void *); // A pointer to the start routine of the thread execution
 		void setRunning (bool _running);    // Sets the running flag data member of the thread
         static void  cleanup(void * target_thread); // A static method that performs house keeping after the thread terminates
+		static TCPSocket * client;
 	public:
 		Thread(void *(*_threadRoutine) (void *) =NULL); // Constructor 
-		Thread(int x); //constructor
+		Thread(TCPSocket * client); //constructor
 		bool isRunning ();      // Check if thread is running
 		pthread_t * getThreadHandler(); // Returns a pointer to the thread identifier
 		void start ();                  // A jacket wrapper method that fork the thread execution

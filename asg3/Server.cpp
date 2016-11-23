@@ -23,7 +23,6 @@
 #include <chrono>
 #include <thread>
 #include <mutex>
-#include "Connection.h"
 using namespace std;
 
 //default constructor
@@ -367,20 +366,18 @@ int main(int argc,char ** argv){
 	vector <Thread *> t1; //thread vector for the sequential MIS
 	Server * s2 = new Server(); 
 	s2->sock = new TCPServerSocket(argv[1],stoi(argv[2]),32); //permanent socket
+	bool status = s2->sock->initializeSocket();
 	int i = 1;
-	while(i)
+	Thread * t2;
+	for(;;)
 	{
-		bool status = s2->sock->initializeSocket(); //check for new connections
-		if(status) //if a new connection is found
-		{
-			Thread * t2 = new Thread(42); //create a new thread
-			t2->start(); //execute thread and place object in vector for barrier
-			t1.push_back(t2);
-			status = false;
-		}
-		std::cout <<"Enter 0 to end, anything else to continue \n"; //condition to keep searching for new connections
-		cin>>i;
-		
+		TCPSocket * client = s2->sock->getConnection();
+		if (client == NULL) break;
+		t2 = new Thread(client); //create a new thread
+		t2->start(); //execute thread and place object in vector for barrier
+		t1.push_back(t2);
+		if(!t2->isRunning())
+			t2->waitForRunToFinish();
 	}
 	for ( int i = 0 ; i < t1.size();i++) t1[i]->waitForRunToFinish();
 		

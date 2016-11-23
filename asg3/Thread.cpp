@@ -3,6 +3,7 @@
 #include "TCPServerSocket.h"
 #include "TCPSocket.h"
 // Modifier: Set thread running flag
+TCPSocket * Thread::client;
 void Thread::setRunning (bool _running)
 {
 	running = _running; // Set running
@@ -37,8 +38,9 @@ Thread::Thread(void *(*_threadRoutine) (void *))
     cpu_count = sysconf( _SC_NPROCESSORS_ONLN ); // get the number of CPUs on the target running environment
 }
 
-Thread::Thread(int x)
+Thread::Thread(TCPSocket * client)
 {
+    this->client = client;
     size_t stacksize = 1024*1024*4;  // Set stack to 4 MB   
     running = false;    // Set running to false
     started = false;    // Set started to false
@@ -105,8 +107,6 @@ void * Thread::runClient(void * arg)
 {
 	Thread * me = (Thread *) arg; // Cast the arg to Thread * which is the current thread
     Server s6; //gets the client address and invokes a new thread
-    TCPServerSocket * s = s6.getSock(); //Invoke the thread main function body
-    TCPSocket * client = s->getConnection(0,0,32,32);
     s6.sConnection(client);
     me->cleanup(me);
     pthread_exit(NULL); // Invoke pthread_exit to terminate and invoke the cleanup functions.
