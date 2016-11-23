@@ -367,7 +367,6 @@ int main(int argc,char ** argv){
 	Server * s2 = new Server(); 
 	s2->sock = new TCPServerSocket(argv[1],stoi(argv[2]),32); //permanent socket
 	bool status = s2->sock->initializeSocket();
-	int i = 1;
 	Thread * t2;
 	for(;;)
 	{
@@ -379,12 +378,6 @@ int main(int argc,char ** argv){
 		if(!t2->isRunning())
 			t2->waitForRunToFinish();
 	}
-	for ( int i = 0 ; i < t1.size();i++) t1[i]->waitForRunToFinish();
-		
-		// Instantiate a new TCPSocketServer Object that listens on all insterfaces on port 9999
-		
-
-
 	return 0;   
 }
 
