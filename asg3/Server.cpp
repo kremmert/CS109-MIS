@@ -23,6 +23,7 @@
 #include <chrono>
 #include <thread>
 #include <mutex>
+#include "Connection.h"
 using namespace std;
 
 //default constructor
