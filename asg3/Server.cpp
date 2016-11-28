@@ -138,14 +138,16 @@ void Server::morethanfetch()
 			barrier();//call barrier method. Used for threads.wait for thread to end
 		}else if(lines[counter-1][0].compare("OUT")==0)
 		{
+			m.lock();
 			Out p;
 			std::vector<std::string> temp = p.outputV(lines[counter-1],this->storevobj);
 			outp.reserve(outp.size() + temp.size());
 			outp.insert(outp.end(),temp.begin(),temp.end());
-		}else if(lines[counter-1][0].compare("LOCK")==0){
-			m.lock();
-		}else if(lines[counter-1][0].compare("UNLOCK")==0){
 			m.unlock();
+		}else if(lines[counter-1][0].compare("LOCK")==0){
+			//m.lock();
+		}else if(lines[counter-1][0].compare("UNLOCK")==0){
+			//m.unlock();
 		}
 		else{
 			//call function : like add or sub
@@ -341,11 +343,12 @@ void Server::sConnection(TCPSocket * client)
 			continue;
 		}
 		yy++;
+		std::cout << "\noutp stuff"<< outp[gg];
 	}
 
 	//write to socket 
 	client->writeToSocket(std::to_string(yy).c_str(),32);
-	for(int x = 0; x < gg; x++){//for x to #of lines in outp
+	for(int x = 0; x < outp.size(); x++){//for x to #of lines in outp
 		//argnum = this->howmanyargs(outp[x]); //gets number of args
 		//client->writeToSocket(std::to_string(argnum).c_str(),32);
 		//for(int starts = 0; starts< argnum; starts++){//for the number of strings in outp[x]
